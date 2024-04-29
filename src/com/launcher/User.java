@@ -18,7 +18,7 @@ public class User {
     public boolean login(String userName, String password) {
         return false;
     }
-    public void addGame(Game game) {
+    public void addGameToLibrary(Game game) {
     }
 }
 
