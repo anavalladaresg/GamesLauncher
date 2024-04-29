@@ -10,5 +10,13 @@ public class User {
     private String password;
     private String email;
 
+    /**
+     * List of games owned by the user
+     */
     ArrayList<Game> gamesOwned = new ArrayList<Game>();
+
+    public boolean login(String userName, String password) {
+        return false;
+    }
 }
+
