@@ -20,5 +20,7 @@ public class User {
     }
     public void addGameToLibrary(Game game) {
     }
+    public void removeGameFromLibrary(Game game) {
+    }
 }
 
