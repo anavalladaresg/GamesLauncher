@@ -1,5 +1,9 @@
+package com.launcher;
+
+import com.games.Game;
+
 /**
- * UIController class
+ * com.launcher.UIController class
  */
 public class UIController {
     private User currentUser;
