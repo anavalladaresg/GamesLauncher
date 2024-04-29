@@ -1,4 +1,4 @@
-# **Solar System**
+# **Games Launcher**
 ### DAM 1
 #### *by: [Anxo Fdez](https://github.com/Anx0Fdez) & [Ana Valladares](https://github.com/anavalladaresg)*
 
