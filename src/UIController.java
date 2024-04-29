@@ -8,6 +8,9 @@ public class UIController {
     }
     public  void displayMainMenu() {
     }
+    public void viewGameDetails(Game game) {
+    }
+
 
 
 
