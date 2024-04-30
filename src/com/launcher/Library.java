@@ -13,4 +13,8 @@ public class Library {
     public void removeGame(Game game) {
         games.remove(game);
     }
+    public ArrayList<Game> searchGame(String gameName) {
+        return null;
+    }
+
 }
