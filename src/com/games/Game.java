@@ -10,4 +10,7 @@ public class Game {
     private String price;
     private double rating;
 
+    public String getDetails() {
+        return "";
+    }
 }
