@@ -5,6 +5,7 @@ import com.games.Game;
 import java.util.ArrayList;
 
 public class User {
+    private static int userIdCounter = 0;
     /**
      * List of games owned by the user
      */
@@ -17,6 +18,13 @@ public class User {
     private String userName;
     private String password;
     private String email;
+
+    /**
+     * Every time a new user is created, the userId is incremented by 1
+     */
+    public User() {
+        userId = userIdCounter++;
+    }
 
     /**
      * Sign up a new user
@@ -42,6 +50,7 @@ public class User {
 
     /**
      * Login a user
+     *
      * @param userName username of the user
      * @param password password of the user
      * @return true if the user is logged in successfully, false otherwise
