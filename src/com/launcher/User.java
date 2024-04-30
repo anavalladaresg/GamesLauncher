@@ -40,7 +40,18 @@ public class User {
         return true;
     }
 
+    /**
+     * Login a user
+     * @param userName username of the user
+     * @param password password of the user
+     * @return true if the user is logged in successfully, false otherwise
+     */
     public boolean login(String userName, String password) {
+        for (User u : users) {
+            if (u.userName.equals(userName) && (u.password.equals(password))) {
+                return true;
+            }
+        }
         return false;
     }
 
