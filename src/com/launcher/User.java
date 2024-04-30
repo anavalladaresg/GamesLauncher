@@ -14,7 +14,6 @@ public class User {
      * List of games owned by the user
      */
     ArrayList<Game> gamesOwned = new ArrayList<Game>();
-
     public boolean login(String userName, String password) {
         return false;
     }
