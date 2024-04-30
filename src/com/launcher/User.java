@@ -5,22 +5,48 @@ import com.games.Game;
 import java.util.ArrayList;
 
 public class User {
+    /**
+     * List of games owned by the user
+     */
+    ArrayList<Game> gamesOwned = new ArrayList<Game>();
+    /**
+     * List of users in the system
+     */
+    ArrayList<User> users = new ArrayList<User>();
     private int userId;
     private String userName;
     private String password;
     private String email;
 
     /**
-     * List of games owned by the user
+     * Sign up a new user
+     *
+     * @param userName username of the user
+     * @param password password of the user
+     * @param email    email of the user
+     * @return true if the user is signed up successfully, false otherwise
      */
-    ArrayList<Game> gamesOwned = new ArrayList<Game>();
+    public boolean signUp(String userName, String password, String email) {
+        for (User u : users) {
+            if (u.userName.equals(userName)) {
+                return false;
+            }
+        }
+        User newUser = new User();
+        newUser.userName = userName;
+        newUser.password = password;
+        newUser.email = email;
+        users.add(newUser);
+        return true;
+    }
 
     public boolean login(String userName, String password) {
         return false;
     }
+
     public void addGameToLibrary(Game game) {
     }
+
     public void removeGameFromLibrary(Game game) {
     }
 }
-
