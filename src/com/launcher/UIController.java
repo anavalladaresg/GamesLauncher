@@ -8,6 +8,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+//TODO --> Pasar los comentarios de esta clase a inglés después de terminarla para entender a la perfección que hace cada línea de código
+
 /**
  * Clase UIController que controla la interfaz de usuario.
  */
@@ -82,6 +84,7 @@ public class UIController {
         signUpButton.setBounds(140, 260, 150, 35);
         signUpButton.setOpaque(true); // Hacer el botón opaco
         signUpButton.setBackground(new Color(80, 65, 165)); // Color de fondo
+        signUpButton.setFont(new Font("Helvetica", Font.PLAIN, 14));
         signUpButton.setForeground(Color.WHITE); // Color del texto
 
         // Establece el borde del botón a una delgada línea blanca
@@ -95,28 +98,50 @@ public class UIController {
 
 
     private void createAndConfigureSignInComponents(JPanel componentsPanel) {
-        JLabel userLabel = new JLabel("SIGN IN WITH YOUR STEAM ACCOUNT");
-        userLabel.setBounds(10, 20, 280, 25);
-        userLabel.setForeground(Color.orange);
+
+        JLabel signInLabel = new JLabel("SIGN IN");
+        signInLabel.setBounds(135, 60, 280, 30);
+        signInLabel.setFont(new Font("Helvetica", Font.BOLD, 30));
+        componentsPanel.add(signInLabel);
+
+        //Texto de inicio de sesión
+        JLabel userLabel = new JLabel("USERNAME");
+        userLabel.setBounds(40, 120, 280, 25);
+        userLabel.setFont(new Font("Helvetica", Font.PLAIN, 14));
         componentsPanel.add(userLabel);
 
-        JTextField userText = new CustomTextField(20);
-        userText.setBounds(7, 40, 300, 40);
+        //Campo de texto para el nombre de usuario
+        JTextField userText = new JTextField(20);
+        userText.setBackground(new Color(215, 215, 215, 255));
+        userText.setBorder(null);
+        userText.setBounds(40, 155, 300, 40);
         componentsPanel.add(userText);
 
+        //Texto de contraseña
         JLabel passwordLabel = new JLabel("PASSWORD");
-        passwordLabel.setBounds(10, 90, 80, 25);
+        passwordLabel.setBounds(40, 220, 80, 25);
         passwordLabel.setForeground(Color.DARK_GRAY);
         componentsPanel.add(passwordLabel);
 
-        JPasswordField passwordText = new CustomPasswordField(20);
-        passwordText.setBounds(7, 110, 300, 40);
+        //Campo de contraseña
+        JPasswordField passwordText = new JPasswordField(20);
+        passwordText.setBounds(40, 255, 300, 40);
+        passwordText.setBackground(new Color(215, 215, 215, 255));
+        passwordText.setBorder(null);
         componentsPanel.add(passwordText);
 
-        JButton loginButton = new JButton("Sign in");
-        loginButton.setBounds(50, 160, 200, 35);
+        //Botón de inicio de sesión
+        JButton loginButton = new JButton("SIGN IN");
+        loginButton.setBounds(115, 330, 150, 35);
+        loginButton.setOpaque(true);
+        loginButton.setBackground(new Color(80, 65, 165));
+        loginButton.setFont(new Font("Helvetica", Font.PLAIN, 14));
+        loginButton.setForeground(Color.WHITE);
+        loginButton.setBorder(BorderFactory.createLineBorder(Color.WHITE));
+        loginButton.setContentAreaFilled(true);
         componentsPanel.add(loginButton);
 
+        //Añadir un listener al botón de inicio de sesión
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
