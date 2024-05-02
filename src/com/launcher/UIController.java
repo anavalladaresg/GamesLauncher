@@ -124,7 +124,8 @@ public class UIController {
         componentsPanel.add(passwordLabel);
 
         //Campo de contraseña
-        JPasswordField passwordText = new JPasswordField(20);
+        PlaceholderPasswordField passwordText = new PlaceholderPasswordField(20);
+        passwordText.setPrompt("Enter your password");
         passwordText.setBounds(40, 255, 300, 40);
         passwordText.setBackground(new Color(215, 215, 215, 255));
         passwordText.setBorder(null);
