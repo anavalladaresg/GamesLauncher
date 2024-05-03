@@ -65,12 +65,25 @@ public class UIController {
     }
 
     private void createAndConfigureLabels(RoundedPanel colorLayer) {
+        // Cargar la imagen
+        ImageIcon imageIcon = new ImageIcon(getClass().getResource("/com/images/Xynx.png"));// Reemplaza "/path/to/Xynx.png" con la ruta real de tu imagen
+        Image image = imageIcon.getImage(); // Transforma el ImageIcon en Image
+        Image scaledImage = image.getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH); // Escala la imagen
+        imageIcon = new ImageIcon(scaledImage); // Transforma la Image escalada de nuevo a ImageIcon
+
+        // Crear un JLabel para la imagen
+        JLabel imageLabel = new JLabel(imageIcon);
+        imageLabel.setBounds(120, 0, 200, 200); // Ajusta estos valores para posicionar la imagen correctamente
+        colorLayer.add(imageLabel);
+
+        // Crear un JLabel para el saludo
         JLabel greetingLabel = new JLabel("WELCOME TO STEAM");
         greetingLabel.setBounds(110, 170, 500, 25);
         greetingLabel.setForeground(Color.white);
         greetingLabel.setFont(new Font("Helvetica", Font.BOLD, 20));
         colorLayer.add(greetingLabel);
 
+        // Crear un JLabel para la invitación
         JLabel invitationLabel = new JLabel("<html><div style='text-align: center;'>Register with your personal details<br>to get started</html>");
         invitationLabel.setBounds(107, 200, 230, 50);
         invitationLabel.setForeground(Color.white);
@@ -83,7 +96,7 @@ public class UIController {
         signUpButton.setBounds(140, 260, 150, 35);
         signUpButton.setOpaque(true); // Make the button opaque
         signUpButton.setBackground(new Color(80, 65, 165)); // Background color
-        signUpButton.setFont(new Font("Helvetica", Font.PLAIN, 14));
+        signUpButton.setFont(new Font("Helvetica", Font.BOLD, 14));
         signUpButton.setForeground(Color.WHITE); // Text color
 
         // Set the border of the button to a thin white line
@@ -105,7 +118,7 @@ public class UIController {
         // Sign in text
         JLabel userLabel = new JLabel("USERNAME");
         userLabel.setBounds(40, 120, 280, 25);
-        userLabel.setFont(new Font("Helvetica", Font.PLAIN, 14));
+        userLabel.setFont(new Font("Helvetica", Font.BOLD, 14));
         componentsPanel.add(userLabel);
 
         // Text field for username
@@ -118,8 +131,9 @@ public class UIController {
 
         // Password text
         JLabel passwordLabel = new JLabel("PASSWORD");
-        passwordLabel.setBounds(40, 220, 80, 25);
+        passwordLabel.setBounds(40, 220, 180, 25);
         passwordLabel.setForeground(Color.DARK_GRAY);
+        passwordLabel.setFont(new Font("Helvetica", Font.BOLD, 14));
         componentsPanel.add(passwordLabel);
 
         // Password field
@@ -135,7 +149,7 @@ public class UIController {
         loginButton.setBounds(115, 330, 150, 35);
         loginButton.setOpaque(true);
         loginButton.setBackground(new Color(80, 65, 165));
-        loginButton.setFont(new Font("Helvetica", Font.PLAIN, 14));
+        loginButton.setFont(new Font("Helvetica", Font.BOLD, 14));
         loginButton.setForeground(Color.WHITE);
         loginButton.setBorder(BorderFactory.createLineBorder(Color.WHITE));
         loginButton.setContentAreaFilled(true);
