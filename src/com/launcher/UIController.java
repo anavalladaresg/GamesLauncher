@@ -93,15 +93,27 @@ public class UIController {
     }
 
     private void createAndConfigureSignUpButton(RoundedPanel colorLayer) {
-        JButton signUpButton = new JButton("SIGN UP");
+        JButton signUpButton = new JButton("SIGN UP") {
+            // Override paintComponent to provide our own paint methods while preserving the original functionality
+            protected void paintComponent(Graphics g) {
+                if (!isOpaque() && getBorder() instanceof RoundedBorder) {
+                    Graphics2D g2 = (Graphics2D) g.create();
+                    g2.setPaint(getBackground());
+                    g2.fill(((RoundedBorder) getBorder()).getBorderShape(
+                            0, 0, getWidth() - 1, getHeight() - 1));
+                    g2.dispose();
+                }
+                super.paintComponent(g);
+            }
+        };
         signUpButton.setBounds(140, 260, 150, 35);
-        signUpButton.setOpaque(true); // Make the button opaque
+        signUpButton.setOpaque(false); // Make the button non-opaque
         signUpButton.setBackground(new Color(80, 65, 165)); // Background color
         signUpButton.setFont(new Font("Helvetica", Font.BOLD, 14));
         signUpButton.setForeground(Color.WHITE); // Text color
 
-        // Set the border of the button to a thin white line
-        Border whiteLineBorder = BorderFactory.createLineBorder(Color.WHITE);
+        // Set the border of the button to a rounded border with a thin white line
+        Border whiteLineBorder = new RoundedBorder(Color.WHITE, 10); // 10 is the radius of the border
         signUpButton.setBorder(whiteLineBorder);
 
         signUpButton.setContentAreaFilled(true); // Fill the content area
