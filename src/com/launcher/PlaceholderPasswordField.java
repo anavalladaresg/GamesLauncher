@@ -38,7 +38,7 @@ public class PlaceholderPasswordField extends JPasswordField {
                     RenderingHints.KEY_ANTIALIASING,
                     RenderingHints.VALUE_ANTIALIAS_ON);
             g.setColor(getDisabledTextColor());
-            g.drawString(getPrompt(), getInsets().left + 10, pG.getFontMetrics()
+            g.drawString(getPrompt(), getInsets().left, pG.getFontMetrics()
                     .getMaxAscent() + getInsets().top + 11);
         }
     }
