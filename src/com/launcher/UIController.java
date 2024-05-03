@@ -4,65 +4,64 @@ import com.games.Game;
 
 import javax.swing.*;
 import javax.swing.border.Border;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-//TODO --> Pasar los comentarios de esta clase a inglés después de terminarla para entender a la perfección que hace cada línea de código
-
 /**
- * Clase UIController que controla la interfaz de usuario.
+ * UIController class that controls the user interface.
  */
 public class UIController {
-    private final JFrame frame; // Marco de la ventana
-    private User currentUser; // Usuario actual
+    private final JFrame frame; // Window frame
+    private User currentUser; // Current user
 
     /**
-     * Constructor de UIController.
-     * Inicializa el marco de la ventana y coloca los componentes en el panel.
+     * UIController constructor.
+     * Initializes the window frame and places the components on the panel.
      */
     public UIController() {
-        frame = new JFrame("Steam"); // Crear un nuevo marco con el título "Steam"
-        frame.setSize(800, 500); // Establecer el tamaño del marco
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Establecer la operación de cierre
+        frame = new JFrame("Steam"); // Create a new frame with the title "Steam"
+        frame.setSize(800, 500); // Set the size of the frame
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Set the close operation
 
-        JPanel panel = new JPanel(); // Crear un nuevo panel
-        frame.add(panel); // Añadir el panel al marco
-        placeComponents(panel); // Colocar los componentes en el panel
+        JPanel panel = new JPanel(); // Create a new panel
+        frame.add(panel); // Add the panel to the frame
+        placeComponents(panel); // Place the components on the panel
 
-        frame.setVisible(true); // Hacer visible el marco
+        frame.setVisible(true); // Make the frame visible
     }
 
     /**
-     * Método para colocar los componentes en el panel.
+     * Method to place the components on the panel.
      *
-     * @param panel El panel en el que se colocarán los componentes.
+     * @param panel The panel on which the components will be placed.
      */
     private void placeComponents(JPanel panel) {
-        panel.setLayout(new BorderLayout()); // Cambiar a BorderLayout
+        panel.setLayout(new BorderLayout()); // Change to BorderLayout
 
-        // Crear un nuevo panel para la capa de color
+        // Create a new panel for the color layer
         RoundedPanel colorLayer = new RoundedPanel(new BorderLayout(), 250, new Color(80, 65, 169));
-        colorLayer.setPreferredSize(new Dimension(400, colorLayer.getHeight())); // Establecer el tamaño del panel
-        panel.add(colorLayer, BorderLayout.EAST); // Añadir el panel a la derecha
-        colorLayer.setLayout(null); // Establecer el diseño del panel
+        colorLayer.setPreferredSize(new Dimension(400, colorLayer.getHeight())); // Set the size of the panel
+        panel.add(colorLayer, BorderLayout.EAST); // Add the panel to the right
+        colorLayer.setLayout(null); // Set the layout of the panel
 
-        // Crear un nuevo panel para los componentes existentes
+        // Create a new panel for the existing components
         JPanel componentsPanel = new JPanel();
-        componentsPanel.setLayout(null); // Establecer el diseño del panel
+        componentsPanel.setLayout(null); // Set the layout of the panel
 
-        // Crear y configurar las etiquetas
+        // Create and configure the labels
         createAndConfigureLabels(colorLayer);
 
-        // Crear y configurar el botón de registro
+        // Create and configure the sign up button
         createAndConfigureSignUpButton(colorLayer);
 
-        // Crear y configurar los componentes de inicio de sesión
+        // Create and configure the sign in components
         createAndConfigureSignInComponents(componentsPanel);
 
-        componentsPanel.setBackground(new Color(238, 238, 238, 255)); // Establecer el color de fondo del panel
+        componentsPanel.setBackground(new Color(238, 238, 238, 255)); // Set the background color of the panel
 
-        panel.add(componentsPanel, BorderLayout.CENTER); // Agregar el panel de componentes al centro
+        panel.add(componentsPanel, BorderLayout.CENTER); // Add the components panel to the center
     }
 
     private void createAndConfigureLabels(RoundedPanel colorLayer) {
@@ -82,20 +81,19 @@ public class UIController {
     private void createAndConfigureSignUpButton(RoundedPanel colorLayer) {
         JButton signUpButton = new JButton("SIGN UP");
         signUpButton.setBounds(140, 260, 150, 35);
-        signUpButton.setOpaque(true); // Hacer el botón opaco
-        signUpButton.setBackground(new Color(80, 65, 165)); // Color de fondo
+        signUpButton.setOpaque(true); // Make the button opaque
+        signUpButton.setBackground(new Color(80, 65, 165)); // Background color
         signUpButton.setFont(new Font("Helvetica", Font.PLAIN, 14));
-        signUpButton.setForeground(Color.WHITE); // Color del texto
+        signUpButton.setForeground(Color.WHITE); // Text color
 
-        // Establece el borde del botón a una delgada línea blanca
+        // Set the border of the button to a thin white line
         Border whiteLineBorder = BorderFactory.createLineBorder(Color.WHITE);
         signUpButton.setBorder(whiteLineBorder);
 
-        signUpButton.setContentAreaFilled(true); // Rellenar el área del contenido
+        signUpButton.setContentAreaFilled(true); // Fill the content area
 
         colorLayer.add(signUpButton);
     }
-
 
     private void createAndConfigureSignInComponents(JPanel componentsPanel) {
 
@@ -104,34 +102,35 @@ public class UIController {
         signInLabel.setFont(new Font("Helvetica", Font.BOLD, 30));
         componentsPanel.add(signInLabel);
 
-        //Texto de inicio de sesión
+        // Sign in text
         JLabel userLabel = new JLabel("USERNAME");
         userLabel.setBounds(40, 120, 280, 25);
         userLabel.setFont(new Font("Helvetica", Font.PLAIN, 14));
         componentsPanel.add(userLabel);
 
-        //Campo de texto para el nombre de usuario
-        JTextField userText = new JTextField(20);
+        // Text field for username
+        PlaceholderTextField userText = new PlaceholderTextField(20);
+        userText.setPrompt("Enter your username");
         userText.setBackground(new Color(215, 215, 215, 255));
-        userText.setBorder(null);
+        userText.setBorder(new EmptyBorder(0, 10, 0, 0)); // Set margin to align text
         userText.setBounds(40, 155, 300, 40);
         componentsPanel.add(userText);
 
-        //Texto de contraseña
+        // Password text
         JLabel passwordLabel = new JLabel("PASSWORD");
         passwordLabel.setBounds(40, 220, 80, 25);
         passwordLabel.setForeground(Color.DARK_GRAY);
         componentsPanel.add(passwordLabel);
 
-        //Campo de contraseña
+        // Password field
         PlaceholderPasswordField passwordText = new PlaceholderPasswordField(20);
         passwordText.setPrompt("Enter your password");
         passwordText.setBounds(40, 255, 300, 40);
         passwordText.setBackground(new Color(215, 215, 215, 255));
-        passwordText.setBorder(null);
+        passwordText.setBorder(new EmptyBorder(0, 10, 0, 0));
         componentsPanel.add(passwordText);
 
-        //Botón de inicio de sesión
+        // Sign in button
         JButton loginButton = new JButton("SIGN IN");
         loginButton.setBounds(115, 330, 150, 35);
         loginButton.setOpaque(true);
@@ -142,41 +141,41 @@ public class UIController {
         loginButton.setContentAreaFilled(true);
         componentsPanel.add(loginButton);
 
-        //Añadir un listener al botón de inicio de sesión
+        // Add a listener to the sign in button
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (currentUser.login(userText.getText(), new String(passwordText.getPassword()))) {
-                    JOptionPane.showMessageDialog(frame, "Login successful!"); // Mostrar un mensaje de éxito
-                    displayMainMenu(); // Mostrar el menú principal
+                    JOptionPane.showMessageDialog(frame, "Login successful!"); // Show a success message
+                    displayMainMenu(); // Show the main menu
                 } else {
-                    JOptionPane.showMessageDialog(frame, "Login failed. Please try again."); // Mostrar un mensaje de error
+                    JOptionPane.showMessageDialog(frame, "Login failed. Please try again."); // Show an error message
                 }
             }
         });
     }
 
     /**
-     * Método para mostrar la pantalla de inicio de sesión.
+     * Method to display the login screen.
      */
     public void displayLoginScreen() {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                new UIController(); // Crear una nueva instancia de UIController
+                new UIController(); // Create a new instance of UIController
             }
         });
     }
 
     /**
-     * Método para mostrar el menú principal.
+     * Method to display the main menu.
      */
     public void displayMainMenu() {
     }
 
     /**
-     * Método para ver los detalles del juego.
+     * Method to view the game details.
      *
-     * @param game El juego cuyos detalles se van a ver.
+     * @param game The game whose details will be viewed.
      */
     public void viewGameDetails(Game game) {
     }
