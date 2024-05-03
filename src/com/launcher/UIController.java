@@ -24,6 +24,7 @@ public class UIController {
         frame = new JFrame("Xynx"); // Create a new frame with the title "Xynx"
         frame.setSize(800, 500); // Set the size of the frame
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Set the close operation
+        frame.setResizable(false); // Esto deshabilita el redimensionamiento
 
         JPanel panel = new JPanel(); // Create a new panel
         frame.add(panel); // Add the panel to the frame
