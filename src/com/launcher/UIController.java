@@ -21,7 +21,7 @@ public class UIController {
      * Initializes the window frame and places the components on the panel.
      */
     public UIController() {
-        frame = new JFrame("Steam"); // Create a new frame with the title "Steam"
+        frame = new JFrame("Xynx"); // Create a new frame with the title "Xynx"
         frame.setSize(800, 500); // Set the size of the frame
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Set the close operation
 
@@ -77,8 +77,8 @@ public class UIController {
         colorLayer.add(imageLabel);
 
         // Crear un JLabel para el saludo
-        JLabel greetingLabel = new JLabel("WELCOME TO STEAM");
-        greetingLabel.setBounds(110, 170, 500, 25);
+        JLabel greetingLabel = new JLabel("WELCOME TO XYNX");
+        greetingLabel.setBounds(115, 170, 500, 25);
         greetingLabel.setForeground(Color.white);
         greetingLabel.setFont(new Font("Helvetica", Font.BOLD, 20));
         colorLayer.add(greetingLabel);
