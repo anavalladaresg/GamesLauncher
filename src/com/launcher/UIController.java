@@ -168,6 +168,10 @@ public class UIController {
         loginButton.setContentAreaFilled(true);
         componentsPanel.add(loginButton);
 
+        ImageIcon imageIcon = new ImageIcon(getClass().getResource("/com/images/XynxLogoVentana.png"));
+        Image image = imageIcon.getImage(); // Transforma el ImageIcon en Image
+        frame.setIconImage(image); // Establece la imagen como icono de la ventana
+
         // Add a listener to the sign in button
         loginButton.addActionListener(new ActionListener() {
             @Override
