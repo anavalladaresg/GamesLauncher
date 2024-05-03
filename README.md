@@ -25,7 +25,6 @@ classDiagram
         -String genre
         -LocalDate releaseDate
         -String developer
-        -String publisher
         -double price
         -double rating
         +String getDetails()
