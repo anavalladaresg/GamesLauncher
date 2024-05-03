@@ -123,6 +123,9 @@ public class UIController {
 
     private void createAndConfigureSignInComponents(JPanel componentsPanel) {
 
+        // Centra la ventana en la pantalla
+        frame.setLocationRelativeTo(null);
+
         JLabel signInLabel = new JLabel("SIGN IN");
         signInLabel.setBounds(135, 60, 280, 30);
         signInLabel.setFont(new Font("Helvetica", Font.BOLD, 30));
@@ -185,6 +188,7 @@ public class UIController {
             }
         });
     }
+
 
     /**
      * Method to display the login screen.
