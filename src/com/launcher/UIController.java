@@ -24,7 +24,7 @@ public class UIController {
         frame = new JFrame("Xynx"); // Create a new frame with the title "Xynx"
         frame.setSize(800, 500); // Set the size of the frame
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Set the close operation
-        frame.setResizable(false); // Esto deshabilita el redimensionamiento
+        frame.setResizable(false); // This disables resizing
 
         JPanel panel = new JPanel(); // Create a new panel
         frame.add(panel); // Add the panel to the frame
@@ -66,25 +66,25 @@ public class UIController {
     }
 
     private void createAndConfigureLabels(RoundedPanel colorLayer) {
-        // Cargar la imagen
-        ImageIcon imageIcon = new ImageIcon(getClass().getResource("/com/images/Xynx.png"));// Reemplaza "/path/to/Xynx.png" con la ruta real de tu imagen
-        Image image = imageIcon.getImage(); // Transforma el ImageIcon en Image
-        Image scaledImage = image.getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH); // Escala la imagen
-        imageIcon = new ImageIcon(scaledImage); // Transforma la Image escalada de nuevo a ImageIcon
+        // Load the image
+        ImageIcon imageIcon = new ImageIcon(getClass().getResource("/com/images/Xynx.png"));// Replace "/path/to/Xynx.png" with the real path of your image
+        Image image = imageIcon.getImage(); // Transform the ImageIcon into Image
+        Image scaledImage = image.getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH); // Scale the image
+        imageIcon = new ImageIcon(scaledImage); // Transform the scaled Image back to ImageIcon
 
-        // Crear un JLabel para la imagen
+        // Create a JLabel for the image
         JLabel imageLabel = new JLabel(imageIcon);
-        imageLabel.setBounds(120, 0, 200, 200); // Ajusta estos valores para posicionar la imagen correctamente
+        imageLabel.setBounds(120, 0, 200, 200); // Adjust these values to position the image correctly
         colorLayer.add(imageLabel);
 
-        // Crear un JLabel para el saludo
+        // Create a JLabel for the greeting
         JLabel greetingLabel = new JLabel("WELCOME TO XYNX");
         greetingLabel.setBounds(115, 170, 500, 25);
         greetingLabel.setForeground(Color.white);
         greetingLabel.setFont(new Font("Helvetica", Font.BOLD, 20));
         colorLayer.add(greetingLabel);
 
-        // Crear un JLabel para la invitación
+        // Create a JLabel for the invitation
         JLabel invitationLabel = new JLabel("<html><div style='text-align: center;'>Register with your personal details<br>to get started</html>");
         invitationLabel.setBounds(107, 200, 230, 50);
         invitationLabel.setForeground(Color.white);
@@ -123,7 +123,7 @@ public class UIController {
 
     private void createAndConfigureSignInComponents(JPanel componentsPanel) {
 
-        // Centra la ventana en la pantalla
+        // Center the window on the screen
         frame.setLocationRelativeTo(null);
 
         JLabel signInLabel = new JLabel("SIGN IN");
@@ -172,8 +172,8 @@ public class UIController {
         componentsPanel.add(loginButton);
 
         ImageIcon imageIcon = new ImageIcon(getClass().getResource("/com/images/XynxLogoVentana.png"));
-        Image image = imageIcon.getImage(); // Transforma el ImageIcon en Image
-        frame.setIconImage(image); // Establece la imagen como icono de la ventana
+        Image image = imageIcon.getImage(); // Transform the ImageIcon into Image
+        frame.setIconImage(image); // Set the image as window icon
 
         // Add a listener to the sign in button
         loginButton.addActionListener(new ActionListener() {
