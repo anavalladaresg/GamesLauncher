@@ -5,7 +5,7 @@ import java.awt.*;
 
 class SignUpRoundedPanel extends JPanel {
     private Color backgroundColor;
-    private int cornerRadius = 15;
+    private int cornerRadius;
 
     public SignUpRoundedPanel(LayoutManager layout, int radius, Color bgColor) {
         super(layout);
