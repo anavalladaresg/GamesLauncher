@@ -223,7 +223,7 @@ public class SignInController {
                         try {
                             for (int i = 0; i < 400; i++) {
                                 colorLayer.setBounds(i, colorLayer.getY(), colorLayer.getWidth(), colorLayer.getHeight());
-                                Thread.sleep(5); // Sleep for a while
+                                Thread.sleep(3); // Sleep for a while
                             }
                         } catch (InterruptedException ex) {
                             ex.printStackTrace();
