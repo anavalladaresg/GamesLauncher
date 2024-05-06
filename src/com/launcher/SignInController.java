@@ -15,6 +15,7 @@ import java.awt.event.ActionListener;
  */
 public class SignInController {
     private final JFrame frame; // Window frame
+    SignInRoundedPanel colorLayer; // Panel for the color layer
     private User currentUser; // Current user
 
     /**
@@ -43,7 +44,7 @@ public class SignInController {
         panel.setLayout(new BorderLayout()); // Change to BorderLayout
 
         // Create a new panel for the color layer
-        SignInRoundedPanel colorLayer = new SignInRoundedPanel(new BorderLayout(), 250, new Color(80, 65, 169));
+        colorLayer = new SignInRoundedPanel(new BorderLayout(), 250, new Color(80, 65, 169));
         colorLayer.setPreferredSize(new Dimension(400, colorLayer.getHeight())); // Set the size of the panel
         panel.add(colorLayer, BorderLayout.EAST); // Add the panel to the right
         colorLayer.setLayout(null); // Set the layout of the panel
@@ -75,19 +76,19 @@ public class SignInController {
 
         // Crear un JLabel para la imagen
         JLabel imageLabel = new JLabel(imageIcon);
-        imageLabel.setBounds(120, 0, 200, 200); // Ajusta estos valores para posicionar la imagen correctamente
+        imageLabel.setBounds(120, 30, 200, 200); // Ajusta estos valores para posicionar la imagen correctamente
         colorLayer.add(imageLabel);
 
         // Crear un JLabel para el saludo
         JLabel greetingLabel = new JLabel("WELCOME TO XYNX");
-        greetingLabel.setBounds(115, 170, 500, 25);
+        greetingLabel.setBounds(115, 200, 500, 25);
         greetingLabel.setForeground(Color.white);
         greetingLabel.setFont(new Font("Helvetica", Font.BOLD, 20));
         colorLayer.add(greetingLabel);
 
         // Crear un JLabel para la invitación
-        JLabel invitationLabel = new JLabel("<html><div style='text-align: center;'>Register with your personal details<br>to get started</html>");
-        invitationLabel.setBounds(107, 200, 230, 50);
+        JLabel invitationLabel = new JLabel("<html><div style='text-align: center;'>If you already have an account, press the Sign In button.</html>");
+        invitationLabel.setBounds(100, 230, 230, 50);
         invitationLabel.setForeground(Color.white);
         invitationLabel.setFont(new Font("Helvetica", Font.PLAIN, 14));
         colorLayer.add(invitationLabel);
@@ -107,7 +108,7 @@ public class SignInController {
                 super.paintComponent(g);
             }
         };
-        signUpButton.setBounds(140, 260, 150, 35);
+        signUpButton.setBounds(140, 295, 150, 35);
         signUpButton.setOpaque(false); // Make the button non-opaque
         signUpButton.setBackground(new Color(80, 65, 165)); // Background color
         signUpButton.setFont(new Font("Helvetica", Font.BOLD, 14));
@@ -215,6 +216,20 @@ public class SignInController {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 new SignUpController(); // Create a new instance of UIController
+
+                // Start the animation
+                new Thread(new Runnable() {
+                    public void run() {
+                        try {
+                            for (int i = 0; i < 400; i++) {
+                                colorLayer.setBounds(i, colorLayer.getY(), colorLayer.getWidth(), colorLayer.getHeight());
+                                Thread.sleep(5); // Sleep for a while
+                            }
+                        } catch (InterruptedException ex) {
+                            ex.printStackTrace();
+                        }
+                    }
+                }).start();
             }
         });
     }
