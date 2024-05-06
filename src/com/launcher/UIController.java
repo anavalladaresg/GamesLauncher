@@ -4,6 +4,7 @@ import com.games.Game;
 
 import javax.swing.*;
 import javax.swing.border.Border;
+import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -140,8 +141,9 @@ public class UIController {
         // Text field for username
         PlaceholderTextField userText = new PlaceholderTextField(20);
         userText.setPrompt("Enter your username");
-        userText.setBackground(new Color(215, 215, 215, 255));
-        userText.setBorder(new EmptyBorder(0, 10, 0, 0)); // Set margin to align text
+        userText.setForeground(new Color(0, 0, 0));
+        userText.setBackground(new Color(224, 224, 224, 255));
+        userText.setBorder(new CompoundBorder(new RoundedBorder(new Color(114, 114, 114), 10), new EmptyBorder(0, 10, 0, 0)));
         userText.setBounds(40, 155, 300, 40);
         componentsPanel.add(userText);
 
@@ -156,18 +158,30 @@ public class UIController {
         PlaceholderPasswordField passwordText = new PlaceholderPasswordField(20);
         passwordText.setPrompt("Enter your password");
         passwordText.setBounds(40, 255, 300, 40);
-        passwordText.setBackground(new Color(215, 215, 215, 255));
-        passwordText.setBorder(new EmptyBorder(0, 10, 0, 0));
+        passwordText.setBackground(new Color(224, 224, 224, 255));
+        passwordText.setBorder(new CompoundBorder(new RoundedBorder(new Color(155, 155, 155), 10), new EmptyBorder(0, 10, 0, 0)));
         componentsPanel.add(passwordText);
 
         // Sign in button
-        JButton loginButton = new JButton("SIGN IN");
-        loginButton.setBounds(115, 330, 150, 35);
-        loginButton.setOpaque(true);
-        loginButton.setBackground(new Color(80, 65, 165));
-        loginButton.setFont(new Font("Helvetica", Font.BOLD, 14));
+        JButton loginButton = new JButton("SIGN IN") {
+            @Override
+            protected void paintComponent(Graphics g) {
+                if (!isOpaque() && getBorder() instanceof RoundedBorder) {
+                    Graphics2D g2 = (Graphics2D) g.create();
+                    g2.setPaint(getBackground());
+                    g2.fill(((RoundedBorder) getBorder()).getBorderShape(0, 0, getWidth() - 1, getHeight() - 1));
+                    g2.dispose();
+                }
+                super.paintComponent(g);
+            }
+        };
+        loginButton.setBounds(115, 330, 150, 35); // Set the bounds of the button
+        loginButton.setOpaque(false); // Make the button non-opaque
+        loginButton.setBackground(new Color(80, 65, 165)); // Set the background color
+        loginButton.setFont(new Font("Helvetica", Font.BOLD, 14)); // Set the font
         loginButton.setForeground(Color.WHITE);
-        loginButton.setBorder(BorderFactory.createLineBorder(Color.WHITE));
+// Set rounded border with margin
+        loginButton.setBorder(new RoundedBorder(Color.WHITE, 10)); // 10 is the radius of the border
         loginButton.setContentAreaFilled(true);
         componentsPanel.add(loginButton);
 
