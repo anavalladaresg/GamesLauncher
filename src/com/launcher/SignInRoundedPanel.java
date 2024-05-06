@@ -3,11 +3,11 @@ package com.launcher;
 import javax.swing.*;
 import java.awt.*;
 
-class RoundedPanel extends JPanel {
+class SignInRoundedPanel extends JPanel {
     private Color backgroundColor;
     private int cornerRadius = 15;
 
-    public RoundedPanel(LayoutManager layout, int radius, Color bgColor) {
+    public SignInRoundedPanel(LayoutManager layout, int radius, Color bgColor) {
         super(layout);
         cornerRadius = radius;
         backgroundColor = bgColor;
