@@ -72,19 +72,19 @@ public class SignUpController {
 
         // Crear un JLabel para la imagen
         JLabel imageLabel = new JLabel(imageIcon);
-        imageLabel.setBounds(120, 0, 200, 200); // Ajusta estos valores para posicionar la imagen correctamente
+        imageLabel.setBounds(90, 30, 200, 200); // Ajusta estos valores para posicionar la imagen correctamente
         colorLayer.add(imageLabel);
 
         // Crear un JLabel para el saludo
         JLabel greetingLabel = new JLabel("WELCOME TO XYNX");
-        greetingLabel.setBounds(115, 170, 500, 25);
+        greetingLabel.setBounds(85, 200, 500, 25);
         greetingLabel.setForeground(Color.white);
         greetingLabel.setFont(new Font("Helvetica", Font.BOLD, 20));
         colorLayer.add(greetingLabel);
 
         // Crear un JLabel para la invitación
         JLabel invitationLabel = new JLabel("<html><div style='text-align: center;'>Sign in with your account<br>to get started</html>");
-        invitationLabel.setBounds(107, 200, 230, 50);
+        invitationLabel.setBounds(105, 230, 230, 50);
         invitationLabel.setForeground(Color.white);
         invitationLabel.setFont(new Font("Helvetica", Font.PLAIN, 14));
         colorLayer.add(invitationLabel);
@@ -104,7 +104,7 @@ public class SignUpController {
                 super.paintComponent(g);
             }
         };
-        signUpButton.setBounds(140, 260, 150, 35);
+        signUpButton.setBounds(105, 295, 150, 35);
         signUpButton.setOpaque(false); // Make the button non-opaque
         signUpButton.setBackground(new Color(80, 65, 165)); // Background color
         signUpButton.setFont(new Font("Helvetica", Font.BOLD, 14));
@@ -182,7 +182,7 @@ public class SignUpController {
                 super.paintComponent(g);
             }
         };
-        signUpButton.setBounds(115, 330, 150, 35); // Set the bounds of the button
+        signUpButton.setBounds(125, 320, 150, 35); // Set the bounds of the button
         signUpButton.setOpaque(false); // Make the button non-opaque
         signUpButton.setBackground(new Color(80, 65, 165)); // Set the background color
         signUpButton.setFont(new Font("Helvetica", Font.BOLD, 14)); // Set the font
