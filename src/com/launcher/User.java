@@ -17,7 +17,6 @@ public class User {
     private int userId;
     private String userName;
     private String password;
-    private String email;
 
     /**
      * Every time a new user is created, the userId is incremented by 1
@@ -31,10 +30,9 @@ public class User {
      *
      * @param userName username of the user
      * @param password password of the user
-     * @param email    email of the user
      * @return true if the user is signed up successfully, false otherwise
      */
-    public boolean signUp(String userName, String password, String email) {
+    public boolean signUp(String userName, String password) {
         for (User u : users) {
             if (u.userName.equals(userName)) {
                 return false;
@@ -43,7 +41,6 @@ public class User {
         User newUser = new User();
         newUser.userName = userName;
         newUser.password = password;
-        newUser.email = email;
         users.add(newUser);
         return true;
     }
