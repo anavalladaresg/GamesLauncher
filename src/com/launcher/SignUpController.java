@@ -1,6 +1,7 @@
 package com.launcher;
 
 import com.games.Game;
+import database.DatabaseHandler;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -11,8 +12,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class SignUpController {
-    private JFrame frame; // Window frame
-    private User currentUser; // Current user
+    private final JFrame frame; // Window frame
+    private final User currentUser = new User(); // Current user
 
     /**
      * UIController constructor.
@@ -128,6 +129,7 @@ public class SignUpController {
 
     /**
      * Method to create and configure the sign up button.
+     *
      * @param componentsPanel The panel on which the button will be placed.
      */
     private void createAndConfigureSignInComponents(JPanel componentsPanel) {
@@ -199,7 +201,13 @@ public class SignUpController {
         signUpButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (currentUser.login(userText.getText(), new String(passwordText.getPassword()))) {
+                // Mover estas líneas dentro del ActionListener
+                currentUser.setUserName(userText.getText());
+                currentUser.setPassword(new String(passwordText.getPassword()));
+
+                if (currentUser.signUp(userText.getText(), new String(passwordText.getPassword()))) {
+                    DatabaseHandler db = new DatabaseHandler();
+                    db.addUser(currentUser.getUserName(), currentUser.getPassword());
                     JOptionPane.showMessageDialog(frame, "Account created!"); // Show a success message
                     displayMainMenu(); // Show the main menu
                 } else {
@@ -224,6 +232,7 @@ public class SignUpController {
      * Method to display the main menu.
      */
     public void displayMainMenu() {
+        System.out.println("Vas bien nena");
     }
 
     /**
