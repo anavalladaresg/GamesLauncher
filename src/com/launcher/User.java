@@ -18,6 +18,54 @@ public class User {
     private String userName;
     private String password;
 
+    public static int getUserIdCounter() {
+        return userIdCounter;
+    }
+
+    public static void setUserIdCounter(int userIdCounter) {
+        User.userIdCounter = userIdCounter;
+    }
+
+    public ArrayList<Game> getGamesOwned() {
+        return gamesOwned;
+    }
+
+    public void setGamesOwned(ArrayList<Game> gamesOwned) {
+        this.gamesOwned = gamesOwned;
+    }
+
+    public ArrayList<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(ArrayList<User> users) {
+        this.users = users;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     /**
      * Every time a new user is created, the userId is incremented by 1
      */
