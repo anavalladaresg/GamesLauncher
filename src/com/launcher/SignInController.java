@@ -1,6 +1,7 @@
 package com.launcher;
 
 import com.games.Game;
+import database.DatabaseHandler;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -9,6 +10,8 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 /**
  * UIController class that controls the user interface.
@@ -33,6 +36,8 @@ public class SignInController {
         placeComponents(panel); // Place the components on the panel
 
         frame.setVisible(true); // Make the frame visible
+
+        currentUser = new User(); // Initialize currentUser
     }
 
     /**
@@ -108,6 +113,19 @@ public class SignInController {
                 super.paintComponent(g);
             }
         };
+        signUpButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                signUpButton.setBackground(new Color(60, 45, 145)); // Color más oscuro cuando el ratón entra
+                signUpButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                signUpButton.setBackground(new Color(80, 65, 165)); // Color original cuando el ratón sale
+                signUpButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+            }
+        });
         signUpButton.setBounds(140, 295, 150, 35);
         signUpButton.setOpaque(false); // Make the button non-opaque
         signUpButton.setBackground(new Color(80, 65, 165)); // Background color
@@ -199,12 +217,38 @@ public class SignInController {
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (currentUser.login(userText.getText(), new String(passwordText.getPassword()))) {
-                    JOptionPane.showMessageDialog(frame, "Login successful!"); // Show a success message
-                    displayMainMenu(); // Show the main menu
+                currentUser.setUserName(userText.getText());
+                currentUser.setPassword(new String(passwordText.getPassword()));
+
+                DatabaseHandler db = new DatabaseHandler();
+                if (db.userExists(currentUser.getUserName())) {
+                    // User exists, proceed with login
+                    if (currentUser.login(userText.getText(), new String(passwordText.getPassword()))) {
+                        displayMainMenu(); // Show the main menu
+                    } else {
+                        JOptionPane.showMessageDialog(frame, "Login failed. Please try again."); // Show an error message
+                    }
                 } else {
-                    JOptionPane.showMessageDialog(frame, "Login failed. Please try again."); // Show an error message
+                    // User does not exist, show an error message
+                    JOptionPane.showMessageDialog(frame,
+                            "<html><font color='red'>User does not exist. Please sign up.</font></html>",
+                            "Error",
+                            JOptionPane.ERROR_MESSAGE);
                 }
+            }
+        });
+
+        loginButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                loginButton.setBackground(new Color(60, 45, 145)); // Color más oscuro cuando el ratón entra
+                loginButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                loginButton.setBackground(new Color(80, 65, 165)); // Color original cuando el ratón sale
+                loginButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
             }
         });
     }
@@ -239,6 +283,12 @@ public class SignInController {
      * Method to display the main menu.
      */
     public void displayMainMenu() {
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                frame.dispose(); // Close the current frame
+                new LibraryController(); // Create a new instance of MainMenuController
+            }
+        });
     }
 
     /**
@@ -248,4 +298,6 @@ public class SignInController {
      */
     public void viewGameDetails(Game game) {
     }
+
+
 }

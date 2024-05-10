@@ -4,44 +4,78 @@ import java.sql.*;
 
 public class DatabaseHandler {
     private static final String DATABASE_URL = "jdbc:postgresql://localhost:5432/xynx";
-    private static final String DATABASE_USER = "postgres";
-    private static final String DATABASE_PASSWORD = "debian";
+    private static final String DATABASE_USER = "anavalladares";
+    private static final String DATABASE_PASSWORD = "aaaa";
+    private Connection conn = null;
 
-    public Connection connect() {
-        Connection conn = null;
+    /**
+     * Connect to the database
+     */
+    public void connect() {
         try {
             conn = DriverManager.getConnection(DATABASE_URL, DATABASE_USER, DATABASE_PASSWORD);
-            System.out.println("Connected to the database successfully.");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-        return conn;
     }
 
+    /**
+     * Create a new user
+     * @param userName the username
+     * @param password the password
+     */
     public void addUser(String userName, String password) {
-        String checkSQL = "SELECT COUNT(*) FROM users WHERE userName = ?";
-        String insertSQL = "INSERT INTO users(userName, password) VALUES(?,?)";
+        String SQL = "INSERT INTO users(userName, password) VALUES(?,?)";
+        connect();
+        try (PreparedStatement pstmt = conn.prepareStatement(SQL)) {
 
-        try (Connection conn = connect();
-             PreparedStatement checkStmt = conn.prepareStatement(checkSQL)) {
+            pstmt.setString(1, userName);
+            pstmt.setString(2, password);
+            pstmt.executeUpdate();
 
-            checkStmt.setString(1, userName);
-            ResultSet rs = checkStmt.executeQuery();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 
-            if (rs.next() && rs.getInt(1) > 0) {
-                System.out.println("Error: User already exists.");
-            } else {
-                try (PreparedStatement insertStmt = conn.prepareStatement(insertSQL)) {
-                    insertStmt.setString(1, userName);
-                    insertStmt.setString(2, password);
-                    insertStmt.executeUpdate();
-                } catch (SQLException e) {
-                    System.out.println(e.getMessage());
-                }
+    /**
+     * Check if a user exists
+     * @param userName the username
+     * @return true if the user exists, false otherwise
+     */
+    public boolean userExists(String userName) {
+        String SQL = "SELECT * FROM users WHERE userName = ?";
+        connect();
+        try (PreparedStatement pstmt = conn.prepareStatement(SQL)) {
+
+            pstmt.setString(1, userName);
+            return pstmt.executeQuery().next();
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return false;
+    }
+
+    /**
+     * Get the password of a user
+     * @param userName the username
+     * @return the password of the user
+     */
+    public String getPassword(String userName) {
+        String SQL = "SELECT password FROM users WHERE userName = ?";
+        connect();
+        try (PreparedStatement pstmt = conn.prepareStatement(SQL)) {
+
+            pstmt.setString(1, userName);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                return rs.getString("password");
             }
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+        return null;
     }
 }
