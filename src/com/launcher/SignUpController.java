@@ -223,6 +223,7 @@ public class SignUpController {
     public void displaySignInScreen() {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
+                frame.dispose(); // Close the current frame
                 new SignInController(); // Create a new instance of UIController
             }
         });
@@ -232,6 +233,12 @@ public class SignUpController {
      * Method to display the main menu.
      */
     public void displayMainMenu() {
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                frame.dispose(); // Close the current frame
+                new LibraryController(); // Create a new instance of MainMenuController
+            }
+        });
         System.out.println("Vas bien nena");
     }
 

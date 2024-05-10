@@ -215,6 +215,7 @@ public class SignInController {
     public void displaySignUpScreen() {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
+                frame.dispose(); // Close the current frame
                 new SignUpController(); // Create a new instance of UIController
 
                 // Start the animation
