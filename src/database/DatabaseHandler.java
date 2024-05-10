@@ -1,14 +1,11 @@
 package database;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class DatabaseHandler {
     private static final String DATABASE_URL = "jdbc:postgresql://localhost:5432/xynx";
-    private static final String DATABASE_USER = "anavalladares";
-    private static final String DATABASE_PASSWORD = "aaaa";
+    private static final String DATABASE_USER = "postgres";
+    private static final String DATABASE_PASSWORD = "debian";
 
     public Connection connect() {
         Connection conn = null;
@@ -22,14 +19,26 @@ public class DatabaseHandler {
     }
 
     public void addUser(String userName, String password) {
-        String SQL = "INSERT INTO users(userName, password) VALUES(?,?)";
+        String checkSQL = "SELECT COUNT(*) FROM users WHERE userName = ?";
+        String insertSQL = "INSERT INTO users(userName, password) VALUES(?,?)";
 
         try (Connection conn = connect();
-             PreparedStatement pstmt = conn.prepareStatement(SQL)) {
+             PreparedStatement checkStmt = conn.prepareStatement(checkSQL)) {
 
-            pstmt.setString(1, userName);
-            pstmt.setString(2, password);
-            pstmt.executeUpdate();
+            checkStmt.setString(1, userName);
+            ResultSet rs = checkStmt.executeQuery();
+
+            if (rs.next() && rs.getInt(1) > 0) {
+                System.out.println("Error: User already exists.");
+            } else {
+                try (PreparedStatement insertStmt = conn.prepareStatement(insertSQL)) {
+                    insertStmt.setString(1, userName);
+                    insertStmt.setString(2, password);
+                    insertStmt.executeUpdate();
+                } catch (SQLException e) {
+                    System.out.println(e.getMessage());
+                }
+            }
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
