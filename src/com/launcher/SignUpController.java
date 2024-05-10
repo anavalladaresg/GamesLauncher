@@ -10,6 +10,8 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class SignUpController {
     private final JFrame frame; // Window frame
@@ -23,7 +25,7 @@ public class SignUpController {
         frame = new JFrame("Xynx"); // Create a new frame with the title "Xynx"
         frame.setSize(800, 500); // Set the size of the frame
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Set the close operation
-        frame.setResizable(false); // Esto deshabilita el redimensionamiento
+        frame.setResizable(false); // This prevents the user from resizing the window
 
         JPanel panel = new JPanel(); // Create a new panel
         frame.add(panel); // Add the panel to the frame
@@ -66,14 +68,14 @@ public class SignUpController {
 
     private void createAndConfigureLabels(SignUpRoundedPanel colorLayer) {
         // Cargar la imagen
-        ImageIcon imageIcon = new ImageIcon(getClass().getResource("/com/images/Xynx.png"));// Reemplaza "/path/to/Xynx.png" con la ruta real de tu imagen
-        Image image = imageIcon.getImage(); // Transforma el ImageIcon en Image
-        Image scaledImage = image.getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH); // Escala la imagen
-        imageIcon = new ImageIcon(scaledImage); // Transforma la Image escalada de nuevo a ImageIcon
+        ImageIcon imageIcon = new ImageIcon(getClass().getResource("/com/images/Xynx.png"));
+        Image image = imageIcon.getImage();
+        Image scaledImage = image.getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH);
+        imageIcon = new ImageIcon(scaledImage);
 
         // Crear un JLabel para la imagen
         JLabel imageLabel = new JLabel(imageIcon);
-        imageLabel.setBounds(90, 30, 200, 200); // Ajusta estos valores para posicionar la imagen correctamente
+        imageLabel.setBounds(90, 30, 200, 200);
         colorLayer.add(imageLabel);
 
         // Crear un JLabel para el saludo
@@ -123,6 +125,21 @@ public class SignUpController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 displaySignInScreen();
+            }
+        });
+
+
+        signUpButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                signUpButton.setBackground(new Color(60, 45, 145)); // Color más oscuro cuando el ratón entra
+                signUpButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                signUpButton.setBackground(new Color(80, 65, 165)); // Color original cuando el ratón sale
+                signUpButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
             }
         });
     }
@@ -201,18 +218,35 @@ public class SignUpController {
         signUpButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Mover estas líneas dentro del ActionListener
                 currentUser.setUserName(userText.getText());
                 currentUser.setPassword(new String(passwordText.getPassword()));
 
-                if (currentUser.signUp(userText.getText(), new String(passwordText.getPassword()))) {
-                    DatabaseHandler db = new DatabaseHandler();
-                    db.addUser(currentUser.getUserName(), currentUser.getPassword());
-                    JOptionPane.showMessageDialog(frame, "Account created!"); // Show a success message
-                    displayMainMenu(); // Show the main menu
+                DatabaseHandler db = new DatabaseHandler();
+                if (db.userExists(currentUser.getUserName())) {
+                    // User already exists, show an error message
+                    JOptionPane.showMessageDialog(frame,
+                            "<html><font color='red'>User already exists. Please choose a different username.</font></html>",
+                            "Error",
+                            JOptionPane.ERROR_MESSAGE);
                 } else {
-                    JOptionPane.showMessageDialog(frame, "Sign up failed. Please try again."); // Show an error message
+                    // User does not exist, proceed with registration
+                    db.addUser(currentUser.getUserName(), currentUser.getPassword());
+                    JOptionPane.showMessageDialog(frame, "Registration successful!");
+                    displayMainMenu();
                 }
+            }
+        });
+        signUpButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                signUpButton.setBackground(new Color(60, 45, 145)); // Color más oscuro cuando el ratón entra
+                signUpButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                signUpButton.setBackground(new Color(80, 65, 165)); // Color original cuando el ratón sale
+                signUpButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
             }
         });
     }
@@ -239,7 +273,6 @@ public class SignUpController {
                 new LibraryController(); // Create a new instance of MainMenuController
             }
         });
-        System.out.println("Vas bien nena");
     }
 
     /**
