@@ -1,5 +1,6 @@
 package com.games;
 
+import javax.swing.*;
 import java.time.LocalDate;
 
 public class Game {
@@ -11,11 +12,12 @@ public class Game {
     private LocalDate releaseDate;
     private String gameDeveloper;
     private double gameRating;
+    private ImageIcon gameImage;
 
     public Game() {
     }
 
-    public Game(int gameId, String gameName, String gameDescription, double gamePrice, String gameGenre, LocalDate releaseDate, String gameDeveloper, double gameRating) {
+    public Game(int gameId, String gameName, String gameDescription, double gamePrice, String gameGenre, LocalDate releaseDate, String gameDeveloper, double gameRating, ImageIcon gameImage) {
         this.gameId = gameId;
         this.gameName = gameName;
         this.gameDescription = gameDescription;
@@ -24,6 +26,7 @@ public class Game {
         this.releaseDate = releaseDate;
         this.gameDeveloper = gameDeveloper;
         this.gameRating = gameRating;
+        this.gameImage = gameImage;
     }
 
     public int getGameId() {
@@ -88,5 +91,13 @@ public class Game {
 
     public void setGameRating(double gameRating) {
         this.gameRating = gameRating;
+    }
+
+    public ImageIcon getGameImage() {
+        return gameImage;
+    }
+
+    public void setGameImage(ImageIcon gameImage) {
+        this.gameImage = gameImage;
     }
 }
