@@ -3,16 +3,32 @@ package com.launcher;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * This class represents a custom JPanel with rounded corners on the left side.
+ */
 class SignUpRoundedPanel extends JPanel {
-    private Color backgroundColor;
-    private int cornerRadius;
+    private final Color backgroundColor;
+    private final int cornerRadius;
 
+    /**
+     * Constructor for the SignUpRoundedPanel class.
+     * It initializes the layout, corner radius, and background color.
+     *
+     * @param layout The layout manager.
+     * @param radius The radius for the rounded corners.
+     * @param bgColor The background color.
+     */
     public SignUpRoundedPanel(LayoutManager layout, int radius, Color bgColor) {
         super(layout);
         cornerRadius = radius;
         backgroundColor = bgColor;
     }
 
+    /**
+     * This method paints the component with rounded corners on the left side.
+     *
+     * @param g The Graphics object.
+     */
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
