@@ -6,13 +6,17 @@
 
 ---
 
-This project is a game launcher developed in Java. Currently, we have implemented the user interface and the login logic.
+_This project is a sophisticated game launcher, designed to allow users to incorporate and execute their personal collection of .exe game files, while also featuring a dedicated section for mini-games, exclusively developed by our team._
 
 ## Current Progress
-
-- User interface with login and registration panel.
-- Login and registration logic.
-- Basic structure of the `Game`, `User`, `Library`, `GameManager`, `UIController` and `Main` classes.
+- User interface with login, registration, and sign up panels.
+- Login, registration, and sign up logic.
+- Basic structure of the `Game`, `User`, `Library`, `GameManager`, `SignInController`, `SignUpController`, `SignUpRoundedPanel`, `SignInRoundedPanel`, `RoundedBorder`, `PlaceHolderTextField`, `PlaceHolderPasswordField`, `LibraryController`, `UIController` and `Main` classes.
+- Implementation of custom UI components like `PlaceHolderTextField`, `PlaceHolderPasswordField`, `SignUpRoundedPanel`, `SignInRoundedPanel`, and `RoundedBorder`.
+- Implementation of controllers for sign in, sign up, and library views.
+- Basic game management functionality in the `GameManager` class.
+- User login functionality in the `User` class.
+- Library view functionality in the `LibraryController` class.
 
 ## Class Diagram
 
@@ -56,30 +60,70 @@ classDiagram
         +Game getGameDetails(int)
     }
 
-    class CustomPasswordField {
-        -int columns
-        +CustomPasswordField(int)
-    }
-
-    class CustomTextField {
-        -int columns
-        -Border defaultBorder
-        -Border focusBorder
-        +CustomTextField(int)
-    }
-
-    class RoundedPanel {
-        -int radius
-        +RoundedPanel(int)
-    }
-
-    class UIController {
+    class SignInController {
+        -JFrame frame
         -User currentUser
-        -CustomTextField userText
-        -CustomPasswordField passwordText
-        -RoundedPanel componentsPanel
-        +void displayLoginScreen()
+        -Color purple
+        +SignInController()
         +void displayMainMenu()
+        +void viewGameDetails(Game)
+        +void createAndConfigureSignInComponents(JPanel)
+        +void createComponentsPanel()
+        +JFrame createFrame()
+        +void displaySignUpScreen()
+    }
+
+    class SignUpController {
+        -JFrame frame
+        -User currentUser
+        +SignUpController()
+        +void displaySignInScreen()
+        +void displayMainMenu()
+        +void viewGameDetails(Game)
+        +void createAndConfigureSignInComponents(JPanel)
+        +void createComponentsPanel()
+        +JFrame createFrame()
+    }
+
+    class SignUpRoundedPanel {
+        -Color backgroundColor
+        -int cornerRadius
+        +SignUpRoundedPanel(LayoutManager, int, Color)
+        +void paintComponent(Graphics)
+    }
+
+    class SignInRoundedPanel {
+        -Color backgroundColor
+        -int cornerRadius
+        +SignInRoundedPanel(LayoutManager, int, Color)
+        +void paintComponent(Graphics)
+    }
+
+    class RoundedBorder {
+        -Color color
+        -int cornerRadius
+        +RoundedBorder(Color, int)
+        +Shape getBorderShape(int, int, int, int)
+        +void paintBorder(Component, Graphics, int, int, int, int)
+    }
+
+    class PlaceHolderTextField {
+        -String prompt
+        +PlaceHolderTextField(int)
+        +void setPrompt(String)
+    }
+
+    class PlaceHolderPasswordField {
+        -String prompt
+        +PlaceHolderPasswordField(int)
+        +void setPrompt(String)
+    }
+
+    class LibraryController {
+        -JFrame frame
+        -User currentUser
+        +LibraryController()
+        +void displayLibrary()
         +void viewGameDetails(Game)
     }
 
@@ -90,10 +134,20 @@ classDiagram
     User --> Library : contains
     GameManager --> Game : manages
     GameManager --> Library : manages
-    UIController --> User : uses
-    UIController --> GameManager : uses
-    UIController --> CustomTextField : uses
-    UIController --> CustomPasswordField : uses
-    UIController --> RoundedPanel : uses
-    Main --> UIController : initializes
-```
+    SignInController --> User : uses
+    SignInController --> GameManager : uses
+    SignInController --> SignInRoundedPanel : uses
+    SignInController --> RoundedBorder : uses
+    SignInController --> PlaceHolderTextField : uses
+    SignInController --> PlaceHolderPasswordField : uses
+    SignUpController --> User : uses
+    SignUpController --> GameManager : uses
+    SignUpController --> SignUpRoundedPanel : uses
+    SignUpController --> RoundedBorder : uses
+    SignUpController --> PlaceHolderTextField : uses
+    SignUpController --> PlaceHolderPasswordField : uses
+    LibraryController --> User : uses
+    LibraryController --> GameManager : uses
+    Main --> SignInController : initializes
+    Main --> SignUpController : initializes
+    Main --> LibraryController : initializes
