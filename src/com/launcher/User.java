@@ -5,26 +5,26 @@ import database.DatabaseHandler;
 
 import java.util.ArrayList;
 
+/**
+ * This class represents a user in the system.
+ */
 public class User {
     private static int userIdCounter = 0;
-    /**
-     * List of games owned by the user
-     */
     ArrayList<Game> gamesOwned = new ArrayList<Game>();
-    /**
-     * List of users in the system
-     */
     ArrayList<User> users = new ArrayList<User>();
     private int userId;
     private String userName;
     private String password;
 
     /**
-     * Every time a new user is created, the userId is incremented by 1
+     * Constructor for the User class.
+     * It increments the userId each time a new user is created.
      */
     public User() {
         userId = userIdCounter++;
     }
+
+    // Getters and setters
 
     public static int getUserIdCounter() {
         return userIdCounter;
@@ -73,9 +73,9 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-    
+
     /**
-     * Login a user
+     * This method logs in a user.
      * @param userName the username
      * @param password the password
      * @return true if the user is logged in successfully, false otherwise
