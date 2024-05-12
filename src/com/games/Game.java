@@ -12,12 +12,12 @@ public class Game {
     private LocalDate releaseDate;
     private String gameDeveloper;
     private double gameRating;
-    private ImageIcon gameImage;
+    private String gameImage;
 
     public Game() {
     }
 
-    public Game(int gameId, String gameName, String gameDescription, double gamePrice, String gameGenre, LocalDate releaseDate, String gameDeveloper, double gameRating, ImageIcon gameImage) {
+    public Game(int gameId, String gameName, String gameDescription, double gamePrice, String gameGenre, LocalDate releaseDate, String gameDeveloper, double gameRating, String gameImage) {
         this.gameId = gameId;
         this.gameName = gameName;
         this.gameDescription = gameDescription;
@@ -93,11 +93,11 @@ public class Game {
         this.gameRating = gameRating;
     }
 
-    public ImageIcon getGameImage() {
+    public String getGameImage() {
         return gameImage;
     }
 
-    public void setGameImage(ImageIcon gameImage) {
+    public void setGameImage(String gameImage) {
         this.gameImage = gameImage;
     }
 }
