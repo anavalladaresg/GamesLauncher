@@ -6,13 +6,17 @@
 
 ---
 
-This project is a game launcher developed in Java. Currently, we have implemented the user interface, login logic, and sign up logic.
+_This project is a sophisticated game launcher, designed to allow users to incorporate and execute their personal collection of .exe game files, while also featuring a dedicated section for mini-games, exclusively developed by our team._
 
 ## Current Progress
-
 - User interface with login, registration, and sign up panels.
 - Login, registration, and sign up logic.
 - Basic structure of the `Game`, `User`, `Library`, `GameManager`, `SignInController`, `SignUpController`, `SignUpRoundedPanel`, `SignInRoundedPanel`, `RoundedBorder`, `PlaceHolderTextField`, `PlaceHolderPasswordField`, `LibraryController`, `UIController` and `Main` classes.
+- Implementation of custom UI components like `PlaceHolderTextField`, `PlaceHolderPasswordField`, `SignUpRoundedPanel`, `SignInRoundedPanel`, and `RoundedBorder`.
+- Implementation of controllers for sign in, sign up, and library views.
+- Basic game management functionality in the `GameManager` class.
+- User login functionality in the `User` class.
+- Library view functionality in the `LibraryController` class.
 
 ## Class Diagram
 
