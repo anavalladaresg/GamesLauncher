@@ -20,6 +20,11 @@ public class SignInController {
     private final JFrame frame; // Window frame
     SignInRoundedPanel colorLayer; // Panel for the color layer
     private User currentUser; // Current user
+    private static final Color purple = new Color(80, 65, 165); // Purple color
+
+    public static Color getPurple() {
+        return purple;
+    }
 
     /**
      * UIController constructor.
@@ -49,7 +54,7 @@ public class SignInController {
         panel.setLayout(new BorderLayout()); // Change to BorderLayout
 
         // Create a new panel for the color layer
-        colorLayer = new SignInRoundedPanel(new BorderLayout(), 250, new Color(80, 65, 169));
+        colorLayer = new SignInRoundedPanel(new BorderLayout(), 250, purple);
         colorLayer.setPreferredSize(new Dimension(400, colorLayer.getHeight())); // Set the size of the panel
         panel.add(colorLayer, BorderLayout.EAST); // Add the panel to the right
         colorLayer.setLayout(null); // Set the layout of the panel
@@ -122,13 +127,13 @@ public class SignInController {
 
             @Override
             public void mouseExited(MouseEvent e) {
-                signUpButton.setBackground(new Color(80, 65, 165)); // Color original cuando el ratón sale
+                signUpButton.setBackground(purple); // Color original cuando el ratón sale
                 signUpButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
             }
         });
         signUpButton.setBounds(140, 295, 150, 35);
         signUpButton.setOpaque(false); // Make the button non-opaque
-        signUpButton.setBackground(new Color(80, 65, 165)); // Background color
+        signUpButton.setBackground(purple); // Background color
         signUpButton.setFont(new Font("Helvetica", Font.BOLD, 14));
         signUpButton.setForeground(Color.WHITE); // Text color
 
@@ -202,7 +207,7 @@ public class SignInController {
         };
         loginButton.setBounds(115, 330, 150, 35); // Set the bounds of the button
         loginButton.setOpaque(false); // Make the button non-opaque
-        loginButton.setBackground(new Color(80, 65, 165)); // Set the background color
+        loginButton.setBackground(purple); // Set the background color
         loginButton.setFont(new Font("Helvetica", Font.BOLD, 14)); // Set the font
         loginButton.setForeground(Color.WHITE);
         loginButton.setBorder(new RoundedBorder(Color.WHITE, 10)); // 10 is the radius of the border
@@ -247,7 +252,7 @@ public class SignInController {
 
             @Override
             public void mouseExited(MouseEvent e) {
-                loginButton.setBackground(new Color(80, 65, 165)); // Color original cuando el ratón sale
+                loginButton.setBackground(purple); // Color original cuando el ratón sale
                 loginButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
             }
         });
@@ -298,6 +303,5 @@ public class SignInController {
      */
     public void viewGameDetails(Game game) {
     }
-
 
 }
