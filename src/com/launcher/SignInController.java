@@ -14,89 +14,87 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 /**
- * UIController class that controls the user interface.
+ * This class controls the user interface.
  */
 public class SignInController {
-    private final JFrame frame; // Window frame
-    SignInRoundedPanel colorLayer; // Panel for the color layer
-    private User currentUser; // Current user
-    private static final Color purple = new Color(80, 65, 165); // Purple color
+    private static final Color purple = new Color(80, 65, 165);
+    private final JFrame frame;
+    SignInRoundedPanel colorLayer;
+    private User currentUser;
 
+    /**
+     * Constructor for the SignInController class.
+     * It initializes the UI components and sets up the sign in view.
+     */
+    public SignInController() {
+        frame = new JFrame("Xynx");
+        frame.setSize(800, 500);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setResizable(false);
+
+        JPanel panel = new JPanel();
+        frame.add(panel);
+        placeComponents(panel);
+
+        frame.setVisible(true);
+
+        currentUser = new User();
+    }
+
+    /**
+     * This method returns the purple color.
+     *
+     * @return The purple color.
+     */
     public static Color getPurple() {
         return purple;
     }
 
     /**
-     * UIController constructor.
-     * Initializes the window frame and places the components on the panel.
-     */
-    public SignInController() {
-        frame = new JFrame("Xynx"); // Create a new frame with the title "Xynx"
-        frame.setSize(800, 500); // Set the size of the frame
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Set the close operation
-        frame.setResizable(false); // Esto deshabilita el redimensionamiento
-
-        JPanel panel = new JPanel(); // Create a new panel
-        frame.add(panel); // Add the panel to the frame
-        placeComponents(panel); // Place the components on the panel
-
-        frame.setVisible(true); // Make the frame visible
-
-        currentUser = new User(); // Initialize currentUser
-    }
-
-    /**
-     * Method to place the components on the panel.
+     * This method places the components on the panel.
      *
      * @param panel The panel on which the components will be placed.
      */
     private void placeComponents(JPanel panel) {
-        panel.setLayout(new BorderLayout()); // Change to BorderLayout
+        panel.setLayout(new BorderLayout());
 
-        // Create a new panel for the color layer
         colorLayer = new SignInRoundedPanel(new BorderLayout(), 250, purple);
-        colorLayer.setPreferredSize(new Dimension(400, colorLayer.getHeight())); // Set the size of the panel
-        panel.add(colorLayer, BorderLayout.EAST); // Add the panel to the right
-        colorLayer.setLayout(null); // Set the layout of the panel
+        colorLayer.setPreferredSize(new Dimension(400, colorLayer.getHeight()));
+        panel.add(colorLayer, BorderLayout.EAST);
+        colorLayer.setLayout(null);
 
-        // Create a new panel for the existing components
         JPanel componentsPanel = new JPanel();
-        componentsPanel.setLayout(null); // Set the layout of the panel
+        componentsPanel.setLayout(null);
 
-        // Create and configure the labels
         createAndConfigureLabels(colorLayer);
-
-        // Create and configure the sign up button
         createAndConfigureSignUpButton(colorLayer);
-
-        // Create and configure the sign in components
         createAndConfigureSignInComponents(componentsPanel);
 
-        componentsPanel.setBackground(new Color(238, 238, 238, 255)); // Set the background color of the panel
+        componentsPanel.setBackground(new Color(238, 238, 238, 255));
 
-        panel.add(componentsPanel, BorderLayout.CENTER); // Add the components panel to the center
+        panel.add(componentsPanel, BorderLayout.CENTER);
     }
 
+    /**
+     * This method creates and configures the labels.
+     * @param colorLayer The color layer.
+     */
     private void createAndConfigureLabels(SignInRoundedPanel colorLayer) {
-        // Cargar la imagen
-        ImageIcon imageIcon = new ImageIcon(getClass().getResource("/com/images/Xynx.png"));// Reemplaza "/path/to/Xynx.png" con la ruta real de tu imagen
-        Image image = imageIcon.getImage(); // Transforma el ImageIcon en Image
-        Image scaledImage = image.getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH); // Escala la imagen
-        imageIcon = new ImageIcon(scaledImage); // Transforma la Image escalada de nuevo a ImageIcon
+        ImageIcon imageIcon = new ImageIcon(getClass().getResource("/com/images/Xynx.png"));
+        Image image = imageIcon.getImage();
+        Image scaledImage = image.getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH);
+        imageIcon = new ImageIcon(scaledImage);
 
-        // Crear un JLabel para la imagen
         JLabel imageLabel = new JLabel(imageIcon);
-        imageLabel.setBounds(120, 30, 200, 200); // Ajusta estos valores para posicionar la imagen correctamente
+        imageLabel.setBounds(120, 30, 200, 200);
         colorLayer.add(imageLabel);
 
-        // Crear un JLabel para el saludo
         JLabel greetingLabel = new JLabel("WELCOME TO XYNX");
         greetingLabel.setBounds(115, 200, 500, 25);
         greetingLabel.setForeground(Color.white);
         greetingLabel.setFont(new Font("Helvetica", Font.BOLD, 20));
         colorLayer.add(greetingLabel);
 
-        // Crear un JLabel para la invitación
         JLabel invitationLabel = new JLabel("<html><div style='text-align: center;'>If you already have an account, press the Sign In button.</html>");
         invitationLabel.setBounds(100, 230, 230, 50);
         invitationLabel.setForeground(Color.white);
@@ -104,9 +102,12 @@ public class SignInController {
         colorLayer.add(invitationLabel);
     }
 
+    /**
+     * This method creates and configures the sign up button.
+     * @param colorLayer The color layer.
+     */
     private void createAndConfigureSignUpButton(SignInRoundedPanel colorLayer) {
         JButton signUpButton = new JButton("SIGN UP") {
-            // Override paintComponent to provide our own paint methods while preserving the original functionality
             protected void paintComponent(Graphics g) {
                 if (!isOpaque() && getBorder() instanceof RoundedBorder) {
                     Graphics2D g2 = (Graphics2D) g.create();
@@ -121,27 +122,26 @@ public class SignInController {
         signUpButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
-                signUpButton.setBackground(new Color(60, 45, 145)); // Color más oscuro cuando el ratón entra
+                signUpButton.setBackground(new Color(60, 45, 145));
                 signUpButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
-                signUpButton.setBackground(purple); // Color original cuando el ratón sale
+                signUpButton.setBackground(purple);
                 signUpButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
             }
         });
         signUpButton.setBounds(140, 295, 150, 35);
-        signUpButton.setOpaque(false); // Make the button non-opaque
-        signUpButton.setBackground(purple); // Background color
+        signUpButton.setOpaque(false);
+        signUpButton.setBackground(purple);
         signUpButton.setFont(new Font("Helvetica", Font.BOLD, 14));
-        signUpButton.setForeground(Color.WHITE); // Text color
+        signUpButton.setForeground(Color.WHITE);
 
-        // Set the border of the button to a rounded border with a thin white line
-        Border whiteLineBorder = new RoundedBorder(Color.WHITE, 10); // 10 is the radius of the border
+        Border whiteLineBorder = new RoundedBorder(Color.WHITE, 10);
         signUpButton.setBorder(whiteLineBorder);
 
-        signUpButton.setContentAreaFilled(true); // Fill the content area
+        signUpButton.setContentAreaFilled(true);
 
         colorLayer.add(signUpButton);
 
@@ -153,9 +153,11 @@ public class SignInController {
         });
     }
 
+    /**
+     * This method creates and configures the sign in components.
+     * @param componentsPanel The components panel.
+     */
     private void createAndConfigureSignInComponents(JPanel componentsPanel) {
-
-        // Centra la ventana en la pantalla
         frame.setLocationRelativeTo(null);
 
         JLabel signInLabel = new JLabel("SIGN IN");
@@ -163,13 +165,11 @@ public class SignInController {
         signInLabel.setFont(new Font("Helvetica", Font.BOLD, 30));
         componentsPanel.add(signInLabel);
 
-        // Sign in text
         JLabel userLabel = new JLabel("USERNAME");
         userLabel.setBounds(40, 120, 280, 25);
         userLabel.setFont(new Font("Helvetica", Font.BOLD, 14));
         componentsPanel.add(userLabel);
 
-        // Text field for username
         PlaceholderTextField userText = new PlaceholderTextField(20);
         userText.setPrompt("Enter your username");
         userText.setForeground(new Color(0, 0, 0));
@@ -178,13 +178,11 @@ public class SignInController {
         userText.setBounds(40, 155, 300, 40);
         componentsPanel.add(userText);
 
-        // Password text
         JLabel passwordLabel = new JLabel("PASSWORD");
         passwordLabel.setBounds(40, 220, 180, 25);
         passwordLabel.setFont(new Font("Helvetica", Font.BOLD, 14));
         componentsPanel.add(passwordLabel);
 
-        // Password field
         PlaceholderPasswordField passwordText = new PlaceholderPasswordField(20);
         passwordText.setPrompt("Enter your password");
         passwordText.setBounds(40, 255, 300, 40);
@@ -192,7 +190,6 @@ public class SignInController {
         passwordText.setBorder(new CompoundBorder(new RoundedBorder(new Color(114, 114, 114), 10), new EmptyBorder(0, 10, 0, 0)));
         componentsPanel.add(passwordText);
 
-        // Sign in button
         JButton loginButton = new JButton("SIGN IN") {
             @Override
             protected void paintComponent(Graphics g) {
@@ -205,20 +202,19 @@ public class SignInController {
                 super.paintComponent(g);
             }
         };
-        loginButton.setBounds(115, 330, 150, 35); // Set the bounds of the button
-        loginButton.setOpaque(false); // Make the button non-opaque
-        loginButton.setBackground(purple); // Set the background color
-        loginButton.setFont(new Font("Helvetica", Font.BOLD, 14)); // Set the font
+        loginButton.setBounds(115, 330, 150, 35);
+        loginButton.setOpaque(false);
+        loginButton.setBackground(purple);
+        loginButton.setFont(new Font("Helvetica", Font.BOLD, 14));
         loginButton.setForeground(Color.WHITE);
-        loginButton.setBorder(new RoundedBorder(Color.WHITE, 10)); // 10 is the radius of the border
+        loginButton.setBorder(new RoundedBorder(Color.WHITE, 10));
         loginButton.setContentAreaFilled(true);
         componentsPanel.add(loginButton);
 
         ImageIcon imageIcon = new ImageIcon(getClass().getResource("/com/images/XynxLogoVentana.png"));
-        Image image = imageIcon.getImage(); // Transforma el ImageIcon en Image
-        frame.setIconImage(image); // Establece la imagen como icono de la ventana
+        Image image = imageIcon.getImage();
+        frame.setIconImage(image);
 
-        // Add a listener to the sign in button
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -227,14 +223,12 @@ public class SignInController {
 
                 DatabaseHandler db = new DatabaseHandler();
                 if (db.userExists(currentUser.getUserName())) {
-                    // User exists, proceed with login
                     if (currentUser.login(userText.getText(), new String(passwordText.getPassword()))) {
-                        displayMainMenu(); // Show the main menu
+                        displayMainMenu();
                     } else {
-                        JOptionPane.showMessageDialog(frame, "Login failed. Please try again."); // Show an error message
+                        JOptionPane.showMessageDialog(frame, "Login failed. Please try again.");
                     }
                 } else {
-                    // User does not exist, show an error message
                     JOptionPane.showMessageDialog(frame,
                             "<html><font color='red'>User does not exist. Please sign up.</font></html>",
                             "Error",
@@ -246,34 +240,33 @@ public class SignInController {
         loginButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
-                loginButton.setBackground(new Color(60, 45, 145)); // Color más oscuro cuando el ratón entra
+                loginButton.setBackground(new Color(60, 45, 145));
                 loginButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
-                loginButton.setBackground(purple); // Color original cuando el ratón sale
+                loginButton.setBackground(purple);
                 loginButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
             }
         });
     }
 
     /**
-     * Method to display the login screen.
+     * This method displays the sign up screen.
      */
     public void displaySignUpScreen() {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                frame.dispose(); // Close the current frame
-                new SignUpController(); // Create a new instance of UIController
+                frame.dispose();
+                new SignUpController();
 
-                // Start the animation
                 new Thread(new Runnable() {
                     public void run() {
                         try {
                             for (int i = 0; i < 400; i++) {
                                 colorLayer.setBounds(i, colorLayer.getY(), colorLayer.getWidth(), colorLayer.getHeight());
-                                Thread.sleep(3); // Sleep for a while
+                                Thread.sleep(3);
                             }
                         } catch (InterruptedException ex) {
                             ex.printStackTrace();
@@ -285,23 +278,15 @@ public class SignInController {
     }
 
     /**
-     * Method to display the main menu.
+     * This method displays the main menu.
      */
     public void displayMainMenu() {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                frame.dispose(); // Close the current frame
-                new LibraryController(); // Create a new instance of MainMenuController
+                frame.dispose();
+                new LibraryController();
             }
         });
-    }
-
-    /**
-     * Method to view the game details.
-     *
-     * @param game The game whose details will be viewed.
-     */
-    public void viewGameDetails(Game game) {
     }
 
 }
