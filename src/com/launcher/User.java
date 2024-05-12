@@ -73,7 +73,7 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-
+    
     /**
      * Login a user
      * @param userName the username
