@@ -1,6 +1,5 @@
 package com.launcher;
 
-import com.games.Game;
 import database.DatabaseHandler;
 
 import javax.swing.*;
@@ -19,25 +18,13 @@ import java.awt.event.MouseEvent;
 public class SignInController {
     private static final Color purple = new Color(80, 65, 165);
     private final JFrame frame;
-    SignInRoundedPanel colorLayer;
-    private User currentUser;
+    private final User currentUser;
 
     /**
      * Constructor for the SignInController class.
-     * It initializes the UI components and sets up the sign in view.
      */
     public SignInController() {
-        frame = new JFrame("Xynx");
-        frame.setSize(800, 500);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setResizable(false);
-
-        JPanel panel = new JPanel();
-        frame.add(panel);
-        placeComponents(panel);
-
-        frame.setVisible(true);
-
+        frame = createFrame();
         currentUser = new User();
     }
 
@@ -51,32 +38,69 @@ public class SignInController {
     }
 
     /**
-     * This method places the components on the panel.
+     * This method creates the frames and panels for the UI.
      *
-     * @param panel The panel on which the components will be placed.
+     * @return The principal frame.
      */
-    private void placeComponents(JPanel panel) {
-        panel.setLayout(new BorderLayout());
+    private JFrame createFrame() {
+        JFrame frame = new JFrame("Xynx");
+        frame.setSize(800, 500);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setResizable(false);
 
-        colorLayer = new SignInRoundedPanel(new BorderLayout(), 250, purple);
-        colorLayer.setPreferredSize(new Dimension(400, colorLayer.getHeight()));
+        JPanel panel = new JPanel(new BorderLayout());
+        frame.add(panel);
+
+        SignInRoundedPanel colorLayer = createColorLayer();
         panel.add(colorLayer, BorderLayout.EAST);
-        colorLayer.setLayout(null);
 
-        JPanel componentsPanel = new JPanel();
-        componentsPanel.setLayout(null);
+        JPanel componentsPanel = createComponentsPanel();
+        panel.add(componentsPanel, BorderLayout.CENTER);
+
+        ImageIcon imageIcon = new ImageIcon(getClass().getResource("/com/images/XynxLogoVentana.png"));
+        Image image = imageIcon.getImage();
+        frame.setIconImage(image);
+
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+
+        return frame;
+    }
+
+    /**
+     * This method creates the color panel.
+     *
+     * @return The color panel.
+     */
+    private SignInRoundedPanel createColorLayer() {
+        SignInRoundedPanel colorLayer = new SignInRoundedPanel(new BorderLayout(), 250, purple);
+        colorLayer.setPreferredSize(new Dimension(400, colorLayer.getHeight()));
+        colorLayer.setLayout(null);
 
         createAndConfigureLabels(colorLayer);
         createAndConfigureSignUpButton(colorLayer);
-        createAndConfigureSignInComponents(componentsPanel);
 
+        return colorLayer;
+    }
+
+    /**
+     * This method creates the components panel.
+     *
+     * @return The components panel.
+     */
+    private JPanel createComponentsPanel() {
+        JPanel componentsPanel = new JPanel();
+        componentsPanel.setLayout(null);
         componentsPanel.setBackground(new Color(238, 238, 238, 255));
 
-        panel.add(componentsPanel, BorderLayout.CENTER);
+        createAndConfigureSignInComponents(componentsPanel);
+
+        return componentsPanel;
     }
 
     /**
      * This method creates and configures the labels.
+     *
      * @param colorLayer The color layer.
      */
     private void createAndConfigureLabels(SignInRoundedPanel colorLayer) {
@@ -104,6 +128,7 @@ public class SignInController {
 
     /**
      * This method creates and configures the sign up button.
+     *
      * @param colorLayer The color layer.
      */
     private void createAndConfigureSignUpButton(SignInRoundedPanel colorLayer) {
@@ -155,11 +180,10 @@ public class SignInController {
 
     /**
      * This method creates and configures the sign in components.
+     *
      * @param componentsPanel The components panel.
      */
     private void createAndConfigureSignInComponents(JPanel componentsPanel) {
-        frame.setLocationRelativeTo(null);
-
         JLabel signInLabel = new JLabel("SIGN IN");
         signInLabel.setBounds(135, 60, 280, 30);
         signInLabel.setFont(new Font("Helvetica", Font.BOLD, 30));
@@ -211,10 +235,6 @@ public class SignInController {
         loginButton.setContentAreaFilled(true);
         componentsPanel.add(loginButton);
 
-        ImageIcon imageIcon = new ImageIcon(getClass().getResource("/com/images/XynxLogoVentana.png"));
-        Image image = imageIcon.getImage();
-        frame.setIconImage(image);
-
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -260,19 +280,6 @@ public class SignInController {
             public void run() {
                 frame.dispose();
                 new SignUpController();
-
-                new Thread(new Runnable() {
-                    public void run() {
-                        try {
-                            for (int i = 0; i < 400; i++) {
-                                colorLayer.setBounds(i, colorLayer.getY(), colorLayer.getWidth(), colorLayer.getHeight());
-                                Thread.sleep(3);
-                            }
-                        } catch (InterruptedException ex) {
-                            ex.printStackTrace();
-                        }
-                    }
-                }).start();
             }
         });
     }
