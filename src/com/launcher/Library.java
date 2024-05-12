@@ -14,4 +14,8 @@ public class Library {
     public void setGames(ArrayList<Game> games) {
         this.games = games;
     }
+
+    public void addGame(Game game) {
+        games.add(game);
+    }
 }
