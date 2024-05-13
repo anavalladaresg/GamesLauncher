@@ -6,8 +6,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 /**
  * This class represents the controller for the library.
@@ -24,6 +24,7 @@ public class LibraryController {
         JPanel panel = new JPanel(new BorderLayout());
         JPanel leftPanel = new JPanel();
         leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
+        leftPanel.setPreferredSize(null);
 
         // Load the image
         ImageIcon imageIcon = new ImageIcon("src/com/images/Xynx.png");
@@ -126,17 +127,36 @@ public class LibraryController {
         library.addGame(fortnite);
         library.addGame(assassinsCreedOrigins);
 
-        // Para cada videojuego, crear un JMenuItem y agregarlo al JPopupMenu
         for (Game game : games) {
-            JMenuItem gameItem = new JMenuItem(game.getGameName());
-            ImageIcon gameIcon = new ImageIcon(game.getGameImage());
-            Image scaledImage = gameIcon.getImage().getScaledInstance(25, 25, Image.SCALE_SMOOTH);
-            ImageIcon scaledGameIcon = new ImageIcon(scaledImage);
-            gameItem.setIcon(scaledGameIcon);
-            gameItem.setForeground(Color.WHITE);
+            JPanel gameItem = new JPanel(new FlowLayout(FlowLayout.LEFT));
+            gameItem.setPreferredSize(new Dimension(gameItem.getWidth(), 0));
+            gameItem.add(Box.createRigidArea(new Dimension(10, 0)));
+            ImageIcon gameImageIcon = new ImageIcon(game.getGameImage());
+            Image gameImage = gameImageIcon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+            ImageIcon scaledGameImageIcon = new ImageIcon(gameImage);
+            JLabel gameImageLabel = new JLabel(scaledGameImageIcon);
+            gameItem.add(gameImageLabel);
+            JLabel gameNameLabel = new JLabel(game.getGameName());
+            gameNameLabel.setFont(new Font("Helvetica", Font.PLAIN, 16));
+            gameNameLabel.setForeground(Color.WHITE);
+            gameItem.add(gameNameLabel);
             gameItem.setBackground(SignInController.getPurple());
-            gameMenu.add(gameItem);
-            gameMenu.setBackground(SignInController.getPurple());
+            leftPanel.add(gameItem);
+
+            gameItem.addMouseListener(new MouseAdapter() {
+                public void mouseClicked(MouseEvent e) {
+                    // Aquí irá el código para abrir el .exe de cada juego
+                }
+
+                public void mouseEntered(MouseEvent e) {
+                    gameItem.setCursor(new Cursor(Cursor.HAND_CURSOR));
+                    gameItem.setBackground(new Color(60, 45, 145));
+                }
+
+                public void mouseExited(MouseEvent e) {
+                    gameItem.setBackground(SignInController.getPurple());
+                }
+            });
         }
 
         // Agregar un MouseListener a libraryLabel que muestre el JPopupMenu cuando se haga clic en la etiqueta
