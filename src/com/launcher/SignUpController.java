@@ -8,10 +8,7 @@ import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 
 public class SignUpController {
     private final JFrame frame; // Window frame
@@ -214,28 +211,60 @@ public class SignUpController {
         Image image = imageIcon.getImage(); // Transforma el ImageIcon en Image
         frame.setIconImage(image); // Establece la imagen como icono de la ventana
 
-        // Add a listener to the sign in button
-        signUpButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                currentUser.setUserName(userText.getText());
-                currentUser.setPassword(new String(passwordText.getPassword()));
-
-                DatabaseHandler db = new DatabaseHandler();
-                if (db.userExists(currentUser.getUserName())) {
-                    // User already exists, show an error message
-                    JOptionPane.showMessageDialog(frame,
-                            "<html><font color='red'>User already exists. Please choose a different username.</font></html>",
-                            "Error",
-                            JOptionPane.ERROR_MESSAGE);
-                } else {
-                    // User does not exist, proceed with registration
-                    db.addUser(currentUser.getUserName(), currentUser.getPassword());
-                    JOptionPane.showMessageDialog(frame, "Registration successful!");
-                    displayMainMenu();
+        /**
+         * This method listens for the enter key to be pressed and triggers the singIn button.
+         */
+        userText.addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    signUpButton.doClick();
                 }
             }
         });
+
+        passwordText.addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    signUpButton.doClick();
+                }
+            }
+        });
+
+        // Add a listener to the sign in button
+       signUpButton.addActionListener(new ActionListener() {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        String username = userText.getText();
+        String password = new String(passwordText.getPassword());
+
+        String regex = "^[a-zA-Z0-9]+$"; // Solo permite caracteres alfanuméricos
+
+        if (!username.matches(regex) || !password.matches(regex)) {
+            JOptionPane.showMessageDialog(frame,
+                    "<html><font color='red'>Username and password can only contain alphanumeric characters.</font></html>",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        currentUser.setUserName(username);
+        currentUser.setPassword(password);
+
+        DatabaseHandler db = new DatabaseHandler();
+        if (db.userExists(currentUser.getUserName())) {
+            // User already exists, show an error message
+            JOptionPane.showMessageDialog(frame,
+                    "<html><font color='red'>User already exists. Please choose a different username.</font></html>",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+        } else {
+            // User does not exist, proceed with registration
+            db.addUser(currentUser.getUserName(), currentUser.getPassword());
+            JOptionPane.showMessageDialog(frame, "Registration successful!");
+            displayMainMenu();
+        }
+    }
+});
         signUpButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
