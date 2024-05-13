@@ -231,40 +231,40 @@ public class SignUpController {
         });
 
         // Add a listener to the sign in button
-       signUpButton.addActionListener(new ActionListener() {
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        String username = userText.getText();
-        String password = new String(passwordText.getPassword());
+        signUpButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String username = userText.getText();
+                String password = new String(passwordText.getPassword());
 
-        String regex = "^[a-zA-Z0-9]+$"; // Solo permite caracteres alfanuméricos
+                String regex = "^[a-zA-Z0-9]+$"; // Solo permite caracteres alfanuméricos
 
-        if (!username.matches(regex) || !password.matches(regex)) {
-            JOptionPane.showMessageDialog(frame,
-                    "<html><font color='red'>Username and password can only contain alphanumeric characters.</font></html>",
-                    "Error",
-                    JOptionPane.ERROR_MESSAGE);
-            return;
-        }
+                if (!username.matches(regex) || !password.matches(regex)) {
+                    JOptionPane.showMessageDialog(frame,
+                            "<html><font color='red'>Username and password can only contain alphanumeric characters.</font></html>",
+                            "Error",
+                            JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
 
-        currentUser.setUserName(username);
-        currentUser.setPassword(password);
+                currentUser.setUserName(username);
+                currentUser.setPassword(password);
 
-        DatabaseHandler db = new DatabaseHandler();
-        if (db.userExists(currentUser.getUserName())) {
-            // User already exists, show an error message
-            JOptionPane.showMessageDialog(frame,
-                    "<html><font color='red'>User already exists. Please choose a different username.</font></html>",
-                    "Error",
-                    JOptionPane.ERROR_MESSAGE);
-        } else {
-            // User does not exist, proceed with registration
-            db.addUser(currentUser.getUserName(), currentUser.getPassword());
-            JOptionPane.showMessageDialog(frame, "Registration successful!");
-            displayMainMenu();
-        }
-    }
-});
+                DatabaseHandler db = new DatabaseHandler();
+                if (db.userExists(currentUser.getUserName())) {
+                    // User already exists, show an error message
+                    JOptionPane.showMessageDialog(frame,
+                            "<html><font color='red'>User already exists. Please choose a different username.</font></html>",
+                            "Error",
+                            JOptionPane.ERROR_MESSAGE);
+                } else {
+                    // User does not exist, proceed with registration
+                    db.addUser(currentUser.getUserName(), currentUser.getPassword());
+                    JOptionPane.showMessageDialog(frame, "Registration successful!");
+                    displayMainMenu();
+                }
+            }
+        });
         signUpButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
