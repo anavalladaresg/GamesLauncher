@@ -5,6 +5,7 @@ import database.DatabaseHandler;
 
 import java.util.ArrayList;
 
+
 /**
  * This class represents a user in the system.
  */
