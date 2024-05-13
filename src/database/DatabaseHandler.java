@@ -4,8 +4,8 @@ import java.sql.*;
 
 public class DatabaseHandler {
     private static final String DATABASE_URL = "jdbc:postgresql://localhost:5432/xynx";
-    private static final String DATABASE_USER = "anavalladares";
-    private static final String DATABASE_PASSWORD = "aaaa";
+    private static final String DATABASE_USER = "postgres";
+    private static final String DATABASE_PASSWORD = "debian";
     private Connection conn = null;
 
     /**
@@ -24,19 +24,25 @@ public class DatabaseHandler {
      * @param userName the username
      * @param password the password
      */
-    public void addUser(String userName, String password) {
-        String SQL = "INSERT INTO users(userName, password) VALUES(?,?)";
-        connect();
-        try (PreparedStatement pstmt = conn.prepareStatement(SQL)) {
+public void addUser(String userName, String password) {
+    String SQL = "INSERT INTO users(userName, password) VALUES(?,?)";
+    String regex = "^[a-zA-Z0-9]+$"; // Solo permite caracteres alfanuméricos
 
-            pstmt.setString(1, userName);
-            pstmt.setString(2, password);
-            pstmt.executeUpdate();
-
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
+    if (!userName.matches(regex) || !password.matches(regex)) {
+        System.out.println("Username and password can only contain alphanumeric characters.");
+        return;
     }
+
+    connect();
+    try (PreparedStatement pstmt = conn.prepareStatement(SQL)) {
+        pstmt.setString(1, userName);
+        pstmt.setString(2, password);
+        pstmt.executeUpdate();
+
+    } catch (SQLException e) {
+        System.out.println(e.getMessage());
+    }
+}
 
     /**
      * Check if a user exists

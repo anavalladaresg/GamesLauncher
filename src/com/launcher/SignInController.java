@@ -7,10 +7,7 @@ import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 
 /**
  * This class controls the user interface.
@@ -234,6 +231,25 @@ public class SignInController {
         loginButton.setBorder(new RoundedBorder(Color.WHITE, 10));
         loginButton.setContentAreaFilled(true);
         componentsPanel.add(loginButton);
+
+        /**
+         * This method listens for the enter key to be pressed and triggers the login button.
+         */
+        userText.addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    loginButton.doClick();
+                }
+            }
+        });
+
+        passwordText.addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    loginButton.doClick();
+                }
+            }
+        });
 
         loginButton.addActionListener(new ActionListener() {
             @Override
