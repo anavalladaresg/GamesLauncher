@@ -6,6 +6,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -98,36 +100,10 @@ public class LibraryController {
                 "path/to/warframe_image.png"
         );
 
-        Game fortnite = new Game(
-                4,
-                "Fortnite",
-                "A free-to-play Battle Royale game",
-                0.0,
-                "Battle Royale",
-                LocalDate.of(2017, 7, 25),
-                "Epic Games",
-                3.6,
-                "path/to/fortnite_image.png"
-        );
-
-        Game assassinsCreedOrigins = new Game(
-                5,
-                "Assassin's Creed Origins",
-                "Action-adventure video game developed by Ubisoft Montreal",
-                59.99,
-                "Action-Adventure",
-                LocalDate.of(2017, 10, 27),
-                "Ubisoft",
-                4.0,
-                "path/to/assassins_creed_origins_image.png"
-        );
-
         // Añadir los juegos a la biblioteca
         library.addGame(redDeadRedemption);
         library.addGame(leagueOfLegends);
         library.addGame(warframe);
-        library.addGame(fortnite);
-        library.addGame(assassinsCreedOrigins);
 
         for (Game game : games) {
             JPanel gameItem = new JPanel(new FlowLayout(FlowLayout.LEFT));
@@ -146,8 +122,12 @@ public class LibraryController {
             leftPanel.add(gameItem);
 
             gameItem.addMouseListener(new MouseAdapter() {
-                public void mouseClicked(MouseEvent e) {
-                    // Aquí irá el código para abrir el .exe de cada juego
+                public void mouseClicked(MouseEvent a) {
+                    try {
+                        Runtime.getRuntime().exec("C:\\Users\\anxor\\AppData\\Local\\Warframe\\Downloaded\\Public\\Tools\\Launcher.exe", null, new File("C:\\Users\\anxor\\AppData\\Local\\Warframe\\Downloaded\\Public\\Tools"));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
 
                 public void mouseEntered(MouseEvent e) {
