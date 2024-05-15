@@ -9,6 +9,8 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -69,6 +71,13 @@ public class LibraryController {
 
         leftPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
         leftPanel.add(addButton);
+
+        // Crear el separador
+        JSeparator separator = new JSeparator();
+        separator.setPreferredSize(new Dimension(300, 5));
+        separator.setBackground(Color.WHITE);
+        leftPanel.add(separator);
+
 
         // Add action listener to the button
         addButton.addActionListener(e -> {
@@ -159,8 +168,12 @@ public class LibraryController {
             leftPanel.add(gameItem);
 
             gameItem.addMouseListener(new MouseAdapter() {
-                public void mouseClicked(MouseEvent e) {
-                    // Code to open the .exe file of each game will go here
+                public void mouseClicked(MouseEvent a) {
+                    try {
+                        Runtime.getRuntime().exec("C:\\Users\\anxor\\AppData\\Local\\Warframe\\Downloaded\\Public\\Tools\\Launcher.exe", null, new File("C:\\Users\\anxor\\AppData\\Local\\Warframe\\Downloaded\\Public\\Tools"));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
 
                 public void mouseEntered(MouseEvent e) {
