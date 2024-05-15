@@ -3,11 +3,12 @@ package com.launcher;
 import com.games.Game;
 
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.File;
-import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -26,7 +27,10 @@ public class LibraryController {
         JPanel panel = new JPanel(new BorderLayout());
         JPanel leftPanel = new JPanel();
         leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
-        leftPanel.setPreferredSize(null);
+
+        ArrayList<Game> games = new ArrayList<>();
+        Library library = new Library();
+        JPopupMenu gameMenu = new JPopupMenu();
 
         // Load the image
         ImageIcon imageIcon = new ImageIcon("src/com/images/Xynx.png");
@@ -35,36 +39,94 @@ public class LibraryController {
         JLabel imageLabel = new JLabel(scaledImageIcon);
         leftPanel.add(imageLabel);
 
-        // Create some space
-        leftPanel.add(Box.createRigidArea(new Dimension(50, 20))); // Adjust the second parameter to move the label up or down
-
-        // Create the label
-        JLabel libraryLabel = new JLabel("Library");
-        libraryLabel.setFont(new Font("Helvetica", Font.BOLD, 19));
-        libraryLabel.setForeground(Color.WHITE);
-        leftPanel.add(libraryLabel);
 
         frame.setTitle("Game Library");
         panel.setBackground(new Color(224, 224, 224, 255));
         leftPanel.setBackground(SignInController.getPurple());
-        leftPanel.setPreferredSize(new Dimension(350, frame.getHeight()));
+        leftPanel.setPreferredSize(new Dimension(350, 100));
         frame.setSize(Toolkit.getDefaultToolkit().getScreenSize().width, Toolkit.getDefaultToolkit().getScreenSize().height);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         panel.add(leftPanel, BorderLayout.WEST);
         frame.add(panel);
-        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setVisible(true);
 
+        // Create the label
+        JLabel libraryLabel = new JLabel("Library");
+        libraryLabel.setFont(new Font("Helvetica", Font.BOLD, 19));
+        libraryLabel.setBorder(new EmptyBorder(0, 35, 0, 170)); // Ajusta el margen derecho según sea necesario.
+        libraryLabel.setForeground(Color.WHITE);
+        leftPanel.add(libraryLabel);
 
-        // Crear el JPopupMenu
-        JPopupMenu gameMenu = new JPopupMenu();
+        // Create the button for adding a game
+        JButton addButton = new JButton("+");
+        addButton.setFont(new Font("Helvetica", Font.PLAIN, 25));
+        addButton.setForeground(Color.WHITE);
+        addButton.setOpaque(false);
+        addButton.setBackground(SignInController.getPurple());
 
-        // Obtener la lista de videojuegos
-        Library library = new Library();
-        ArrayList<Game> games = library.getGames();
+        Border whiteLineBorder = new RoundedBorder(SignInController.getPurple(), 10);
+        addButton.setBorder(new CompoundBorder(whiteLineBorder, new EmptyBorder(0, 0, 0, 0))); // Agrega un margen izquierdo de 10
 
-        // Crear los juegos
+        leftPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
+        leftPanel.add(addButton);
+
+        // Add action listener to the button
+        addButton.addActionListener(e -> {
+            // Create the form panel
+            JPanel formPanel = new JPanel();
+            formPanel.setLayout(new GridLayout(0, 2));
+
+            // Create input fields
+            JTextField gameNameField = new JTextField();
+            JTextField gameDescriptionField = new JTextField();
+            JTextField gameGenreField = new JTextField();
+            JTextField gameImageField = new JTextField();
+            JTextField gameCoverField = new JTextField();
+            JTextField gameExeField = new JTextField();
+            JTextField gameFolderField = new JTextField();
+
+            // Add input fields to the form panel
+            formPanel.add(new JLabel("Game Name:"));
+            formPanel.add(gameNameField);
+            formPanel.add(new JLabel("Game Description:"));
+            formPanel.add(gameDescriptionField);
+            formPanel.add(new JLabel("Game Genre:"));
+            formPanel.add(gameGenreField);
+            formPanel.add(new JLabel("Game Image Path:"));
+            formPanel.add(gameImageField);
+            formPanel.add(new JLabel("Game Cover Path:"));
+            formPanel.add(gameCoverField);
+            formPanel.add(new JLabel("Game .exe Link:"));
+            formPanel.add(gameExeField);
+            formPanel.add(new JLabel("Game Folder Link:"));
+            formPanel.add(gameFolderField);
+
+            // Remove all components from the main panel
+            panel.removeAll();
+
+            // Add the form panel to the main panel
+            formPanel.setPreferredSize(new Dimension(Toolkit.getDefaultToolkit().getScreenSize().width - 350, 100));
+            panel.add(formPanel);
+
+            // Update the main panel
+            panel.revalidate();
+            panel.repaint();
+        });
+
+        // Create the games
         Game redDeadRedemption = new Game(
+                1, // gameId
+                "Red Dead Redemption", // gameName
+                "A Western-themed action-adventure game", // gameDescription
+                59.99, // gamePrice
+                "Action-Adventure", // gameGenre
+                LocalDate.of(2018, 10, 26), // releaseDate
+                "Rockstar Games", // gameDeveloper
+                4.6, // gameRating
+                "src/com/images/RedDeadRedemption2.png" // gameImage
+        );
+
+        Game redDeadRedemption2 = new Game(
                 1, // gameId
                 "Red Dead Redemption 2", // gameName
                 "A Western-themed action-adventure game", // gameDescription
@@ -76,39 +138,14 @@ public class LibraryController {
                 "src/com/images/RedDeadRedemption2.png" // gameImage
         );
 
-        Game leagueOfLegends = new Game(
-                2,
-                "League of Legends",
-                "A fast-paced, competitive online game",
-                0.0,
-                "MOBA",
-                LocalDate.of(2009, 10, 27),
-                "Riot Games",
-                4.3,
-                "path/to/league_of_legends_image.png"
-        );
+        // Add the games to the library
+        games.add(redDeadRedemption);
+        games.add(redDeadRedemption2);
 
-        Game warframe = new Game(
-                3,
-                "Warframe",
-                "A cooperative free-to-play third person online action game",
-                0.0,
-                "Action",
-                LocalDate.of(2013, 3, 25),
-                "Digital Extremes",
-                4.5,
-                "path/to/warframe_image.png"
-        );
-
-        // Añadir los juegos a la biblioteca
-        library.addGame(redDeadRedemption);
-        library.addGame(leagueOfLegends);
-        library.addGame(warframe);
-
+        // Add games to the left panel
         for (Game game : games) {
-            JPanel gameItem = new JPanel(new FlowLayout(FlowLayout.LEFT));
-            gameItem.setPreferredSize(new Dimension(gameItem.getWidth(), 0));
-            gameItem.add(Box.createRigidArea(new Dimension(10, 0)));
+            JPanel gameItem = new JPanel();
+            gameItem.setBorder(new EmptyBorder(0, 25, 0, 0));
             ImageIcon gameImageIcon = new ImageIcon(game.getGameImage());
             Image gameImage = gameImageIcon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
             ImageIcon scaledGameImageIcon = new ImageIcon(gameImage);
@@ -122,12 +159,8 @@ public class LibraryController {
             leftPanel.add(gameItem);
 
             gameItem.addMouseListener(new MouseAdapter() {
-                public void mouseClicked(MouseEvent a) {
-                    try {
-                        Runtime.getRuntime().exec("C:\\Users\\anxor\\AppData\\Local\\Warframe\\Downloaded\\Public\\Tools\\Launcher.exe", null, new File("C:\\Users\\anxor\\AppData\\Local\\Warframe\\Downloaded\\Public\\Tools"));
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                public void mouseClicked(MouseEvent e) {
+                    // Code to open the .exe file of each game will go here
                 }
 
                 public void mouseEntered(MouseEvent e) {
@@ -141,14 +174,14 @@ public class LibraryController {
             });
         }
 
-        // Agregar un MouseListener a libraryLabel que muestre el JPopupMenu cuando se haga clic en la etiqueta
-        libraryLabel.addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent e) {
-                gameMenu.show(e.getComponent(), e.getX(), e.getY() + libraryLabel.getHeight());
+        addButton.addMouseListener(new MouseAdapter() {
+            public void mouseEntered(MouseEvent e) {
+                addButton.setFont(new Font("Helvetica", Font.BOLD, 25));
+                addButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
             }
 
-            public void mouseEntered(MouseEvent e) {
-                libraryLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
+            public void mouseExited(MouseEvent e) {
+                addButton.setFont(new Font("Helvetica", Font.PLAIN, 25));
             }
         });
     }
