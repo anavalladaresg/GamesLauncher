@@ -50,7 +50,9 @@ public class LibraryController {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         panel.add(leftPanel, BorderLayout.WEST);
         frame.add(panel);
+        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setVisible(true);
+
 
         // Crear el JPopupMenu
         JPopupMenu gameMenu = new JPopupMenu();
