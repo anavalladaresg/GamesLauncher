@@ -47,7 +47,7 @@ public class LibraryController {
         panel.setBackground(new Color(224, 224, 224, 255));
         leftPanel.setBackground(SignInController.getPurple());
         leftPanel.setPreferredSize(new Dimension(350, 100));
-        frame.setSize(Toolkit.getDefaultToolkit().getScreenSize().width, Toolkit.getDefaultToolkit().getScreenSize().height);
+        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         panel.add(leftPanel, BorderLayout.WEST);
         frame.add(panel);
@@ -56,7 +56,7 @@ public class LibraryController {
         // Create the label
         JLabel libraryLabel = new JLabel("Library");
         libraryLabel.setFont(new Font("Helvetica", Font.BOLD, 19));
-        libraryLabel.setBorder(new EmptyBorder(0, 35, 0, 170)); // Ajusta el margen derecho según sea necesario.
+        libraryLabel.setBorder(new EmptyBorder(0, 35, 0, 170)); // Adjust right margin as needed.
         libraryLabel.setForeground(Color.WHITE);
         leftPanel.add(libraryLabel);
 
@@ -68,12 +68,12 @@ public class LibraryController {
         addButton.setBackground(SignInController.getPurple());
 
         Border whiteLineBorder = new RoundedBorder(SignInController.getPurple(), 10);
-        addButton.setBorder(new CompoundBorder(whiteLineBorder, new EmptyBorder(0, 0, 0, 0))); // Elimina el borde
+        addButton.setBorder(new CompoundBorder(whiteLineBorder, new EmptyBorder(0, 0, 0, 0))); // Remove border
 
         leftPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
         leftPanel.add(addButton);
 
-        // Crear el separador
+        // Create the separator
         JSeparator separator = new JSeparator();
         separator.setPreferredSize(new Dimension(340, 5));
         separator.setBackground(Color.WHITE);
@@ -81,7 +81,6 @@ public class LibraryController {
 
         // Add action listener to the button
         addButton.addActionListener(e -> {
-            // Create the form panel
             // Create the form panel
             JPanel formPanel = new JPanel(new BorderLayout());
             ImageIcon newGameIcon = new ImageIcon("src/com/images/NewGame.png");
@@ -122,48 +121,30 @@ public class LibraryController {
 
             // Add the input panel to the form panel
             formPanel.add(inputPanel, BorderLayout.CENTER);
+
             // Create buttons
             JButton addGameButton = new JButton("Add Game");
             JButton cancelButton = new JButton("Cancel");
 
-            // Create a panel for the buttons
             JPanel buttonPanel = new JPanel();
             buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
             buttonPanel.add(addGameButton);
             buttonPanel.add(cancelButton);
+            formPanel.add(buttonPanel, BorderLayout.SOUTH);
 
-            // Add the form panel and button panel to the main panel
-            JPanel rightPanel = new JPanel();
-            rightPanel.setLayout(new BorderLayout());
-            rightPanel.add(formPanel, BorderLayout.CENTER);
-            rightPanel.add(buttonPanel, BorderLayout.SOUTH);
-
-            panel.add(rightPanel, BorderLayout.CENTER);
+            panel.add(formPanel, BorderLayout.CENTER);
             panel.revalidate();
             panel.repaint();
 
             // Action listener for the cancel button
             cancelButton.addActionListener(cancelEvent -> {
-                panel.remove(rightPanel);
-                panel.revalidate();
-                panel.repaint();
+
             });
 
             // Action listener for the add game button
             addGameButton.addActionListener(addEvent -> {
-                // Add the logic to handle adding the game here
-                // For now, just clear the form fields and remove the panel
-                gameNameField.setText("");
-                gameDescriptionField.setText("");
-                gameGenreField.setText("");
-                gameImageField.setText("");
-                gameCoverField.setText("");
-                gameExeField.setText("");
-                gameFolderField.setText("");
-
-                panel.remove(rightPanel);
-                panel.revalidate();
-                panel.repaint();
+                // Code to handle adding the game
+                // You can retrieve the text from the text fields and add the game to the library
             });
         });
 
