@@ -74,7 +74,7 @@ public class LibraryController {
 
         // Crear el separador
         JSeparator separator = new JSeparator();
-        separator.setPreferredSize(new Dimension(300, 5));
+        separator.setPreferredSize(new Dimension(340, 5));
         separator.setBackground(Color.WHITE);
         leftPanel.add(separator);
 
@@ -154,7 +154,9 @@ public class LibraryController {
         // Add games to the left panel
         for (Game game : games) {
             JPanel gameItem = new JPanel();
+            gameItem.setPreferredSize(new Dimension(337, 40));
             gameItem.setBorder(new EmptyBorder(0, 25, 0, 0));
+            gameItem.setLayout(new FlowLayout(FlowLayout.LEFT));
             ImageIcon gameImageIcon = new ImageIcon(game.getGameImage());
             Image gameImage = gameImageIcon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
             ImageIcon scaledGameImageIcon = new ImageIcon(gameImage);
