@@ -7,6 +7,8 @@ import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
@@ -41,7 +43,6 @@ public class LibraryController {
         JLabel imageLabel = new JLabel(scaledImageIcon);
         leftPanel.add(imageLabel);
 
-
         frame.setTitle("Game Library");
         panel.setBackground(new Color(224, 224, 224, 255));
         leftPanel.setBackground(SignInController.getPurple());
@@ -67,7 +68,7 @@ public class LibraryController {
         addButton.setBackground(SignInController.getPurple());
 
         Border whiteLineBorder = new RoundedBorder(SignInController.getPurple(), 10);
-        addButton.setBorder(new CompoundBorder(whiteLineBorder, new EmptyBorder(0, 0, 0, 0))); // Agrega un margen izquierdo de 10
+        addButton.setBorder(new CompoundBorder(whiteLineBorder, new EmptyBorder(0, 0, 0, 0))); // Elimina el borde
 
         leftPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
         leftPanel.add(addButton);
@@ -78,12 +79,12 @@ public class LibraryController {
         separator.setBackground(Color.WHITE);
         leftPanel.add(separator);
 
-
         // Add action listener to the button
-        addButton.addActionListener(e -> {
+        addButton.addActionListener( e -> {
             // Create the form panel
             JPanel formPanel = new JPanel();
-            formPanel.setLayout(new GridLayout(0, 2));
+            formPanel.setLayout(new GridLayout(0, 2, 10, 10));
+            formPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
 
             // Create input fields
             JTextField gameNameField = new JTextField();
@@ -110,16 +111,49 @@ public class LibraryController {
             formPanel.add(new JLabel("Game Folder Link:"));
             formPanel.add(gameFolderField);
 
-            // Remove all components from the main panel
-            panel.removeAll();
+            // Create buttons
+            JButton addGameButton = new JButton("Add Game");
+            JButton cancelButton = new JButton("Cancel");
 
-            // Add the form panel to the main panel
-            formPanel.setPreferredSize(new Dimension(Toolkit.getDefaultToolkit().getScreenSize().width - 350, 100));
-            panel.add(formPanel);
+            // Create a panel for the buttons
+            JPanel buttonPanel = new JPanel();
+            buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
+            buttonPanel.add(addGameButton);
+            buttonPanel.add(cancelButton);
 
-            // Update the main panel
+            // Add the form panel and button panel to the main panel
+            JPanel rightPanel = new JPanel();
+            rightPanel.setLayout(new BorderLayout());
+            rightPanel.add(formPanel, BorderLayout.CENTER);
+            rightPanel.add(buttonPanel, BorderLayout.SOUTH);
+
+            panel.add(rightPanel, BorderLayout.CENTER);
             panel.revalidate();
             panel.repaint();
+
+            // Action listener for the cancel button
+            cancelButton.addActionListener(cancelEvent -> {
+                panel.remove(rightPanel);
+                panel.revalidate();
+                panel.repaint();
+            });
+
+            // Action listener for the add game button
+            addGameButton.addActionListener(addEvent -> {
+                // Add the logic to handle adding the game here
+                // For now, just clear the form fields and remove the panel
+                gameNameField.setText("");
+                gameDescriptionField.setText("");
+                gameGenreField.setText("");
+                gameImageField.setText("");
+                gameCoverField.setText("");
+                gameExeField.setText("");
+                gameFolderField.setText("");
+
+                panel.remove(rightPanel);
+                panel.revalidate();
+                panel.repaint();
+            });
         });
 
         // Create the games
@@ -193,6 +227,11 @@ public class LibraryController {
             public void mouseEntered(MouseEvent e) {
                 addButton.setFont(new Font("Helvetica", Font.BOLD, 25));
                 addButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+            }
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                addButton.setBackground(SignInController.getPurple());
             }
 
             public void mouseExited(MouseEvent e) {
