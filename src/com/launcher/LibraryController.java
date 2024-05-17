@@ -126,6 +126,20 @@ public class LibraryController {
             JButton addGameButton = new JButton("Add Game");
             JButton cancelButton = new JButton("Cancel");
 
+            addGameButton.setPreferredSize(new Dimension(100, 30));
+            addGameButton.setBackground(new Color(80, 65, 165)); // Set the background color
+            addGameButton.setFont(new Font("Helvetica", Font.BOLD, 14)); // Set the font
+            addGameButton.setForeground(Color.WHITE);
+            addGameButton.setBorder(new RoundedBorder(Color.WHITE, 10)); // 10 is the radius of the border
+            addGameButton.setContentAreaFilled(true);
+
+            cancelButton.setPreferredSize(new Dimension(100, 30));
+            cancelButton.setBackground(new Color(80, 65, 165)); // Set the background color
+            cancelButton.setFont(new Font("Helvetica", Font.BOLD, 14)); // Set the font
+            cancelButton.setForeground(Color.WHITE);
+            cancelButton.setBorder(new RoundedBorder(Color.WHITE, 10)); // 10 is the radius of the border
+            cancelButton.setContentAreaFilled(true);
+
             JPanel buttonPanel = new JPanel();
             buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
             buttonPanel.add(addGameButton);
@@ -138,13 +152,14 @@ public class LibraryController {
 
             // Action listener for the cancel button
             cancelButton.addActionListener(cancelEvent -> {
-
+                panel.remove(formPanel);
+                panel.revalidate();
+                panel.repaint();
             });
 
             // Action listener for the add game button
             addGameButton.addActionListener(addEvent -> {
-                // Code to handle adding the game
-                // You can retrieve the text from the text fields and add the game to the library
+
             });
         });
 
