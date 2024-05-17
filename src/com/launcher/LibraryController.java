@@ -80,11 +80,20 @@ public class LibraryController {
         leftPanel.add(separator);
 
         // Add action listener to the button
-        addButton.addActionListener( e -> {
+        addButton.addActionListener(e -> {
             // Create the form panel
-            JPanel formPanel = new JPanel();
-            formPanel.setLayout(new GridLayout(0, 2, 10, 10));
-            formPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
+            // Create the form panel
+            JPanel formPanel = new JPanel(new BorderLayout());
+            ImageIcon newGameIcon = new ImageIcon("src/com/images/NewGame.png");
+            Image newGameImage = newGameIcon.getImage().getScaledInstance(panel.getWidth() - 300, 300, Image.SCALE_SMOOTH);
+            ImageIcon scaledNewGameIcon = new ImageIcon(newGameImage);
+            JLabel newGameLabel = new JLabel(scaledNewGameIcon, SwingConstants.CENTER);
+            formPanel.add(newGameLabel, BorderLayout.NORTH);
+
+            // Create a new panel for input fields
+            JPanel inputPanel = new JPanel();
+            inputPanel.setLayout(new GridLayout(0, 2, 10, 10));
+            inputPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
 
             // Create input fields
             JTextField gameNameField = new JTextField();
@@ -95,22 +104,24 @@ public class LibraryController {
             JTextField gameExeField = new JTextField();
             JTextField gameFolderField = new JTextField();
 
-            // Add input fields to the form panel
-            formPanel.add(new JLabel("Game Name:"));
-            formPanel.add(gameNameField);
-            formPanel.add(new JLabel("Game Description:"));
-            formPanel.add(gameDescriptionField);
-            formPanel.add(new JLabel("Game Genre:"));
-            formPanel.add(gameGenreField);
-            formPanel.add(new JLabel("Game Image Path:"));
-            formPanel.add(gameImageField);
-            formPanel.add(new JLabel("Game Cover Path:"));
-            formPanel.add(gameCoverField);
-            formPanel.add(new JLabel("Game .exe Link:"));
-            formPanel.add(gameExeField);
-            formPanel.add(new JLabel("Game Folder Link:"));
-            formPanel.add(gameFolderField);
+            // Add input fields to the input panel
+            inputPanel.add(new JLabel("Game Name:"));
+            inputPanel.add(gameNameField);
+            inputPanel.add(new JLabel("Game Description:"));
+            inputPanel.add(gameDescriptionField);
+            inputPanel.add(new JLabel("Game Genre:"));
+            inputPanel.add(gameGenreField);
+            inputPanel.add(new JLabel("Game Image Path:"));
+            inputPanel.add(gameImageField);
+            inputPanel.add(new JLabel("Game Cover Path:"));
+            inputPanel.add(gameCoverField);
+            inputPanel.add(new JLabel("Game .exe Link:"));
+            inputPanel.add(gameExeField);
+            inputPanel.add(new JLabel("Game Folder Link:"));
+            inputPanel.add(gameFolderField);
 
+            // Add the input panel to the form panel
+            formPanel.add(inputPanel, BorderLayout.CENTER);
             // Create buttons
             JButton addGameButton = new JButton("Add Game");
             JButton cancelButton = new JButton("Cancel");
