@@ -7,8 +7,8 @@ import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
@@ -89,35 +89,182 @@ public class LibraryController {
             JLabel newGameLabel = new JLabel(scaledNewGameIcon, SwingConstants.CENTER);
             formPanel.add(newGameLabel, BorderLayout.NORTH);
 
+            Border bottomBorder = new Border() {
+                @Override
+                public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
+                    g.setColor(SignInController.getPurple());
+                    g.drawLine(x, y + height - 1, x + width, y + height - 1);
+                }
+
+                @Override
+                public Insets getBorderInsets(Component c) {
+                    return new Insets(0, 0, 1, 0);
+                }
+
+                @Override
+                public boolean isBorderOpaque() {
+                    return true;
+                }
+            };
+
             // Create a new panel for input fields
             JPanel inputPanel = new JPanel();
-            inputPanel.setLayout(new GridLayout(0, 2, 10, 10));
-            inputPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
+            inputPanel.setLayout(new BoxLayout(inputPanel, BoxLayout.Y_AXIS));
+            inputPanel.setBorder(new EmptyBorder(20, 50, 20, 50));
 
-            // Create input fields
+            // Create the game name field
+            JPanel gameNamePanel = new JPanel(new BorderLayout());
+            gameNamePanel.setBorder(new EmptyBorder(0, 0, 20, 0));
             JTextField gameNameField = new JTextField();
-            JTextField gameDescriptionField = new JTextField();
-            JTextField gameGenreField = new JTextField();
-            JTextField gameImageField = new JTextField();
-            JTextField gameCoverField = new JTextField();
-            JTextField gameExeField = new JTextField();
-            JTextField gameFolderField = new JTextField();
+            gameNameField.setBorder(new CompoundBorder(bottomBorder, new EmptyBorder(0, 0, 100, 0)));
+            gameNameField.setBackground(inputPanel.getBackground());
+            gameNameField.setPreferredSize(new Dimension(500, 0));
+            gameNameField.addFocusListener(new FocusAdapter() {
+                @Override
+                public void focusGained(FocusEvent e) {
+                    gameNameField.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, SignInController.getPurple()));
+                }
 
-            // Add input fields to the input panel
-            inputPanel.add(new JLabel("Game Name:"));
-            inputPanel.add(gameNameField);
-            inputPanel.add(new JLabel("Game Description:"));
-            inputPanel.add(gameDescriptionField);
-            inputPanel.add(new JLabel("Game Genre:"));
-            inputPanel.add(gameGenreField);
-            inputPanel.add(new JLabel("Game Image Path:"));
-            inputPanel.add(gameImageField);
-            inputPanel.add(new JLabel("Game Cover Path:"));
-            inputPanel.add(gameCoverField);
-            inputPanel.add(new JLabel("Game .exe Link:"));
-            inputPanel.add(gameExeField);
-            inputPanel.add(new JLabel("Game Folder Link:"));
-            inputPanel.add(gameFolderField);
+                @Override
+                public void focusLost(FocusEvent e) {
+                    gameNameField.setBorder(bottomBorder);
+                }
+            });
+            gameNamePanel.add(new JLabel("Game Name:"), BorderLayout.NORTH);
+            gameNamePanel.add(gameNameField, BorderLayout.CENTER);
+            inputPanel.add(gameNamePanel);
+
+            // Game Description Panel
+            JPanel gameDescriptionPanel = new JPanel(new BorderLayout());
+            gameDescriptionPanel.setBorder(new EmptyBorder(0, 0, 20, 0));
+            JTextField gameDescriptionField = new JTextField();
+            gameDescriptionField.setBorder(new CompoundBorder(bottomBorder, new EmptyBorder(0, 0, 100, 0)));
+            gameDescriptionField.setBackground(inputPanel.getBackground());
+            gameDescriptionField.setPreferredSize(new Dimension(500, 0));
+            gameDescriptionField.addFocusListener(new FocusAdapter() {
+                @Override
+                public void focusGained(FocusEvent e) {
+                    gameDescriptionField.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, SignInController.getPurple()));
+                }
+
+                @Override
+                public void focusLost(FocusEvent e) {
+                    gameDescriptionField.setBorder(bottomBorder);
+                }
+            });
+            gameDescriptionPanel.add(new JLabel("Game Description:"), BorderLayout.NORTH);
+            gameDescriptionPanel.add(gameDescriptionField, BorderLayout.CENTER);
+            inputPanel.add(gameDescriptionPanel);
+
+// Game Genre Panel
+            JPanel gameGenrePanel = new JPanel(new BorderLayout());
+            gameGenrePanel.setBorder(new EmptyBorder(0, 0, 20, 0));
+            JTextField gameGenreField = new JTextField();
+            gameGenreField.setBorder(new CompoundBorder(bottomBorder, new EmptyBorder(0, 0, 100, 0)));
+            gameGenreField.setBackground(inputPanel.getBackground());
+            gameGenreField.setPreferredSize(new Dimension(500, 0));
+            gameGenreField.addFocusListener(new FocusAdapter() {
+                @Override
+                public void focusGained(FocusEvent e) {
+                    gameGenreField.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, SignInController.getPurple()));
+                }
+
+                @Override
+                public void focusLost(FocusEvent e) {
+                    gameGenreField.setBorder(bottomBorder);
+                }
+            });
+            gameGenrePanel.add(new JLabel("Game Genre:"), BorderLayout.NORTH);
+            gameGenrePanel.add(gameGenreField, BorderLayout.CENTER);
+            inputPanel.add(gameGenrePanel);
+
+// Game Image Path Panel
+            JPanel gameImagePathPanel = new JPanel(new BorderLayout());
+            gameImagePathPanel.setBorder(new EmptyBorder(0, 0, 20, 0));
+            JTextField gameImageField = new JTextField();
+            gameImageField.setBorder(new CompoundBorder(bottomBorder, new EmptyBorder(0, 0, 100, 0)));
+            gameImageField.setBackground(inputPanel.getBackground());
+            gameImageField.setPreferredSize(new Dimension(500, 0));
+            gameImageField.addFocusListener(new FocusAdapter() {
+                @Override
+                public void focusGained(FocusEvent e) {
+                    gameImageField.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, SignInController.getPurple()));
+                }
+
+                @Override
+                public void focusLost(FocusEvent e) {
+                    gameImageField.setBorder(bottomBorder);
+                }
+            });
+            gameImagePathPanel.add(new JLabel("Game Image Path:"), BorderLayout.NORTH);
+            gameImagePathPanel.add(gameImageField, BorderLayout.CENTER);
+            inputPanel.add(gameImagePathPanel);
+
+// Game Cover Path Panel
+            JPanel gameCoverPathPanel = new JPanel(new BorderLayout());
+            gameCoverPathPanel.setBorder(new EmptyBorder(0, 0, 20, 0));
+            JTextField gameCoverField = new JTextField();
+            gameCoverField.setBorder(new CompoundBorder(bottomBorder, new EmptyBorder(0, 0, 100, 0)));
+            gameCoverField.setBackground(inputPanel.getBackground());
+            gameCoverField.setPreferredSize(new Dimension(500, 0));
+            gameCoverField.addFocusListener(new FocusAdapter() {
+                @Override
+                public void focusGained(FocusEvent e) {
+                    gameCoverField.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, SignInController.getPurple()));
+                }
+
+                @Override
+                public void focusLost(FocusEvent e) {
+                    gameCoverField.setBorder(bottomBorder);
+                }
+            });
+            gameCoverPathPanel.add(new JLabel("Game Cover Path:"), BorderLayout.NORTH);
+            gameCoverPathPanel.add(gameCoverField, BorderLayout.CENTER);
+            inputPanel.add(gameCoverPathPanel);
+
+// Game .exe Link Panel
+            JPanel gameExeLinkPanel = new JPanel(new BorderLayout());
+            gameExeLinkPanel.setBorder(new EmptyBorder(0, 0, 20, 0));
+            JTextField gameExeField = new JTextField();
+            gameExeField.setBorder(new CompoundBorder(bottomBorder, new EmptyBorder(0, 0, 100, 0)));
+            gameExeField.setBackground(inputPanel.getBackground());
+            gameExeField.setPreferredSize(new Dimension(500, 0));
+            gameExeField.addFocusListener(new FocusAdapter() {
+                @Override
+                public void focusGained(FocusEvent e) {
+                    gameExeField.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, SignInController.getPurple()));
+                }
+
+                @Override
+                public void focusLost(FocusEvent e) {
+                    gameExeField.setBorder(bottomBorder);
+                }
+            });
+            gameExeLinkPanel.add(new JLabel("Game .exe Link:"), BorderLayout.NORTH);
+            gameExeLinkPanel.add(gameExeField, BorderLayout.CENTER);
+            inputPanel.add(gameExeLinkPanel);
+
+// Game Folder Link Panel
+            JPanel gameFolderLinkPanel = new JPanel(new BorderLayout());
+            gameFolderLinkPanel.setBorder(new EmptyBorder(0, 0, 20, 0));
+            JTextField gameFolderField = new JTextField();
+            gameFolderField.setBorder(new CompoundBorder(bottomBorder, new EmptyBorder(0, 0, 100, 0)));
+            gameFolderField.setBackground(inputPanel.getBackground());
+            gameFolderField.setPreferredSize(new Dimension(500, 0));
+            gameFolderField.addFocusListener(new FocusAdapter() {
+                @Override
+                public void focusGained(FocusEvent e) {
+                    gameFolderField.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, SignInController.getPurple()));
+                }
+
+                @Override
+                public void focusLost(FocusEvent e) {
+                    gameFolderField.setBorder(bottomBorder);
+                }
+            });
+            gameFolderLinkPanel.add(new JLabel("Game Folder Link:"), BorderLayout.NORTH);
+            gameFolderLinkPanel.add(gameFolderField, BorderLayout.CENTER);
+            inputPanel.add(gameFolderLinkPanel);
 
             // Add the input panel to the form panel
             formPanel.add(inputPanel, BorderLayout.CENTER);
