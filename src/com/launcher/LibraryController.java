@@ -84,7 +84,7 @@ public class LibraryController {
             // Create the form panel
             JPanel formPanel = new JPanel(new BorderLayout());
             ImageIcon newGameIcon = new ImageIcon("src/com/images/NewGame.png");
-            Image newGameImage = newGameIcon.getImage().getScaledInstance(panel.getWidth() - 300, 300, Image.SCALE_SMOOTH);
+            Image newGameImage = newGameIcon.getImage().getScaledInstance(panel.getWidth() - 300, 200, Image.SCALE_SMOOTH);
             ImageIcon scaledNewGameIcon = new ImageIcon(newGameImage);
             JLabel newGameLabel = new JLabel(scaledNewGameIcon, SwingConstants.CENTER);
             formPanel.add(newGameLabel, BorderLayout.NORTH);
