@@ -121,45 +121,83 @@ public class LibraryController {
 
             // Add the input panel to the form panel
             formPanel.add(inputPanel, BorderLayout.CENTER);
+// Create buttons
+            JButton addGameButton = new JButton("Add Game") {
+                @Override
+                protected void paintComponent(Graphics g) {
+                    if (!isOpaque() && getBorder() instanceof RoundedBorder) {
+                        Graphics2D g2 = (Graphics2D) g.create();
+                        g2.setPaint(getBackground());
+                        g2.fill(((RoundedBorder) getBorder()).getBorderShape(0, 0, getWidth() - 1, getHeight() - 1));
+                        g2.dispose();
+                    }
+                    super.paintComponent(g);
+                }
+            };
 
-            // Create buttons
-            JButton addGameButton = new JButton("Add Game");
-            JButton cancelButton = new JButton("Cancel");
+            JButton cancelButton = new JButton("Cancel") {
+                @Override
+                protected void paintComponent(Graphics g) {
+                    if (!isOpaque() && getBorder() instanceof RoundedBorder) {
+                        Graphics2D g2 = (Graphics2D) g.create();
+                        g2.setPaint(getBackground());
+                        g2.fill(((RoundedBorder) getBorder()).getBorderShape(0, 0, getWidth() - 1, getHeight() - 1));
+                        g2.dispose();
+                    }
+                    super.paintComponent(g);
+                }
+            };
 
+            // Set the preferred size of the buttons
             addGameButton.setPreferredSize(new Dimension(100, 30));
-            addGameButton.setBackground(new Color(80, 65, 165)); // Set the background color
-            addGameButton.setFont(new Font("Helvetica", Font.BOLD, 14)); // Set the font
-            addGameButton.setForeground(Color.WHITE);
-            addGameButton.setBorder(new RoundedBorder(Color.WHITE, 10)); // 10 is the radius of the border
-            addGameButton.setContentAreaFilled(true);
-
             cancelButton.setPreferredSize(new Dimension(100, 30));
-            cancelButton.setBackground(new Color(80, 65, 165)); // Set the background color
-            cancelButton.setFont(new Font("Helvetica", Font.BOLD, 14)); // Set the font
-            cancelButton.setForeground(Color.WHITE);
-            cancelButton.setBorder(new RoundedBorder(Color.WHITE, 10)); // 10 is the radius of the border
-            cancelButton.setContentAreaFilled(true);
 
+            // Set the background color of the buttons
+            addGameButton.setBackground(new Color(80, 65, 165));
+            cancelButton.setBackground(new Color(80, 65, 165));
+
+            // Set the font of the buttons
+            addGameButton.setFont(new Font("Helvetica", Font.BOLD, 14));
+            cancelButton.setFont(new Font("Helvetica", Font.BOLD, 14));
+
+            // Set the foreground color of the buttons
+            addGameButton.setForeground(Color.WHITE);
+            cancelButton.setForeground(Color.WHITE);
+
+            // Set the border of the buttons
+            addGameButton.setBorder(new RoundedBorder(Color.WHITE, 10));
+            cancelButton.setBorder(new RoundedBorder(Color.WHITE, 10));
+
+            // Set the content area filled property of the buttons
+            addGameButton.setOpaque(false);
+            cancelButton.setOpaque(false);
+
+            // Create a panel for the buttons
             JPanel buttonPanel = new JPanel();
             buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
+
+            // Add the buttons to the panel
             buttonPanel.add(addGameButton);
             buttonPanel.add(cancelButton);
+
+            // Add the button panel to the form panel
             formPanel.add(buttonPanel, BorderLayout.SOUTH);
 
+            // Add the form panel to the main panel
             panel.add(formPanel, BorderLayout.CENTER);
             panel.revalidate();
             panel.repaint();
 
-            // Action listener for the cancel button
+            // Add action listener to the cancel button
             cancelButton.addActionListener(cancelEvent -> {
                 panel.remove(formPanel);
                 panel.revalidate();
                 panel.repaint();
             });
 
-            // Action listener for the add game button
+            // Add action listener to the add game button
             addGameButton.addActionListener(addEvent -> {
-
+                // Add your code here for what should happen when the add game button is clicked
             });
         });
 
