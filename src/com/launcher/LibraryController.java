@@ -1,19 +1,25 @@
 package com.launcher;
 
 import com.games.Game;
+import database.DatabaseHandler;
 
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.util.ArrayList;
+import java.awt.event.*;
+import java.io.File;
+import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 /**
  * This class represents the controller for the library.
  * It sets up the UI for the library and handles user interactions.
  */
 public class LibraryController {
+    DatabaseHandler db = new DatabaseHandler();
 
     /**
      * Constructor for the LibraryController class.
@@ -25,6 +31,8 @@ public class LibraryController {
         JPanel leftPanel = new JPanel();
         leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
 
+        ArrayList<Game> games = (ArrayList<Game>) db.getGames();
+
         // Load the image
         ImageIcon imageIcon = new ImageIcon("src/com/images/Xynx.png");
         Image image = imageIcon.getImage().getScaledInstance(300, 250, Image.SCALE_SMOOTH);
@@ -32,122 +40,421 @@ public class LibraryController {
         JLabel imageLabel = new JLabel(scaledImageIcon);
         leftPanel.add(imageLabel);
 
-        // Create some space
-        leftPanel.add(Box.createRigidArea(new Dimension(50, 20))); // Adjust the second parameter to move the label up or down
-
-        // Create the label
-        JLabel libraryLabel = new JLabel("Library");
-        libraryLabel.setFont(new Font("Helvetica", Font.BOLD, 19));
-        libraryLabel.setForeground(Color.WHITE);
-        leftPanel.add(libraryLabel);
-
         frame.setTitle("Game Library");
         panel.setBackground(new Color(224, 224, 224, 255));
         leftPanel.setBackground(SignInController.getPurple());
-        leftPanel.setPreferredSize(new Dimension(350, frame.getHeight()));
-        frame.setSize(Toolkit.getDefaultToolkit().getScreenSize().width, Toolkit.getDefaultToolkit().getScreenSize().height);
+        leftPanel.setPreferredSize(new Dimension(350, 100));
+        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         panel.add(leftPanel, BorderLayout.WEST);
         frame.add(panel);
         frame.setVisible(true);
 
-        // Crear el JPopupMenu
-        JPopupMenu gameMenu = new JPopupMenu();
+        // Create the label
+        JLabel libraryLabel = new JLabel("Library");
+        libraryLabel.setFont(new Font("Helvetica", Font.BOLD, 19));
+        libraryLabel.setBorder(new EmptyBorder(0, 35, 0, 170)); // Adjust right margin as needed.
+        libraryLabel.setForeground(Color.WHITE);
+        leftPanel.add(libraryLabel);
 
-        // Obtener la lista de videojuegos
-        Library library = new Library();
-        ArrayList<Game> games = library.getGames();
+        // Create the button for adding a game
+        JButton addButton = new JButton("+");
+        addButton.setFont(new Font("Helvetica", Font.PLAIN, 25));
+        addButton.setForeground(Color.WHITE);
+        addButton.setOpaque(false);
+        addButton.setBackground(SignInController.getPurple());
 
-        // Crear los juegos
-        Game redDeadRedemption = new Game(
-                1, // gameId
-                "Red Dead Redemption 2", // gameName
-                "A Western-themed action-adventure game", // gameDescription
-                59.99, // gamePrice
-                "Action-Adventure", // gameGenre
-                LocalDate.of(2018, 10, 26), // releaseDate
-                "Rockstar Games", // gameDeveloper
-                4.6, // gameRating
-                "src/com/images/RedDeadRedemption2.png" // gameImage
-        );
+        Border whiteLineBorder = new RoundedBorder(SignInController.getPurple(), 10);
+        addButton.setBorder(new CompoundBorder(whiteLineBorder, new EmptyBorder(0, 0, 0, 0))); // Remove border
 
-        Game leagueOfLegends = new Game(
-                2,
-                "League of Legends",
-                "A fast-paced, competitive online game",
-                0.0,
-                "MOBA",
-                LocalDate.of(2009, 10, 27),
-                "Riot Games",
-                4.3,
-                "path/to/league_of_legends_image.png"
-        );
+        leftPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
+        leftPanel.add(addButton);
 
-        Game warframe = new Game(
-                3,
-                "Warframe",
-                "A cooperative free-to-play third person online action game",
-                0.0,
-                "Action",
-                LocalDate.of(2013, 3, 25),
-                "Digital Extremes",
-                4.5,
-                "path/to/warframe_image.png"
-        );
+        // Create the separator
+        JSeparator separator = new JSeparator();
+        separator.setPreferredSize(new Dimension(340, 5));
+        separator.setBackground(Color.WHITE);
+        leftPanel.add(separator);
 
-        Game fortnite = new Game(
-                4,
-                "Fortnite",
-                "A free-to-play Battle Royale game",
-                0.0,
-                "Battle Royale",
-                LocalDate.of(2017, 7, 25),
-                "Epic Games",
-                3.6,
-                "path/to/fortnite_image.png"
-        );
-
-        Game assassinsCreedOrigins = new Game(
-                5,
-                "Assassin's Creed Origins",
-                "Action-adventure video game developed by Ubisoft Montreal",
-                59.99,
-                "Action-Adventure",
-                LocalDate.of(2017, 10, 27),
-                "Ubisoft",
-                4.0,
-                "path/to/assassins_creed_origins_image.png"
-        );
-
-        // Añadir los juegos a la biblioteca
-        library.addGame(redDeadRedemption);
-        library.addGame(leagueOfLegends);
-        library.addGame(warframe);
-        library.addGame(fortnite);
-        library.addGame(assassinsCreedOrigins);
-
-        // Para cada videojuego, crear un JMenuItem y agregarlo al JPopupMenu
+        // Add games to the left panel
         for (Game game : games) {
-            JMenuItem gameItem = new JMenuItem(game.getGameName());
-            ImageIcon gameIcon = new ImageIcon(game.getGameImage());
-            Image scaledImage = gameIcon.getImage().getScaledInstance(25, 25, Image.SCALE_SMOOTH);
-            ImageIcon scaledGameIcon = new ImageIcon(scaledImage);
-            gameItem.setIcon(scaledGameIcon);
-            gameItem.setForeground(Color.WHITE);
+            JPanel gameItem = new JPanel();
+            gameItem.setPreferredSize(new Dimension(337, 40));
+            gameItem.setBorder(new EmptyBorder(0, 25, 0, 0));
+            gameItem.setLayout(new FlowLayout(FlowLayout.LEFT));
+            ImageIcon gameImageIcon = new ImageIcon(game.getGameImage());
+            Image gameImage = gameImageIcon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+            ImageIcon scaledGameImageIcon = new ImageIcon(gameImage);
+            JLabel gameImageLabel = new JLabel(scaledGameImageIcon);
+            gameItem.add(gameImageLabel);
+            JLabel gameNameLabel = new JLabel(game.getGameName());
+            gameNameLabel.setFont(new Font("Helvetica", Font.PLAIN, 16));
+            gameNameLabel.setForeground(Color.WHITE);
+            gameItem.add(gameNameLabel);
             gameItem.setBackground(SignInController.getPurple());
-            gameMenu.add(gameItem);
-            gameMenu.setBackground(SignInController.getPurple());
+            leftPanel.add(gameItem);
+
+            gameItem.addMouseListener(new MouseAdapter() {
+                public void mouseClicked(MouseEvent a) {
+                    try {
+                        Runtime.getRuntime().exec("C:\\Users\\anxor\\AppData\\Local\\Warframe\\Downloaded\\Public\\Tools\\Launcher.exe", null, new File("C:\\Users\\anxor\\AppData\\Local\\Warframe\\Downloaded\\Public\\Tools"));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                public void mouseEntered(MouseEvent e) {
+                    gameItem.setCursor(new Cursor(Cursor.HAND_CURSOR));
+                    gameItem.setBackground(new Color(60, 45, 145));
+                }
+
+                public void mouseExited(MouseEvent e) {
+                    gameItem.setBackground(SignInController.getPurple());
+                }
+            });
         }
+        leftPanel.revalidate();
+        leftPanel.repaint();
 
-        // Agregar un MouseListener a libraryLabel que muestre el JPopupMenu cuando se haga clic en la etiqueta
-        libraryLabel.addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent e) {
-                gameMenu.show(e.getComponent(), e.getX(), e.getY() + libraryLabel.getHeight());
-            }
+        // Add action listener to the button
+        addButton.addActionListener(e -> {
+            // Create the form panel
+            JPanel formPanel = new JPanel(new BorderLayout());
+            ImageIcon newGameIcon = new ImageIcon("src/com/images/NewGame.png");
+            Image newGameImage = newGameIcon.getImage().getScaledInstance(panel.getWidth() - 300, 300, Image.SCALE_SMOOTH);
+            ImageIcon scaledNewGameIcon = new ImageIcon(newGameImage);
+            JLabel newGameLabel = new JLabel(scaledNewGameIcon, SwingConstants.CENTER);
+            formPanel.add(newGameLabel, BorderLayout.NORTH);
 
-            public void mouseEntered(MouseEvent e) {
-                libraryLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
-            }
+            Border bottomBorder = new Border() {
+                @Override
+                public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
+                    g.setColor(SignInController.getPurple());
+                    g.drawLine(x, y + height - 1, x + width, y + height - 1);
+                }
+
+                @Override
+                public Insets getBorderInsets(Component c) {
+                    return new Insets(0, 0, 1, 0);
+                }
+
+                @Override
+                public boolean isBorderOpaque() {
+                    return true;
+                }
+            };
+
+            // Create a new panel for input fields
+            JPanel inputPanel = new JPanel();
+            inputPanel.setLayout(new BoxLayout(inputPanel, BoxLayout.Y_AXIS));
+            inputPanel.setBorder(new EmptyBorder(20, 50, 20, 50));
+
+            // Create the game name field
+            JPanel gameNamePanel = new JPanel(new BorderLayout());
+            gameNamePanel.setBorder(new EmptyBorder(0, 0, 20, 0));
+            JTextField gameNameField = new JTextField();
+            gameNameField.setBorder(new CompoundBorder(bottomBorder, new EmptyBorder(0, 0, 100, 0)));
+            gameNameField.setBackground(inputPanel.getBackground());
+            gameNameField.setPreferredSize(new Dimension(500, 0));
+            gameNameField.addFocusListener(new FocusAdapter() {
+                @Override
+                public void focusGained(FocusEvent e) {
+                    gameNameField.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, SignInController.getPurple()));
+                }
+
+                @Override
+                public void focusLost(FocusEvent e) {
+                    gameNameField.setBorder(bottomBorder);
+                }
+            });
+            gameNamePanel.add(new JLabel("Game Name:"), BorderLayout.NORTH);
+            gameNamePanel.add(gameNameField, BorderLayout.CENTER);
+            inputPanel.add(gameNamePanel);
+
+            // Game Description Panel
+            JPanel gameDescriptionPanel = new JPanel(new BorderLayout());
+            gameDescriptionPanel.setBorder(new EmptyBorder(0, 0, 20, 0));
+            JTextField gameDescriptionField = new JTextField();
+            gameDescriptionField.setBorder(new CompoundBorder(bottomBorder, new EmptyBorder(0, 0, 100, 0)));
+            gameDescriptionField.setBackground(inputPanel.getBackground());
+            gameDescriptionField.setPreferredSize(new Dimension(500, 0));
+            gameDescriptionField.addFocusListener(new FocusAdapter() {
+                @Override
+                public void focusGained(FocusEvent e) {
+                    gameDescriptionField.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, SignInController.getPurple()));
+                }
+
+                @Override
+                public void focusLost(FocusEvent e) {
+                    gameDescriptionField.setBorder(bottomBorder);
+                }
+            });
+            gameDescriptionPanel.add(new JLabel("Game Description:"), BorderLayout.NORTH);
+            gameDescriptionPanel.add(gameDescriptionField, BorderLayout.CENTER);
+            inputPanel.add(gameDescriptionPanel);
+
+            // Game Genre Panel
+            JPanel gameGenrePanel = new JPanel(new BorderLayout());
+            gameGenrePanel.setBorder(new EmptyBorder(0, 0, 20, 0));
+            JTextField gameGenreField = new JTextField();
+            gameGenreField.setBorder(new CompoundBorder(bottomBorder, new EmptyBorder(0, 0, 100, 0)));
+            gameGenreField.setBackground(inputPanel.getBackground());
+            gameGenreField.setPreferredSize(new Dimension(500, 0));
+            gameGenreField.addFocusListener(new FocusAdapter() {
+                @Override
+                public void focusGained(FocusEvent e) {
+                    gameGenreField.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, SignInController.getPurple()));
+                }
+
+                @Override
+                public void focusLost(FocusEvent e) {
+                    gameGenreField.setBorder(bottomBorder);
+                }
+            });
+            gameGenrePanel.add(new JLabel("Game Genre:"), BorderLayout.NORTH);
+            gameGenrePanel.add(gameGenreField, BorderLayout.CENTER);
+            inputPanel.add(gameGenrePanel);
+
+            // Game Image Path Panel
+            JPanel gameImagePathPanel = new JPanel(new BorderLayout());
+            gameImagePathPanel.setBorder(new EmptyBorder(0, 0, 20, 0));
+            JTextField gameImageField = new JTextField();
+            gameImageField.setBorder(new CompoundBorder(bottomBorder, new EmptyBorder(0, 0, 100, 0)));
+            gameImageField.setBackground(inputPanel.getBackground());
+            gameImageField.setPreferredSize(new Dimension(500, 0));
+            gameImageField.addFocusListener(new FocusAdapter() {
+                @Override
+                public void focusGained(FocusEvent e) {
+                    gameImageField.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, SignInController.getPurple()));
+                }
+
+                @Override
+                public void focusLost(FocusEvent e) {
+                    gameImageField.setBorder(bottomBorder);
+                }
+            });
+            gameImagePathPanel.add(new JLabel("Game Image Path:"), BorderLayout.NORTH);
+            gameImagePathPanel.add(gameImageField, BorderLayout.CENTER);
+            inputPanel.add(gameImagePathPanel);
+
+            // Game Cover Path Panel
+            JPanel gameCoverPathPanel = new JPanel(new BorderLayout());
+            gameCoverPathPanel.setBorder(new EmptyBorder(0, 0, 20, 0));
+            JTextField gameCoverField = new JTextField();
+            gameCoverField.setBorder(new CompoundBorder(bottomBorder, new EmptyBorder(0, 0, 100, 0)));
+            gameCoverField.setBackground(inputPanel.getBackground());
+            gameCoverField.setPreferredSize(new Dimension(500, 0));
+            gameCoverField.addFocusListener(new FocusAdapter() {
+                @Override
+                public void focusGained(FocusEvent e) {
+                    gameCoverField.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, SignInController.getPurple()));
+                }
+
+                @Override
+                public void focusLost(FocusEvent e) {
+                    gameCoverField.setBorder(bottomBorder);
+                }
+            });
+            gameCoverPathPanel.add(new JLabel("Game Cover Path:"), BorderLayout.NORTH);
+            gameCoverPathPanel.add(gameCoverField, BorderLayout.CENTER);
+            inputPanel.add(gameCoverPathPanel);
+
+            // Game .exe Link Panel
+            JPanel gameExeLinkPanel = new JPanel(new BorderLayout());
+            gameExeLinkPanel.setBorder(new EmptyBorder(0, 0, 20, 0));
+            JTextField gameExeField = new JTextField();
+            gameExeField.setBorder(new CompoundBorder(bottomBorder, new EmptyBorder(0, 0, 100, 0)));
+            gameExeField.setBackground(inputPanel.getBackground());
+            gameExeField.setPreferredSize(new Dimension(500, 0));
+            gameExeField.addFocusListener(new FocusAdapter() {
+                @Override
+                public void focusGained(FocusEvent e) {
+                    gameExeField.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, SignInController.getPurple()));
+                }
+
+                @Override
+                public void focusLost(FocusEvent e) {
+                    gameExeField.setBorder(bottomBorder);
+                }
+            });
+            gameExeLinkPanel.add(new JLabel("Game .exe Link:"), BorderLayout.NORTH);
+            gameExeLinkPanel.add(gameExeField, BorderLayout.CENTER);
+            inputPanel.add(gameExeLinkPanel);
+
+            // Game Folder Link Panel
+            JPanel gameFolderLinkPanel = new JPanel(new BorderLayout());
+            gameFolderLinkPanel.setBorder(new EmptyBorder(0, 0, 20, 0));
+            JTextField gameFolderField = new JTextField();
+            gameFolderField.setBorder(new CompoundBorder(bottomBorder, new EmptyBorder(0, 0, 100, 0)));
+            gameFolderField.setBackground(inputPanel.getBackground());
+            gameFolderField.setPreferredSize(new Dimension(500, 0));
+            gameFolderField.addFocusListener(new FocusAdapter() {
+                @Override
+                public void focusGained(FocusEvent e) {
+                    gameFolderField.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, SignInController.getPurple()));
+                }
+
+                @Override
+                public void focusLost(FocusEvent e) {
+                    gameFolderField.setBorder(bottomBorder);
+                }
+            });
+            gameFolderLinkPanel.add(new JLabel("Game Folder Link:"), BorderLayout.NORTH);
+            gameFolderLinkPanel.add(gameFolderField, BorderLayout.CENTER);
+            inputPanel.add(gameFolderLinkPanel);
+
+            // Add the input panel to the form panel
+            formPanel.add(inputPanel, BorderLayout.CENTER);
+
+            // Create buttons
+            JButton addGameButton = new JButton("Add Game") {
+                @Override
+                protected void paintComponent(Graphics g) {
+                    if (!isOpaque() && getBorder() instanceof RoundedBorder) {
+                        Graphics2D g2 = (Graphics2D) g.create();
+                        g2.setPaint(getBackground());
+                        g2.fill(((RoundedBorder) getBorder()).getBorderShape(0, 0, getWidth() - 1, getHeight() - 1));
+                        g2.dispose();
+                    }
+                    super.paintComponent(g);
+                }
+            };
+
+            JButton cancelButton = new JButton("Cancel") {
+                @Override
+                protected void paintComponent(Graphics g) {
+                    if (!isOpaque() && getBorder() instanceof RoundedBorder) {
+                        Graphics2D g2 = (Graphics2D) g.create();
+                        g2.setPaint(getBackground());
+                        g2.fill(((RoundedBorder) getBorder()).getBorderShape(0, 0, getWidth() - 1, getHeight() - 1));
+                        g2.dispose();
+                    }
+                    super.paintComponent(g);
+                }
+            };
+
+            // Set the preferred size of the buttons
+            addGameButton.setPreferredSize(new Dimension(100, 30));
+            cancelButton.setPreferredSize(new Dimension(100, 30));
+
+            // Set the background color of the buttons
+            addGameButton.setBackground(new Color(80, 65, 165));
+            cancelButton.setBackground(new Color(80, 65, 165));
+
+            // Set the font of the buttons
+            addGameButton.setFont(new Font("Helvetica", Font.BOLD, 14));
+            cancelButton.setFont(new Font("Helvetica", Font.BOLD, 14));
+
+            // Set the foreground color of the buttons
+            addGameButton.setForeground(Color.WHITE);
+            cancelButton.setForeground(Color.WHITE);
+
+            // Set the border of the buttons
+            addGameButton.setBorder(new RoundedBorder(Color.WHITE, 10));
+            cancelButton.setBorder(new RoundedBorder(Color.WHITE, 10));
+
+            // Set the content area filled property of the buttons
+            addGameButton.setOpaque(false);
+            cancelButton.setOpaque(false);
+
+            // Create a panel for the buttons
+            JPanel buttonPanel = new JPanel();
+            buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
+
+            // Add the buttons to the panel
+            buttonPanel.add(addGameButton);
+            buttonPanel.add(cancelButton);
+
+            // Add the button panel to the form panel
+            formPanel.add(buttonPanel, BorderLayout.SOUTH);
+
+            // Add the form panel to the main panel
+            panel.add(formPanel, BorderLayout.CENTER);
+            panel.revalidate();
+            panel.repaint();
+
+            // Add action listener to the cancel button
+            cancelButton.addActionListener(cancelEvent -> {
+                panel.remove(formPanel);
+                panel.revalidate();
+                panel.repaint();
+            });
+
+            cancelButton.addMouseListener(new MouseAdapter() {
+                public void mouseEntered(MouseEvent e) {
+                    cancelButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+                    cancelButton.setBackground(new Color(60, 45, 145));
+                }
+
+                public void mouseExited(MouseEvent e) {
+                    cancelButton.setBackground(new Color(80, 65, 165));
+                }
+            });
+
+            addGameButton.addMouseListener(new MouseAdapter() {
+                public void mouseEntered(MouseEvent e) {
+                    addGameButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+                    addGameButton.setBackground(new Color(60, 45, 145));
+                }
+
+                public void mouseExited(MouseEvent e) {
+                    addGameButton.setBackground(new Color(80, 65, 165));
+                }
+            });
+
+            // Add action listener to the add game button
+            // Add action listener to the add game button
+            addGameButton.addActionListener(addEvent -> {
+                Game newGame = new Game();
+                newGame.setGameName(gameNameField.getText());
+                newGame.setGameDescription(gameDescriptionField.getText());
+                newGame.setGameGenre(gameGenreField.getText());
+                newGame.setGameImage(gameImageField.getText());
+                newGame.setGameCoverImage(gameCoverField.getText());
+                newGame.setExeLocation(gameExeField.getText());
+                newGame.setFolderLocation(gameFolderField.getText());
+
+                db.addGame(newGame);
+
+                // Create a new game item panel
+                JPanel gameItem = new JPanel();
+                gameItem.setPreferredSize(new Dimension(337, 40));
+                gameItem.setBorder(new EmptyBorder(0, 25, 0, 0));
+                gameItem.setLayout(new FlowLayout(FlowLayout.LEFT));
+                ImageIcon gameImageIcon = new ImageIcon(newGame.getGameImage());
+                Image gameImage = gameImageIcon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+                ImageIcon scaledGameImageIcon = new ImageIcon(gameImage);
+                JLabel gameImageLabel = new JLabel(scaledGameImageIcon);
+                gameItem.add(gameImageLabel);
+                JLabel gameNameLabel = new JLabel(newGame.getGameName());
+                gameNameLabel.setFont(new Font("Helvetica", Font.PLAIN, 16));
+                gameNameLabel.setForeground(Color.WHITE);
+                gameItem.add(gameNameLabel);
+                gameItem.setBackground(SignInController.getPurple());
+
+                // Add the new game item panel to the left panel
+                leftPanel.add(gameItem);
+
+                // Refresh the left panel
+                leftPanel.revalidate();
+                leftPanel.repaint();
+            });
+
+            addButton.addMouseListener(new MouseAdapter() {
+                public void mouseEntered(MouseEvent e) {
+                    addButton.setFont(new Font("Helvetica", Font.BOLD, 25));
+                    addButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+                }
+
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    addButton.setBackground(SignInController.getPurple());
+                }
+
+                public void mouseExited(MouseEvent e) {
+                    addButton.setFont(new Font("Helvetica", Font.PLAIN, 25));
+                }
+            });
         });
     }
 }

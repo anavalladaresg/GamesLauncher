@@ -4,7 +4,7 @@
 
 #### *by: [Anxo Fdez](https://github.com/Anx0Fdez) & [Ana Valladares](https://github.com/anavalladaresg)*
 
----
+----
 
 _This project is a sophisticated game launcher, designed to allow users to incorporate and execute their personal collection of .exe game files, while also featuring a dedicated section for mini-games, exclusively developed by our team._
 
@@ -127,6 +127,16 @@ classDiagram
         +void viewGameDetails(Game)
     }
 
+    class DatabaseHandler {
+        -Connection conn
+        +void connect()
+        +void addUser(String, String)
+        +boolean userExists(String)
+        +String getPassword(String)
+        +void addGame(Game)
+        +List~Game~ getGames()
+    }
+
     class Main {
         +void main(String[] args)
     }
@@ -151,3 +161,4 @@ classDiagram
     Main --> SignInController : initializes
     Main --> SignUpController : initializes
     Main --> LibraryController : initializes
+    User --> DatabaseHandler : uses
