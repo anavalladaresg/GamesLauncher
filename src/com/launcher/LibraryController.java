@@ -1,16 +1,14 @@
 package com.launcher;
 
 import com.games.Game;
+import database.DatabaseHandler;
 
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
@@ -21,6 +19,7 @@ import java.util.ArrayList;
  * It sets up the UI for the library and handles user interactions.
  */
 public class LibraryController {
+    DatabaseHandler db = new DatabaseHandler();
 
     /**
      * Constructor for the LibraryController class.
@@ -32,9 +31,7 @@ public class LibraryController {
         JPanel leftPanel = new JPanel();
         leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
 
-        ArrayList<Game> games = new ArrayList<>();
-        Library library = new Library();
-        JPopupMenu gameMenu = new JPopupMenu();
+        ArrayList<Game> games = (ArrayList<Game>) db.getGames();
 
         // Load the image
         ImageIcon imageIcon = new ImageIcon("src/com/images/Xynx.png");
@@ -79,12 +76,52 @@ public class LibraryController {
         separator.setBackground(Color.WHITE);
         leftPanel.add(separator);
 
+        // Add games to the left panel
+        for (Game game : games) {
+            JPanel gameItem = new JPanel();
+            gameItem.setPreferredSize(new Dimension(337, 40));
+            gameItem.setBorder(new EmptyBorder(0, 25, 0, 0));
+            gameItem.setLayout(new FlowLayout(FlowLayout.LEFT));
+            ImageIcon gameImageIcon = new ImageIcon(game.getGameImage());
+            Image gameImage = gameImageIcon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+            ImageIcon scaledGameImageIcon = new ImageIcon(gameImage);
+            JLabel gameImageLabel = new JLabel(scaledGameImageIcon);
+            gameItem.add(gameImageLabel);
+            JLabel gameNameLabel = new JLabel(game.getGameName());
+            gameNameLabel.setFont(new Font("Helvetica", Font.PLAIN, 16));
+            gameNameLabel.setForeground(Color.WHITE);
+            gameItem.add(gameNameLabel);
+            gameItem.setBackground(SignInController.getPurple());
+            leftPanel.add(gameItem);
+
+            gameItem.addMouseListener(new MouseAdapter() {
+                public void mouseClicked(MouseEvent a) {
+                    try {
+                        Runtime.getRuntime().exec("C:\\Users\\anxor\\AppData\\Local\\Warframe\\Downloaded\\Public\\Tools\\Launcher.exe", null, new File("C:\\Users\\anxor\\AppData\\Local\\Warframe\\Downloaded\\Public\\Tools"));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                public void mouseEntered(MouseEvent e) {
+                    gameItem.setCursor(new Cursor(Cursor.HAND_CURSOR));
+                    gameItem.setBackground(new Color(60, 45, 145));
+                }
+
+                public void mouseExited(MouseEvent e) {
+                    gameItem.setBackground(SignInController.getPurple());
+                }
+            });
+        }
+        leftPanel.revalidate();
+        leftPanel.repaint();
+
         // Add action listener to the button
         addButton.addActionListener(e -> {
             // Create the form panel
             JPanel formPanel = new JPanel(new BorderLayout());
             ImageIcon newGameIcon = new ImageIcon("src/com/images/NewGame.png");
-            Image newGameImage = newGameIcon.getImage().getScaledInstance(panel.getWidth() - 300, 200, Image.SCALE_SMOOTH);
+            Image newGameImage = newGameIcon.getImage().getScaledInstance(panel.getWidth() - 300, 300, Image.SCALE_SMOOTH);
             ImageIcon scaledNewGameIcon = new ImageIcon(newGameImage);
             JLabel newGameLabel = new JLabel(scaledNewGameIcon, SwingConstants.CENTER);
             formPanel.add(newGameLabel, BorderLayout.NORTH);
@@ -156,7 +193,7 @@ public class LibraryController {
             gameDescriptionPanel.add(gameDescriptionField, BorderLayout.CENTER);
             inputPanel.add(gameDescriptionPanel);
 
-// Game Genre Panel
+            // Game Genre Panel
             JPanel gameGenrePanel = new JPanel(new BorderLayout());
             gameGenrePanel.setBorder(new EmptyBorder(0, 0, 20, 0));
             JTextField gameGenreField = new JTextField();
@@ -178,7 +215,7 @@ public class LibraryController {
             gameGenrePanel.add(gameGenreField, BorderLayout.CENTER);
             inputPanel.add(gameGenrePanel);
 
-// Game Image Path Panel
+            // Game Image Path Panel
             JPanel gameImagePathPanel = new JPanel(new BorderLayout());
             gameImagePathPanel.setBorder(new EmptyBorder(0, 0, 20, 0));
             JTextField gameImageField = new JTextField();
@@ -200,7 +237,7 @@ public class LibraryController {
             gameImagePathPanel.add(gameImageField, BorderLayout.CENTER);
             inputPanel.add(gameImagePathPanel);
 
-// Game Cover Path Panel
+            // Game Cover Path Panel
             JPanel gameCoverPathPanel = new JPanel(new BorderLayout());
             gameCoverPathPanel.setBorder(new EmptyBorder(0, 0, 20, 0));
             JTextField gameCoverField = new JTextField();
@@ -222,7 +259,7 @@ public class LibraryController {
             gameCoverPathPanel.add(gameCoverField, BorderLayout.CENTER);
             inputPanel.add(gameCoverPathPanel);
 
-// Game .exe Link Panel
+            // Game .exe Link Panel
             JPanel gameExeLinkPanel = new JPanel(new BorderLayout());
             gameExeLinkPanel.setBorder(new EmptyBorder(0, 0, 20, 0));
             JTextField gameExeField = new JTextField();
@@ -244,7 +281,7 @@ public class LibraryController {
             gameExeLinkPanel.add(gameExeField, BorderLayout.CENTER);
             inputPanel.add(gameExeLinkPanel);
 
-// Game Folder Link Panel
+            // Game Folder Link Panel
             JPanel gameFolderLinkPanel = new JPanel(new BorderLayout());
             gameFolderLinkPanel.setBorder(new EmptyBorder(0, 0, 20, 0));
             JTextField gameFolderField = new JTextField();
@@ -270,127 +307,154 @@ public class LibraryController {
             formPanel.add(inputPanel, BorderLayout.CENTER);
 
             // Create buttons
-            JButton addGameButton = new JButton("Add Game");
-            JButton cancelButton = new JButton("Cancel");
+            JButton addGameButton = new JButton("Add Game") {
+                @Override
+                protected void paintComponent(Graphics g) {
+                    if (!isOpaque() && getBorder() instanceof RoundedBorder) {
+                        Graphics2D g2 = (Graphics2D) g.create();
+                        g2.setPaint(getBackground());
+                        g2.fill(((RoundedBorder) getBorder()).getBorderShape(0, 0, getWidth() - 1, getHeight() - 1));
+                        g2.dispose();
+                    }
+                    super.paintComponent(g);
+                }
+            };
 
+            JButton cancelButton = new JButton("Cancel") {
+                @Override
+                protected void paintComponent(Graphics g) {
+                    if (!isOpaque() && getBorder() instanceof RoundedBorder) {
+                        Graphics2D g2 = (Graphics2D) g.create();
+                        g2.setPaint(getBackground());
+                        g2.fill(((RoundedBorder) getBorder()).getBorderShape(0, 0, getWidth() - 1, getHeight() - 1));
+                        g2.dispose();
+                    }
+                    super.paintComponent(g);
+                }
+            };
+
+            // Set the preferred size of the buttons
             addGameButton.setPreferredSize(new Dimension(100, 30));
-            addGameButton.setBackground(new Color(80, 65, 165)); // Set the background color
-            addGameButton.setFont(new Font("Helvetica", Font.BOLD, 14)); // Set the font
-            addGameButton.setForeground(Color.WHITE);
-            addGameButton.setBorder(new RoundedBorder(Color.WHITE, 10)); // 10 is the radius of the border
-            addGameButton.setContentAreaFilled(true);
-
             cancelButton.setPreferredSize(new Dimension(100, 30));
-            cancelButton.setBackground(new Color(80, 65, 165)); // Set the background color
-            cancelButton.setFont(new Font("Helvetica", Font.BOLD, 14)); // Set the font
-            cancelButton.setForeground(Color.WHITE);
-            cancelButton.setBorder(new RoundedBorder(Color.WHITE, 10)); // 10 is the radius of the border
-            cancelButton.setContentAreaFilled(true);
 
+            // Set the background color of the buttons
+            addGameButton.setBackground(new Color(80, 65, 165));
+            cancelButton.setBackground(new Color(80, 65, 165));
+
+            // Set the font of the buttons
+            addGameButton.setFont(new Font("Helvetica", Font.BOLD, 14));
+            cancelButton.setFont(new Font("Helvetica", Font.BOLD, 14));
+
+            // Set the foreground color of the buttons
+            addGameButton.setForeground(Color.WHITE);
+            cancelButton.setForeground(Color.WHITE);
+
+            // Set the border of the buttons
+            addGameButton.setBorder(new RoundedBorder(Color.WHITE, 10));
+            cancelButton.setBorder(new RoundedBorder(Color.WHITE, 10));
+
+            // Set the content area filled property of the buttons
+            addGameButton.setOpaque(false);
+            cancelButton.setOpaque(false);
+
+            // Create a panel for the buttons
             JPanel buttonPanel = new JPanel();
             buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
+
+            // Add the buttons to the panel
             buttonPanel.add(addGameButton);
             buttonPanel.add(cancelButton);
+
+            // Add the button panel to the form panel
             formPanel.add(buttonPanel, BorderLayout.SOUTH);
 
+            // Add the form panel to the main panel
             panel.add(formPanel, BorderLayout.CENTER);
             panel.revalidate();
             panel.repaint();
 
-            // Action listener for the cancel button
+            // Add action listener to the cancel button
             cancelButton.addActionListener(cancelEvent -> {
                 panel.remove(formPanel);
                 panel.revalidate();
                 panel.repaint();
             });
 
-            // Action listener for the add game button
-            addGameButton.addActionListener(addEvent -> {
-
-            });
-        });
-
-        // Create the games
-        Game redDeadRedemption = new Game(
-                1, // gameId
-                "Red Dead Redemption", // gameName
-                "A Western-themed action-adventure game", // gameDescription
-                59.99, // gamePrice
-                "Action-Adventure", // gameGenre
-                LocalDate.of(2018, 10, 26), // releaseDate
-                "Rockstar Games", // gameDeveloper
-                4.6, // gameRating
-                "src/com/images/RedDeadRedemption2.png" // gameImage
-        );
-
-        Game redDeadRedemption2 = new Game(
-                1, // gameId
-                "Red Dead Redemption 2", // gameName
-                "A Western-themed action-adventure game", // gameDescription
-                59.99, // gamePrice
-                "Action-Adventure", // gameGenre
-                LocalDate.of(2018, 10, 26), // releaseDate
-                "Rockstar Games", // gameDeveloper
-                4.6, // gameRating
-                "src/com/images/RedDeadRedemption2.png" // gameImage
-        );
-
-        // Add the games to the library
-        games.add(redDeadRedemption);
-        games.add(redDeadRedemption2);
-
-        // Add games to the left panel
-        for (Game game : games) {
-            JPanel gameItem = new JPanel();
-            gameItem.setPreferredSize(new Dimension(337, 40));
-            gameItem.setBorder(new EmptyBorder(0, 25, 0, 0));
-            gameItem.setLayout(new FlowLayout(FlowLayout.LEFT));
-            ImageIcon gameImageIcon = new ImageIcon(game.getGameImage());
-            Image gameImage = gameImageIcon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
-            ImageIcon scaledGameImageIcon = new ImageIcon(gameImage);
-            JLabel gameImageLabel = new JLabel(scaledGameImageIcon);
-            gameItem.add(gameImageLabel);
-            JLabel gameNameLabel = new JLabel(game.getGameName());
-            gameNameLabel.setFont(new Font("Helvetica", Font.PLAIN, 16));
-            gameNameLabel.setForeground(Color.WHITE);
-            gameItem.add(gameNameLabel);
-            gameItem.setBackground(SignInController.getPurple());
-            leftPanel.add(gameItem);
-
-            gameItem.addMouseListener(new MouseAdapter() {
-                public void mouseClicked(MouseEvent a) {
-                    try {
-                        Runtime.getRuntime().exec("C:\\Users\\anxor\\AppData\\Local\\Warframe\\Downloaded\\Public\\Tools\\Launcher.exe", null, new File("C:\\Users\\anxor\\AppData\\Local\\Warframe\\Downloaded\\Public\\Tools"));
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-
+            cancelButton.addMouseListener(new MouseAdapter() {
                 public void mouseEntered(MouseEvent e) {
-                    gameItem.setCursor(new Cursor(Cursor.HAND_CURSOR));
-                    gameItem.setBackground(new Color(60, 45, 145));
+                    cancelButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+                    cancelButton.setBackground(new Color(60, 45, 145));
                 }
 
                 public void mouseExited(MouseEvent e) {
-                    gameItem.setBackground(SignInController.getPurple());
+                    cancelButton.setBackground(new Color(80, 65, 165));
                 }
             });
-        }
 
-        addButton.addMouseListener(new MouseAdapter() {
-            public void mouseEntered(MouseEvent e) {
-                addButton.setFont(new Font("Helvetica", Font.BOLD, 25));
-                addButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
-            }
+            addGameButton.addMouseListener(new MouseAdapter() {
+                public void mouseEntered(MouseEvent e) {
+                    addGameButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+                    addGameButton.setBackground(new Color(60, 45, 145));
+                }
 
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                addButton.setBackground(SignInController.getPurple());
-            }
+                public void mouseExited(MouseEvent e) {
+                    addGameButton.setBackground(new Color(80, 65, 165));
+                }
+            });
 
-            public void mouseExited(MouseEvent e) {
-                addButton.setFont(new Font("Helvetica", Font.PLAIN, 25));
-            }
+            // Add action listener to the add game button
+            // Add action listener to the add game button
+            addGameButton.addActionListener(addEvent -> {
+                Game newGame = new Game();
+                newGame.setGameName(gameNameField.getText());
+                newGame.setGameDescription(gameDescriptionField.getText());
+                newGame.setGameGenre(gameGenreField.getText());
+                newGame.setGameImage(gameImageField.getText());
+                newGame.setGameCoverImage(gameCoverField.getText());
+                newGame.setExeLocation(gameExeField.getText());
+                newGame.setFolderLocation(gameFolderField.getText());
+
+                db.addGame(newGame);
+
+                // Create a new game item panel
+                JPanel gameItem = new JPanel();
+                gameItem.setPreferredSize(new Dimension(337, 40));
+                gameItem.setBorder(new EmptyBorder(0, 25, 0, 0));
+                gameItem.setLayout(new FlowLayout(FlowLayout.LEFT));
+                ImageIcon gameImageIcon = new ImageIcon(newGame.getGameImage());
+                Image gameImage = gameImageIcon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+                ImageIcon scaledGameImageIcon = new ImageIcon(gameImage);
+                JLabel gameImageLabel = new JLabel(scaledGameImageIcon);
+                gameItem.add(gameImageLabel);
+                JLabel gameNameLabel = new JLabel(newGame.getGameName());
+                gameNameLabel.setFont(new Font("Helvetica", Font.PLAIN, 16));
+                gameNameLabel.setForeground(Color.WHITE);
+                gameItem.add(gameNameLabel);
+                gameItem.setBackground(SignInController.getPurple());
+
+                // Add the new game item panel to the left panel
+                leftPanel.add(gameItem);
+
+                // Refresh the left panel
+                leftPanel.revalidate();
+                leftPanel.repaint();
+            });
+
+            addButton.addMouseListener(new MouseAdapter() {
+                public void mouseEntered(MouseEvent e) {
+                    addButton.setFont(new Font("Helvetica", Font.BOLD, 25));
+                    addButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+                }
+
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    addButton.setBackground(SignInController.getPurple());
+                }
+
+                public void mouseExited(MouseEvent e) {
+                    addButton.setFont(new Font("Helvetica", Font.PLAIN, 25));
+                }
+            });
         });
     }
 }

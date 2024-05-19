@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="Xynx" uuid="9e565383-5d3f-4834-ae7b-48b6a845668b">
+    <data-source source="LOCAL" name="Xynx" uuid="d3fbd820-89bd-4b84-9d55-1a3c162107ed">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
