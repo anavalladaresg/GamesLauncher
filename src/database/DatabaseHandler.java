@@ -1,5 +1,7 @@
 package database;
 
+import com.games.Game;
+
 import java.sql.*;
 
 public class DatabaseHandler {
@@ -84,4 +86,30 @@ public void addUser(String userName, String password) {
         }
         return null;
     }
+
+    /**
+     * Add a game to the database
+     * @param game the game to add
+     */
+    public void addGame(Game game) {
+        connect();
+        try {
+            String query = "INSERT INTO games (name, description, genre, image, coverimage, exe, folder) VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            pstmt.setString(1, game.getGameName());
+            pstmt.setString(2, game.getGameDescription());
+            pstmt.setString(3, game.getGameGenre());
+            pstmt.setString(4, game.getGameImage());
+            pstmt.setString(5, game.getGameCoverImage());
+            pstmt.setString(6, game.getExeLocation());
+            pstmt.setString(7, game.getFolderLocation());
+
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
