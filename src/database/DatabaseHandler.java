@@ -3,6 +3,8 @@ package database;
 import com.games.Game;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DatabaseHandler {
     private static final String DATABASE_URL = "jdbc:postgresql://localhost:5432/xynx";
@@ -23,31 +25,33 @@ public class DatabaseHandler {
 
     /**
      * Create a new user
+     *
      * @param userName the username
      * @param password the password
      */
-public void addUser(String userName, String password) {
-    String SQL = "INSERT INTO users(userName, password) VALUES(?,?)";
-    String regex = "^[a-zA-Z0-9]+$"; // Solo permite caracteres alfanuméricos
+    public void addUser(String userName, String password) {
+        String SQL = "INSERT INTO users(userName, password) VALUES(?,?)";
+        String regex = "^[a-zA-Z0-9]+$"; // Solo permite caracteres alfanuméricos
 
-    if (!userName.matches(regex) || !password.matches(regex)) {
-        System.out.println("Username and password can only contain alphanumeric characters.");
-        return;
+        if (!userName.matches(regex) || !password.matches(regex)) {
+            System.out.println("Username and password can only contain alphanumeric characters.");
+            return;
+        }
+
+        connect();
+        try (PreparedStatement pstmt = conn.prepareStatement(SQL)) {
+            pstmt.setString(1, userName);
+            pstmt.setString(2, password);
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
     }
-
-    connect();
-    try (PreparedStatement pstmt = conn.prepareStatement(SQL)) {
-        pstmt.setString(1, userName);
-        pstmt.setString(2, password);
-        pstmt.executeUpdate();
-
-    } catch (SQLException e) {
-        System.out.println(e.getMessage());
-    }
-}
 
     /**
      * Check if a user exists
+     *
      * @param userName the username
      * @return true if the user exists, false otherwise
      */
@@ -67,6 +71,7 @@ public void addUser(String userName, String password) {
 
     /**
      * Get the password of a user
+     *
      * @param userName the username
      * @return the password of the user
      */
@@ -89,6 +94,7 @@ public void addUser(String userName, String password) {
 
     /**
      * Add a game to the database
+     *
      * @param game the game to add
      */
     public void addGame(Game game) {
@@ -110,6 +116,38 @@ public void addUser(String userName, String password) {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Get all games from the database
+     *
+     * @return a list of games
+     */
+    public List<Game> getGames() {
+        List<Game> games = new ArrayList<>();
+        String SQL = "SELECT * FROM games";
+
+        connect();
+        try (Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(SQL)) {
+
+            while (rs.next()) {
+                Game game = new Game();
+                game.setGameName(rs.getString("name"));
+                game.setGameDescription(rs.getString("description"));
+                game.setGameGenre(rs.getString("genre"));
+                game.setGameImage(rs.getString("image"));
+                game.setGameCoverImage(rs.getString("coverimage"));
+                game.setExeLocation(rs.getString("exe"));
+                game.setFolderLocation(rs.getString("folder"));
+                games.add(game);
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return games;
     }
 
 }
