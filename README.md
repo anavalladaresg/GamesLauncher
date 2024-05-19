@@ -127,6 +127,16 @@ classDiagram
         +void viewGameDetails(Game)
     }
 
+    class DatabaseHandler {
+        -Connection conn
+        +void connect()
+        +void addUser(String, String)
+        +boolean userExists(String)
+        +String getPassword(String)
+        +void addGame(Game)
+        +List~Game~ getGames()
+    }
+
     class Main {
         +void main(String[] args)
     }
@@ -151,3 +161,4 @@ classDiagram
     Main --> SignInController : initializes
     Main --> SignUpController : initializes
     Main --> LibraryController : initializes
+    User --> DatabaseHandler : uses
