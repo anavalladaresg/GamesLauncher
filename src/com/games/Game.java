@@ -4,37 +4,26 @@ import javax.swing.*;
 import java.time.LocalDate;
 
 public class Game {
-    private int gameId;
     private String gameName;
     private String gameDescription;
-    private double gamePrice;
     private String gameGenre;
-    private LocalDate releaseDate;
-    private String gameDeveloper;
-    private double gameRating;
     private String gameImage;
+    private String gameCoverImage;
+    private String exeLocation;
+    private String folderLocation;
+
 
     public Game() {
     }
 
-    public Game(int gameId, String gameName, String gameDescription, double gamePrice, String gameGenre, LocalDate releaseDate, String gameDeveloper, double gameRating, String gameImage) {
-        this.gameId = gameId;
+    public Game(String gameName, String gameDescription, String gameGenre, String gameImage, String gameCoverImage, String exeLocation, String folderLocation) {
         this.gameName = gameName;
         this.gameDescription = gameDescription;
-        this.gamePrice = gamePrice;
         this.gameGenre = gameGenre;
-        this.releaseDate = releaseDate;
-        this.gameDeveloper = gameDeveloper;
-        this.gameRating = gameRating;
         this.gameImage = gameImage;
-    }
-
-    public int getGameId() {
-        return gameId;
-    }
-
-    public void setGameId(int gameId) {
-        this.gameId = gameId;
+        this.gameCoverImage = gameCoverImage;
+        this.exeLocation = exeLocation;
+        this.folderLocation = folderLocation;
     }
 
     public String getGameName() {
@@ -53,14 +42,6 @@ public class Game {
         this.gameDescription = gameDescription;
     }
 
-    public double getGamePrice() {
-        return gamePrice;
-    }
-
-    public void setGamePrice(double gamePrice) {
-        this.gamePrice = gamePrice;
-    }
-
     public String getGameGenre() {
         return gameGenre;
     }
@@ -69,35 +50,35 @@ public class Game {
         this.gameGenre = gameGenre;
     }
 
-    public LocalDate getReleaseDate() {
-        return releaseDate;
-    }
-
-    public void setReleaseDate(LocalDate releaseDate) {
-        this.releaseDate = releaseDate;
-    }
-
-    public String getGameDeveloper() {
-        return gameDeveloper;
-    }
-
-    public void setGameDeveloper(String gameDeveloper) {
-        this.gameDeveloper = gameDeveloper;
-    }
-
-    public double getGameRating() {
-        return gameRating;
-    }
-
-    public void setGameRating(double gameRating) {
-        this.gameRating = gameRating;
-    }
-
     public String getGameImage() {
         return gameImage;
     }
 
     public void setGameImage(String gameImage) {
         this.gameImage = gameImage;
+    }
+
+    public String getGameCoverImage() {
+        return gameCoverImage;
+    }
+
+    public void setGameCoverImage(String gameCoverImage) {
+        this.gameCoverImage = gameCoverImage;
+    }
+
+    public String getExeLocation() {
+        return exeLocation;
+    }
+
+    public void setExeLocation(String exeLocation) {
+        this.exeLocation = exeLocation;
+    }
+
+    public String getFolderLocation() {
+        return folderLocation;
+    }
+
+    public void setFolderLocation(String folderLocation) {
+        this.folderLocation = folderLocation;
     }
 }
