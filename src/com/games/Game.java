@@ -7,7 +7,7 @@ public class Game {
     private String gameName;
     private String gameDescription;
     private String gameGenre;
-    private String gameImage;
+    private byte[] gameImage;
     private String gameCoverImage;
     private String exeLocation;
     private String folderLocation;
@@ -16,7 +16,7 @@ public class Game {
     public Game() {
     }
 
-    public Game(String gameName, String gameDescription, String gameGenre, String gameImage, String gameCoverImage, String exeLocation, String folderLocation) {
+    public Game(String gameName, String gameDescription, String gameGenre, byte[] gameImage, String gameCoverImage, String exeLocation, String folderLocation) {
         this.gameName = gameName;
         this.gameDescription = gameDescription;
         this.gameGenre = gameGenre;
@@ -50,11 +50,11 @@ public class Game {
         this.gameGenre = gameGenre;
     }
 
-    public String getGameImage() {
+    public byte[] getGameImage() {
         return gameImage;
     }
 
-    public void setGameImage(String gameImage) {
+    public void setGameImage(byte[] gameImage) {
         this.gameImage = gameImage;
     }
 
