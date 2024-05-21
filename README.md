@@ -24,15 +24,20 @@ _This project is a sophisticated game launcher, designed to allow users to incor
 classDiagram
     class Game {
         -int gameId
-        -String title
-        -String description
-        -String genre
-        -LocalDate releaseDate
-        -String developer
-        -double price
-        -double rating
-        +String getDetails()
-        +void updateRating(double)
+        -String gameName
+        -String gameDescription
+        -String gameGenre
+        -String gameImage
+        -String gameCoverImage
+        -String exeLocation
+        -String folderLocation
+        +void setGameName(String)
+        +void setGameDescription(String)
+        +void setGameGenre(String)
+        +void setGameImage(byte[])
+        +void setGameCoverImage(String)
+        +void setExeLocation(String)
+        +void setFolderLocation(String)
     }
 
     class User {
@@ -46,85 +51,13 @@ classDiagram
         +void removeGameFromLibrary(Game)
     }
 
-    class Library {
-        -List~Game~ games
-        +void addGame(Game)
-        +void removeGame(Game)
-        +List~Game~ searchGame(String)
-    }
-
-    class GameManager {
-        -List~Game~ availableGames
-        +void loadGames()
-        +void updateGame(Game)
-        +Game getGameDetails(int)
-    }
-
-    class SignInController {
-        -JFrame frame
-        -User currentUser
-        -Color purple
-        +SignInController()
-        +void displayMainMenu()
-        +void viewGameDetails(Game)
-        +void createAndConfigureSignInComponents(JPanel)
-        +void createComponentsPanel()
-        +JFrame createFrame()
-        +void displaySignUpScreen()
-    }
-
-    class SignUpController {
-        -JFrame frame
-        -User currentUser
-        +SignUpController()
-        +void displaySignInScreen()
-        +void displayMainMenu()
-        +void viewGameDetails(Game)
-        +void createAndConfigureSignInComponents(JPanel)
-        +void createComponentsPanel()
-        +JFrame createFrame()
-    }
-
-    class SignUpRoundedPanel {
-        -Color backgroundColor
-        -int cornerRadius
-        +SignUpRoundedPanel(LayoutManager, int, Color)
-        +void paintComponent(Graphics)
-    }
-
-    class SignInRoundedPanel {
-        -Color backgroundColor
-        -int cornerRadius
-        +SignInRoundedPanel(LayoutManager, int, Color)
-        +void paintComponent(Graphics)
-    }
-
-    class RoundedBorder {
-        -Color color
-        -int cornerRadius
-        +RoundedBorder(Color, int)
-        +Shape getBorderShape(int, int, int, int)
-        +void paintBorder(Component, Graphics, int, int, int, int)
-    }
-
-    class PlaceHolderTextField {
-        -String prompt
-        +PlaceHolderTextField(int)
-        +void setPrompt(String)
-    }
-
-    class PlaceHolderPasswordField {
-        -String prompt
-        +PlaceHolderPasswordField(int)
-        +void setPrompt(String)
-    }
-
     class LibraryController {
         -JFrame frame
         -User currentUser
         +LibraryController()
         +void displayLibrary()
         +void viewGameDetails(Game)
+        +byte[] convertImageToBytes(String)
     }
 
     class DatabaseHandler {
@@ -141,24 +74,105 @@ classDiagram
         +void main(String[] args)
     }
 
-    User --> Library : contains
-    GameManager --> Game : manages
-    GameManager --> Library : manages
-    SignInController --> User : uses
-    SignInController --> GameManager : uses
-    SignInController --> SignInRoundedPanel : uses
-    SignInController --> RoundedBorder : uses
-    SignInController --> PlaceHolderTextField : uses
-    SignInController --> PlaceHolderPasswordField : uses
-    SignUpController --> User : uses
-    SignUpController --> GameManager : uses
-    SignUpController --> SignUpRoundedPanel : uses
-    SignUpController --> RoundedBorder : uses
-    SignUpController --> PlaceHolderTextField : uses
-    SignUpController --> PlaceHolderPasswordField : uses
-    LibraryController --> User : uses
-    LibraryController --> GameManager : uses
-    Main --> SignInController : initializes
-    Main --> SignUpController : initializes
+    class RoundedBorder {
+        -Color color
+        -int cornerRadius
+        +RoundedBorder(Color, int)
+        +Shape getBorderShape(int, int, int, int)
+        +void paintBorder(Component, Graphics, int, int, int, int)
+    }
+
+    class SignInController {
+        -JFrame frame
+        -User currentUser
+        -Color purple
+        +SignInController()
+        +void displayMainMenu()
+        +void viewGameDetails(Game)
+        +void createAndConfigureSignInComponents(JPanel)
+        +void createComponentsPanel()
+        +JFrame createFrame()
+        +void displaySignUpScreen()
+        +Color getPurple()
+    }
+
+    class SignUpController {
+        -JFrame frame
+        -User currentUser
+        -Color purple
+        +SignUpController()
+        +void displaySignUpScreen()
+        +void createAndConfigureSignUpComponents(JPanel)
+        +void createComponentsPanel()
+        +JFrame createFrame()
+        +Color getPurple()
+    }
+
+    class GameManager {
+        -List~Game~ games
+        +void addGame(Game)
+        +void removeGame(Game)
+        +List~Game~ getGames()
+    }
+
+    class UIController {
+        -JFrame frame
+        -User currentUser
+        +UIController()
+        +void displayUI()
+        +void createAndConfigureUIComponents(JPanel)
+        +void createComponentsPanel()
+        +JFrame createFrame()
+    }
+
+    class Library {
+        -ArrayList~Game~ games
+        +void addGame(Game)
+        +ArrayList~Game~ getGames()
+    }
+
+    class PlaceholderPasswordField {
+        -String placeholder
+        +void setPlaceholder(String)
+        +String getPlaceholder()
+    }
+
+    class PlaceholderTextField {
+        -String placeholder
+        +void setPlaceholder(String)
+        +String getPlaceholder()
+    }
+
+    class SignInRoundedPanel {
+        -Color color
+        -int cornerRadius
+        +SignInRoundedPanel(Color, int)
+        +Shape getBorderShape(int, int, int, int)
+        +void paintBorder(Component, Graphics, int, int, int, int)
+    }
+
+    class SignUpRoundedPanel {
+        -Color color
+        -int cornerRadius
+        +SignUpRoundedPanel(Color, int)
+        +Shape getBorderShape(int, int, int, int)
+        +void paintBorder(Component, Graphics, int, int, int, int)
+    }
+
+    User --> LibraryController : uses
+    User --> Game : contains
+    LibraryController --> Game : manages
+    LibraryController --> DatabaseHandler : uses
     Main --> LibraryController : initializes
-    User --> DatabaseHandler : uses
+    SignInController --> User : uses
+    SignInController --> RoundedBorder : uses
+    SignInController --> SignInRoundedPanel : uses
+    SignUpController --> User : uses
+    SignUpController --> RoundedBorder : uses
+    SignUpController --> SignUpRoundedPanel : uses
+    GameManager --> Game : manages
+    UIController --> User : uses
+    UIController --> RoundedBorder : uses
+    Library --> Game : contains
+    PlaceholderPasswordField --> User : used by
+    PlaceholderTextField --> User : used by
