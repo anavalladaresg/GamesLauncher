@@ -115,7 +115,7 @@ public class DatabaseHandler {
             pstmt.setString(1, game.getGameName());
             pstmt.setString(2, game.getGameDescription());
             pstmt.setString(3, game.getGameGenre());
-            pstmt.setString(4, game.getGameImage());
+            pstmt.setBytes(4, game.getGameImage());
             pstmt.setString(5, game.getGameCoverImage());
             pstmt.setString(6, game.getExeLocation());
             pstmt.setString(7, game.getFolderLocation());
@@ -145,7 +145,7 @@ public class DatabaseHandler {
                 game.setGameName(rs.getString("name"));
                 game.setGameDescription(rs.getString("description"));
                 game.setGameGenre(rs.getString("genre"));
-                game.setGameImage(rs.getString("image"));
+                game.setGameImage(rs.getBytes("image"));
                 game.setGameCoverImage(rs.getString("coverimage"));
                 game.setExeLocation(rs.getString("exe"));
                 game.setFolderLocation(rs.getString("folder"));
