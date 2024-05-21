@@ -8,6 +8,15 @@ public class DatabaseHandler {
     private static final String DATABASE_PASSWORD = "aaaa";
     private Connection conn = null;
 
+    public DatabaseHandler() {
+        try {
+            Class.forName("org.postgresql.Driver");
+            conn = DriverManager.getConnection(DATABASE_URL, DATABASE_USER, DATABASE_PASSWORD);
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     /**
      * Connect to the database
      */
