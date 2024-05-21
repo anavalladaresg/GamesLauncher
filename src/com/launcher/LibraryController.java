@@ -2,16 +2,23 @@ package com.launcher;
 
 import com.games.Game;
 import database.DatabaseHandler;
+import org.postgresql.util.PSQLException;
 
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
-import java.time.LocalDate;
+import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 /**
@@ -65,7 +72,7 @@ public class LibraryController {
         addButton.setBackground(SignInController.getPurple());
 
         Border whiteLineBorder = new RoundedBorder(SignInController.getPurple(), 10);
-        addButton.setBorder(new CompoundBorder(whiteLineBorder, new EmptyBorder(0, 0, 0, 0))); // Remove border
+        addButton.setBorder(new CompoundBorder(whiteLineBorder, new EmptyBorder(0, 20, 0, 0))); // Remove border
 
         leftPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
         leftPanel.add(addButton);
@@ -121,7 +128,7 @@ public class LibraryController {
             // Create the form panel
             JPanel formPanel = new JPanel(new BorderLayout());
             ImageIcon newGameIcon = new ImageIcon("src/com/images/NewGame.png");
-            Image newGameImage = newGameIcon.getImage().getScaledInstance(panel.getWidth() - 300, 300, Image.SCALE_SMOOTH);
+            Image newGameImage = newGameIcon.getImage().getScaledInstance(panel.getWidth() - 300, 230, Image.SCALE_SMOOTH);
             ImageIcon scaledNewGameIcon = new ImageIcon(newGameImage);
             JLabel newGameLabel = new JLabel(scaledNewGameIcon, SwingConstants.CENTER);
             formPanel.add(newGameLabel, BorderLayout.NORTH);
@@ -409,7 +416,7 @@ public class LibraryController {
                 newGame.setGameName(gameNameField.getText());
                 newGame.setGameDescription(gameDescriptionField.getText());
                 newGame.setGameGenre(gameGenreField.getText());
-                newGame.setGameImage(gameImageField.getText());
+                newGame.setGameImage(convertImageToBytes(gameCoverField.getText()));
                 newGame.setGameCoverImage(gameCoverField.getText());
                 newGame.setExeLocation(gameExeField.getText());
                 newGame.setFolderLocation(gameFolderField.getText());
@@ -439,22 +446,38 @@ public class LibraryController {
                 leftPanel.revalidate();
                 leftPanel.repaint();
             });
-
-            addButton.addMouseListener(new MouseAdapter() {
-                public void mouseEntered(MouseEvent e) {
-                    addButton.setFont(new Font("Helvetica", Font.BOLD, 25));
-                    addButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
-                }
-
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    addButton.setBackground(SignInController.getPurple());
-                }
-
-                public void mouseExited(MouseEvent e) {
-                    addButton.setFont(new Font("Helvetica", Font.PLAIN, 25));
-                }
-            });
         });
+
+        addButton.addMouseListener(new MouseAdapter() {
+            public void mouseEntered(MouseEvent e) {
+                addButton.setFont(new Font("Helvetica", Font.BOLD, 25));
+                addButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+            }
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                addButton.setBackground(SignInController.getPurple());
+            }
+
+            public void mouseExited(MouseEvent e) {
+                addButton.setFont(new Font("Helvetica", Font.PLAIN, 25));
+            }
+        });
+    }
+
+    public byte[] convertImageToBytes(String imagePath) {
+        try {
+            Path path = Paths.get(imagePath);
+            return Files.readAllBytes(path);
+        } catch (NoSuchFileException e) {
+            System.out.println("File not found: " + e.getMessage());
+        } catch (PSQLException e) {
+            System.out.println("Database error: " + e.getMessage());
+        } catch (NullPointerException e) {
+            System.out.println("Null pointer exception: " + e.getMessage());
+        } catch (IOException e) {
+            System.out.println("IO error: " + e.getMessage());
+        }
+        return null;
     }
 }
