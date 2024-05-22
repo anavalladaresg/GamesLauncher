@@ -8,8 +8,8 @@ import java.util.List;
 
 public class DatabaseHandler {
     private static final String DATABASE_URL = "jdbc:postgresql://localhost:5432/xynx";
-    private static final String DATABASE_USER = "anavalladares";
-    private static final String DATABASE_PASSWORD = "aaaa";
+    private static final String DATABASE_USER = "postgres";
+    private static final String DATABASE_PASSWORD = "debian";
     private Connection conn = null;
 
     public DatabaseHandler() {
@@ -155,8 +155,20 @@ public class DatabaseHandler {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-
         return games;
     }
+
+    // Delete a game from the database
+    public void deleteGame(String gameName) {
+        String SQL = "DELETE FROM games WHERE name = ?";
+        connect();
+        try (PreparedStatement pstmt = conn.prepareStatement(SQL)) {
+            pstmt.setString(1, gameName);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
 
 }

@@ -9,10 +9,7 @@ import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -99,6 +96,30 @@ public class LibraryController {
             gameNameLabel.setForeground(Color.WHITE);
             gameItem.add(gameNameLabel);
             gameItem.setBackground(SignInController.getPurple());
+
+            // Crear botón de eliminar
+            JButton deleteButton = new JButton("Eliminar");
+            deleteButton.setPreferredSize(new Dimension(80, 30));
+            deleteButton.setFont(new Font("Helvetica", Font.PLAIN, 14));
+            deleteButton.setForeground(Color.WHITE);
+            deleteButton.setBackground(Color.RED);
+            deleteButton.setFocusPainted(false);
+            deleteButton.setBorderPainted(false);
+
+            // Añadir listener para el botón de eliminar
+            deleteButton.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    // Eliminar el panel del juego del panel izquierdo
+                    leftPanel.remove(gameItem);
+                    leftPanel.revalidate();
+                    leftPanel.repaint();
+
+                    // Eliminar el juego de la base de datos
+                    db.deleteGame(game.getGameName());
+                }
+            });
+
+            gameItem.add(deleteButton);
             leftPanel.add(gameItem);
 
             gameItem.addMouseListener(new MouseAdapter() {
@@ -471,8 +492,6 @@ public class LibraryController {
             return Files.readAllBytes(path);
         } catch (NoSuchFileException e) {
             System.out.println("File not found: " + e.getMessage());
-        } catch (PSQLException e) {
-            System.out.println("Database error: " + e.getMessage());
         } catch (NullPointerException e) {
             System.out.println("Null pointer exception: " + e.getMessage());
         } catch (IOException e) {
