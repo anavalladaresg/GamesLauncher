@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0c57a3d6-f589-42ed-af0f-91499e053460" name="Changes" comment="Readme v3.0">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="0c57a3d6-f589-42ed-af0f-91499e053460" name="Changes" comment="eliminar juego">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/games/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/games/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/launcher/LibraryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/launcher/LibraryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/database/DatabaseHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/DatabaseHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,7 +19,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="anxo" />
+        <entry key="$PROJECT_DIR$" value="ana" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -43,6 +40,9 @@
   &quot;associatedIndex&quot;: 1
 }</component>
   <component name="ProjectId" id="2gloXNBLxT75JiMWGKeJC0Xyhy2" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -51,7 +51,7 @@
   "keyToString": {
     "Application.Main.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "ana",
+    "git-widget-placeholder": "anxo",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/Users/anavalladares/Desktop/GamesLauncher",
     "node.js.detected.package.eslint": "true",
@@ -80,6 +80,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
@@ -118,7 +119,23 @@
       <option name="project" value="LOCAL" />
       <updated>1716290204053</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="errores 2">
+      <option name="closed" value="true" />
+      <created>1716369577083</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1716369577083</updated>
+    </task>
+    <task id="LOCAL-00004" summary="eliminar juego">
+      <option name="closed" value="true" />
+      <created>1716370013177</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1716370013177</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -129,6 +146,7 @@
     <MESSAGE value="cambios por arreglos en la rama ana" />
     <MESSAGE value="close#1" />
     <MESSAGE value="Readme v3.0" />
-    <option name="LAST_COMMIT_MESSAGE" value="Readme v3.0" />
+    <MESSAGE value="eliminar juego" />
+    <option name="LAST_COMMIT_MESSAGE" value="eliminar juego" />
   </component>
 </project>

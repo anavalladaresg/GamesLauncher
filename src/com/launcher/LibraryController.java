@@ -98,12 +98,24 @@ public class LibraryController {
             leftPanel.add(gameItem);
 
 
+            // Cambiar el layout a BoxLayout
+            gameItem.setLayout(new BoxLayout(gameItem, BoxLayout.X_AXIS));
+
+            // Añadir el resto de los componentes como antes
+            gameItem.add(gameImageLabel);
+            gameItem.add(gameNameLabel);
+
+            // Añadir un espacio flexible
+            gameItem.add(Box.createHorizontalGlue());
+
+            // Crear un ImageIcon
+            ImageIcon deleteIcon = new ImageIcon("src/com/images/Trash.png");
+
             // Crear botón de eliminar
-            JButton deleteButton = new JButton("Eliminar");
-            deleteButton.setPreferredSize(new Dimension(80, 30));
-            deleteButton.setFont(new Font("Helvetica",Font.PLAIN, 14));
-            deleteButton.setForeground(Color.WHITE);
-            deleteButton.setBackground(Color.RED);
+            JButton deleteButton = new JButton();
+            deleteButton.setIcon(deleteIcon);
+            deleteButton.setPreferredSize(new Dimension(200, 200));
+            deleteButton.setBackground(SignInController.getPurple());
             deleteButton.setFocusPainted(false);
             deleteButton.setBorderPainted(false);
 
@@ -119,6 +131,9 @@ public class LibraryController {
                     db.deleteGame(game.getGameName());
                 }
             });
+
+            // Añadir el botón de eliminar a un panel
+            gameItem.add(deleteButton);
 
             gameItem.addMouseListener(new MouseAdapter() {
                 public void mouseClicked(MouseEvent a) {
@@ -488,6 +503,7 @@ public class LibraryController {
             }
         });
     }
+
     public static String getImagePath(String imagePath) throws IOException {
         Path path = Paths.get(imagePath);
         if (Files.exists(path)) {
