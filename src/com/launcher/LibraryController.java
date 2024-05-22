@@ -2,7 +2,6 @@ package com.launcher;
 
 import com.games.Game;
 import database.DatabaseHandler;
-import org.postgresql.util.PSQLException;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -16,7 +15,6 @@ import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -25,6 +23,7 @@ import java.util.ArrayList;
  * This class represents the controller for the library.
  * It sets up the UI for the library and handles user interactions.
  */
+
 public class LibraryController {
     DatabaseHandler db = new DatabaseHandler();
 
@@ -416,8 +415,13 @@ public class LibraryController {
                 newGame.setGameName(gameNameField.getText());
                 newGame.setGameDescription(gameDescriptionField.getText());
                 newGame.setGameGenre(gameGenreField.getText());
-                newGame.setGameImage(convertImageToBytes(gameCoverField.getText()));
-                newGame.setGameCoverImage(gameCoverField.getText());
+                try {
+                    newGame.setGameImage(getImagePath(gameCoverField.getText()));
+                    newGame.setGameCoverImage(getImagePath(gameCoverField.getText()));
+                } catch (IOException i) {
+                    i.printStackTrace();
+                    return; // If an exception occurs, stop executing the rest of the code in this block
+                }
                 newGame.setExeLocation(gameExeField.getText());
                 newGame.setFolderLocation(gameFolderField.getText());
 
@@ -464,20 +468,12 @@ public class LibraryController {
             }
         });
     }
-
-    public byte[] convertImageToBytes(String imagePath) {
-        try {
-            Path path = Paths.get(imagePath);
-            return Files.readAllBytes(path);
-        } catch (NoSuchFileException e) {
-            System.out.println("File not found: " + e.getMessage());
-        } catch (PSQLException e) {
-            System.out.println("Database error: " + e.getMessage());
-        } catch (NullPointerException e) {
-            System.out.println("Null pointer exception: " + e.getMessage());
-        } catch (IOException e) {
-            System.out.println("IO error: " + e.getMessage());
+    public static String getImagePath(String imagePath) throws IOException {
+        Path path = Paths.get(imagePath);
+        if (Files.exists(path)) {
+            return path.toString();
+        } else {
+            throw new IOException("File not found: " + imagePath);
         }
-        return null;
     }
 }
