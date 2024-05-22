@@ -8,10 +8,7 @@ import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -99,6 +96,29 @@ public class LibraryController {
             gameItem.add(gameNameLabel);
             gameItem.setBackground(SignInController.getPurple());
             leftPanel.add(gameItem);
+
+
+            // Crear botón de eliminar
+            JButton deleteButton = new JButton("Eliminar");
+            deleteButton.setPreferredSize(new Dimension(80, 30));
+            deleteButton.setFont(new Font("Helvetica",Font.PLAIN, 14));
+            deleteButton.setForeground(Color.WHITE);
+            deleteButton.setBackground(Color.RED);
+            deleteButton.setFocusPainted(false);
+            deleteButton.setBorderPainted(false);
+
+            // Añadir listener para el botón de eliminar
+            deleteButton.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    // Eliminar el panel del juego del panel izquierdo
+                    leftPanel.remove(gameItem);
+                    leftPanel.revalidate();
+                    leftPanel.repaint();
+
+                    // Eliminar el juego de la base de datos
+                    db.deleteGame(game.getGameName());
+                }
+            });
 
             gameItem.addMouseListener(new MouseAdapter() {
                 public void mouseClicked(MouseEvent a) {
