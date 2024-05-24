@@ -12,8 +12,8 @@ import java.util.List;
 
 public class DatabaseHandler {
     private static final String DATABASE_URL = "jdbc:postgresql://localhost:5432/xynx";
-    private static final String DATABASE_USER = "anavalladares";
-    private static final String DATABASE_PASSWORD = "aaaa";
+    private static final String DATABASE_USER = "postgres";
+    private static final String DATABASE_PASSWORD = "debian";
     private Connection conn = null;
 
     public DatabaseHandler() {
