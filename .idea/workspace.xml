@@ -4,32 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0c57a3d6-f589-42ed-af0f-91499e053460" name="Changes" comment="close #2">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="0c57a3d6-f589-42ed-af0f-91499e053460" name="Changes" comment="img papelera funcional">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/launcher/LibraryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/launcher/LibraryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/database/DatabaseHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/DatabaseHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Class" />
-      </list>
-    </option>
-  </component>
   <component name="Git.Merge.Settings">
-    <option name="BRANCH" value="anxo" />
+    <option name="BRANCH" value="main" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="anxo" />
+        <entry key="$PROJECT_DIR$" value="ana" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -40,16 +29,24 @@
     &quot;assignee&quot;: &quot;anavalladaresg&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/anavalladaresg/GamesLauncher.git&quot;,
-    &quot;accountId&quot;: &quot;57dde938-ead0-4015-82fe-df167379acff&quot;
-  }
-}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="0626986c-63f3-498e-9f9d-30624baa0019" />
+        <option name="url" value="https://github.com/anavalladaresg/GamesLauncher.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 1
 }</component>
   <component name="ProjectId" id="2gloXNBLxT75JiMWGKeJC0Xyhy2" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -57,10 +54,11 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;ana&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;anxo&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/anavalladares/Desktop/GamesLauncher&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/anxor/Desktop/APUNTES DAM&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -95,8 +93,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.15989.150" />
-        <option value="bundled-js-predefined-1d06a55b98c1-91d5c284f522-JavaScript-IU-241.15989.150" />
+        <option value="jdk-21.0.2-openjdk-21.0.2-4caba194b151-4f524021" />
       </set>
     </attachedChunks>
   </component>
@@ -109,6 +106,10 @@
       <option name="presentableId" value="Default" />
       <updated>1716281563269</updated>
       <workItem from="1716281564307" duration="4257000" />
+      <workItem from="1716451521920" duration="10000" />
+      <workItem from="1716540363789" duration="1322000" />
+      <workItem from="1716541705402" duration="156000" />
+      <workItem from="1716541901423" duration="2657000" />
     </task>
     <task id="LOCAL-00001" summary="cambios por arreglos en la rama ana">
       <option name="closed" value="true" />
@@ -126,7 +127,63 @@
       <option name="project" value="LOCAL" />
       <updated>1716290204053</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="errores 2">
+      <option name="closed" value="true" />
+      <created>1716369577083</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1716369577083</updated>
+    </task>
+    <task id="LOCAL-00004" summary="eliminar juego">
+      <option name="closed" value="true" />
+      <created>1716370013177</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1716370013177</updated>
+    </task>
+    <task id="LOCAL-00005" summary="boton papelera">
+      <option name="closed" value="true" />
+      <created>1716373427867</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1716373427867</updated>
+    </task>
+    <task id="LOCAL-00006" summary="img papelera">
+      <option name="closed" value="true" />
+      <created>1716373446774</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1716373446774</updated>
+    </task>
+    <task id="LOCAL-00007" summary="img papelera actul">
+      <option name="closed" value="true" />
+      <created>1716374778930</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1716374778930</updated>
+    </task>
+    <task id="LOCAL-00008" summary="img papelera actul">
+      <option name="closed" value="true" />
+      <created>1716374789897</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1716374789897</updated>
+    </task>
+    <task id="LOCAL-00009" summary="img papelera funcional">
+      <option name="closed" value="true" />
+      <created>1716540470085</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1716540470085</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -137,7 +194,11 @@
     <MESSAGE value="cambios por arreglos en la rama ana" />
     <MESSAGE value="close#1" />
     <MESSAGE value="Readme v3.0" />
-    <MESSAGE value="close #2" />
-    <option name="LAST_COMMIT_MESSAGE" value="close #2" />
+    <MESSAGE value="eliminar juego" />
+    <MESSAGE value="boton papelera" />
+    <MESSAGE value="img papelera" />
+    <MESSAGE value="img papelera actul" />
+    <MESSAGE value="img papelera funcional" />
+    <option name="LAST_COMMIT_MESSAGE" value="img papelera funcional" />
   </component>
 </project>
