@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0c57a3d6-f589-42ed-af0f-91499e053460" name="Changes" comment="eliminar juego">
+    <list default="true" id="0c57a3d6-f589-42ed-af0f-91499e053460" name="Changes" comment="img papelera actul">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/launcher/LibraryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/launcher/LibraryController.java" afterDir="false" />
     </list>
@@ -30,12 +30,17 @@
     &quot;assignee&quot;: &quot;anavalladaresg&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/anavalladaresg/GamesLauncher.git&quot;,
-    &quot;accountId&quot;: &quot;57dde938-ead0-4015-82fe-df167379acff&quot;
-  }
-}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="0626986c-63f3-498e-9f9d-30624baa0019" />
+        <option name="url" value="https://github.com/anavalladaresg/GamesLauncher.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 1
 }</component>
@@ -50,10 +55,11 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.Main.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "anxo",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/anavalladares/Desktop/GamesLauncher",
+    "last_opened_file_path": "C:/Users/anxor/Desktop/APUNTES DAM",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -88,8 +94,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.15989.150" />
-        <option value="bundled-js-predefined-1d06a55b98c1-91d5c284f522-JavaScript-IU-241.15989.150" />
+        <option value="jdk-21.0.2-openjdk-21.0.2-4caba194b151-4f524021" />
       </set>
     </attachedChunks>
   </component>
@@ -102,6 +107,7 @@
       <option name="presentableId" value="Default" />
       <updated>1716281563269</updated>
       <workItem from="1716281564307" duration="4257000" />
+      <workItem from="1716451521920" duration="10000" />
     </task>
     <task id="LOCAL-00001" summary="cambios por arreglos en la rama ana">
       <option name="closed" value="true" />
@@ -135,7 +141,39 @@
       <option name="project" value="LOCAL" />
       <updated>1716370013177</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="boton papelera">
+      <option name="closed" value="true" />
+      <created>1716373427867</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1716373427867</updated>
+    </task>
+    <task id="LOCAL-00006" summary="img papelera">
+      <option name="closed" value="true" />
+      <created>1716373446774</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1716373446774</updated>
+    </task>
+    <task id="LOCAL-00007" summary="img papelera actul">
+      <option name="closed" value="true" />
+      <created>1716374778930</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1716374778930</updated>
+    </task>
+    <task id="LOCAL-00008" summary="img papelera actul">
+      <option name="closed" value="true" />
+      <created>1716374789897</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1716374789897</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -147,6 +185,9 @@
     <MESSAGE value="close#1" />
     <MESSAGE value="Readme v3.0" />
     <MESSAGE value="eliminar juego" />
-    <option name="LAST_COMMIT_MESSAGE" value="eliminar juego" />
+    <MESSAGE value="boton papelera" />
+    <MESSAGE value="img papelera" />
+    <MESSAGE value="img papelera actul" />
+    <option name="LAST_COMMIT_MESSAGE" value="img papelera actul" />
   </component>
 </project>

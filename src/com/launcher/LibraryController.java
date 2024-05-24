@@ -109,7 +109,11 @@ public class LibraryController {
             gameItem.add(Box.createHorizontalGlue());
 
             // Crear un ImageIcon
-            ImageIcon deleteIcon = new ImageIcon("src/com/images/Trash.png");
+            ImageIcon deleteIcon = new ImageIcon("src/com/images/Trash.jpg");
+
+            Image aux = deleteIcon.getImage();
+            aux = aux.getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+            deleteIcon = new ImageIcon(aux);
 
             // Crear botón de eliminar
             JButton deleteButton = new JButton();
