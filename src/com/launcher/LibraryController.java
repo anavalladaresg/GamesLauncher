@@ -103,6 +103,22 @@ public class LibraryController {
             gameItem.setBackground(SignInController.getPurple());
             leftPanel.add(gameItem);
 
+            // Cambiar el layout a BoxLayout
+            gameItem.setLayout(new BoxLayout(gameItem, BoxLayout.X_AXIS));
+
+            // Añadir el resto de los componentes como antes
+            gameItem.add(gameImageLabel);
+            gameItem.add(gameNameLabel);
+
+            // Añadir un espacio flexible
+            gameItem.add(Box.createHorizontalGlue());
+
+            // Crear un ImageIcon
+            ImageIcon deleteIcon = new ImageIcon("src/com/images/Trash.jpg");
+
+            Image aux = deleteIcon.getImage();
+            aux = aux.getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+            deleteIcon = new ImageIcon(aux);
 
             // Crear botón de eliminar
             JButton deleteButton = new JButton("Eliminar");
@@ -125,6 +141,8 @@ public class LibraryController {
                     db.deleteGame(game.getGameName());
                 }
             });
+
+            gameItem.add(deleteButton);
 
             gameItem.addMouseListener(new MouseAdapter() {
                 public void mouseEntered(MouseEvent e) {
