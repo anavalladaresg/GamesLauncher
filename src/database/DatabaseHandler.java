@@ -1,16 +1,29 @@
 package database;
 
 import com.games.Game;
+import com.launcher.LibraryController;
 
+import javax.swing.*;
+import java.awt.*;
+import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class DatabaseHandler {
     private static final String DATABASE_URL = "jdbc:postgresql://localhost:5432/xynx";
-    private static final String DATABASE_USER = "postgres";
-    private static final String DATABASE_PASSWORD = "debian";
+    private static final String DATABASE_USER = "anavalladares";
+    private static final String DATABASE_PASSWORD = "aaaa";
     private Connection conn = null;
+
+    public DatabaseHandler() {
+        try {
+            Class.forName("org.postgresql.Driver");
+            conn = DriverManager.getConnection(DATABASE_URL, DATABASE_USER, DATABASE_PASSWORD);
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
     /**
      * Connect to the database
@@ -100,14 +113,17 @@ public class DatabaseHandler {
     public void addGame(Game game) {
         connect();
         try {
+            String gameImage = LibraryController.getImagePath(game.getGameImage());
+            String gameCoverImage = LibraryController.getImagePath(game.getGameCoverImage());
+
             String query = "INSERT INTO games (name, description, genre, image, coverimage, exe, folder) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
             PreparedStatement pstmt = conn.prepareStatement(query);
             pstmt.setString(1, game.getGameName());
             pstmt.setString(2, game.getGameDescription());
             pstmt.setString(3, game.getGameGenre());
-            pstmt.setString(4, game.getGameImage());
-            pstmt.setString(5, game.getGameCoverImage());
+            pstmt.setString(4, gameImage);
+            pstmt.setString(5, gameCoverImage);
             pstmt.setString(6, game.getExeLocation());
             pstmt.setString(7, game.getFolderLocation());
 
@@ -115,6 +131,8 @@ public class DatabaseHandler {
 
         } catch (SQLException e) {
             e.printStackTrace();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -146,8 +164,23 @@ public class DatabaseHandler {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-
         return games;
     }
+
+    // Delete a game from the database
+    public void deleteGame(String gameName) {
+        String SQL = "DELETE FROM games WHERE name = ?";
+        connect();
+        try (PreparedStatement pstmt = conn.prepareStatement(SQL)) {
+            pstmt.setString(1, gameName);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+
+
+
 
 }
