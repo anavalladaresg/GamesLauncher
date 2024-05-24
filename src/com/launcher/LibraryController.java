@@ -32,7 +32,9 @@ public class LibraryController {
         JFrame frame = new JFrame();
         JPanel panel = new JPanel(new BorderLayout());
         JPanel leftPanel = new JPanel();
+        JPanel rightPanel = new JPanel();
         leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
+        rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.Y_AXIS));
 
         ArrayList<Game> games = (ArrayList<Game>) db.getGames();
 
@@ -50,8 +52,12 @@ public class LibraryController {
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         panel.add(leftPanel, BorderLayout.WEST);
+        panel.add(rightPanel, BorderLayout.CENTER);
         frame.add(panel);
         frame.setVisible(true);
+
+        rightPanel.setBackground(new Color(224, 224, 224, 255));
+        rightPanel.setPreferredSize(new Dimension(panel.getWidth() - leftPanel.getWidth(), panel.getHeight()));
 
         // Create the label
         JLabel libraryLabel = new JLabel("Library");
@@ -101,7 +107,7 @@ public class LibraryController {
             // Crear botón de eliminar
             JButton deleteButton = new JButton("Eliminar");
             deleteButton.setPreferredSize(new Dimension(80, 30));
-            deleteButton.setFont(new Font("Helvetica",Font.PLAIN, 14));
+            deleteButton.setFont(new Font("Helvetica", Font.PLAIN, 14));
             deleteButton.setForeground(Color.WHITE);
             deleteButton.setBackground(Color.RED);
             deleteButton.setFocusPainted(false);
@@ -121,14 +127,6 @@ public class LibraryController {
             });
 
             gameItem.addMouseListener(new MouseAdapter() {
-                public void mouseClicked(MouseEvent a) {
-                    try {
-                        Runtime.getRuntime().exec("C:\\Users\\anxor\\AppData\\Local\\Warframe\\Downloaded\\Public\\Tools\\Launcher.exe", null, new File("C:\\Users\\anxor\\AppData\\Local\\Warframe\\Downloaded\\Public\\Tools"));
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-
                 public void mouseEntered(MouseEvent e) {
                     gameItem.setCursor(new Cursor(Cursor.HAND_CURSOR));
                     gameItem.setBackground(new Color(60, 45, 145));
@@ -137,6 +135,62 @@ public class LibraryController {
                 public void mouseExited(MouseEvent e) {
                     gameItem.setBackground(SignInController.getPurple());
                 }
+
+                public void mouseClicked(MouseEvent e) {
+
+                    rightPanel.removeAll();
+                    rightPanel.revalidate();
+                    rightPanel.repaint();
+
+                    // Create a new panel for game information
+                    JPanel gameInfoPanel = new JPanel(new BorderLayout());
+
+                    // Add game cover image at the top
+                    ImageIcon gameCoverImageIcon = new ImageIcon(game.getGameCoverImage());
+                    Image gameCoverImage = gameCoverImageIcon.getImage().getScaledInstance(panel.getWidth() - 300, 295, Image.SCALE_SMOOTH);
+                    ImageIcon scaledGameCoverImageIcon = new ImageIcon(gameCoverImage);
+                    JLabel gameCoverImageLabel = new JLabel(scaledGameCoverImageIcon, SwingConstants.CENTER);
+                    gameInfoPanel.add(gameCoverImageLabel, BorderLayout.NORTH);
+
+                    // Crear el botón de jugar
+                    JButton playButton = new JButton("Play");
+                    playButton.setFont(new Font("Helvetica", Font.BOLD, 14));
+                    playButton.setForeground(Color.WHITE);
+                    playButton.setLayout(null);
+                    playButton.setBounds(50,50,100,50);
+                    playButton.setBackground(new Color(80, 65, 165));
+                    playButton.setBorder(new RoundedBorder(Color.WHITE, 10));
+                    playButton.setOpaque(false);
+
+                    // Añadir listener para el botón de jugar
+                    playButton.addActionListener(new ActionListener() {
+                        public void actionPerformed(ActionEvent e) {
+                            // Aquí va el código para iniciar el juego
+                            try {
+                                Runtime.getRuntime().exec("C:\\Users\\anxor\\AppData\\Local\\Warframe\\Downloaded\\Public\\Tools\\Launcher.exe", null, new File("C:\\Users\\anxor\\AppData\\Local\\Warframe\\Downloaded\\Public\\Tools"));
+                            } catch (IOException ex) {
+                                ex.printStackTrace();
+                            }
+                        }
+                    });
+
+// Añadir el botón de jugar al panel de información del juego
+                    gameInfoPanel.add(playButton, BorderLayout.CENTER);
+
+                    // Add game description and other details below the play button
+                    JLabel gameDetailsLabel = new JLabel("<html>Name: " + game.getGameName() + "<br>Description: " + game.getGameDescription() + "<br>Genre: " + game.getGameGenre() + "</html>");
+                    gameInfoPanel.add(gameDetailsLabel, BorderLayout.SOUTH);
+                    /*
+                    // Remove the formPanel from the main panel
+                    panel.remove(formPanel);
+                    */
+                    // Add the game information panel to the main panel
+                    rightPanel.add(gameInfoPanel);
+
+                    // Refresh the main panel
+                    rightPanel.revalidate();
+                    rightPanel.repaint();
+                }
             });
         }
         leftPanel.revalidate();
@@ -144,6 +198,10 @@ public class LibraryController {
 
         // Add action listener to the button
         addButton.addActionListener(e -> {
+            rightPanel.removeAll();
+            rightPanel.revalidate();
+            rightPanel.repaint();
+
             // Create the form panel
             JPanel formPanel = new JPanel(new BorderLayout());
             ImageIcon newGameIcon = new ImageIcon("src/com/images/NewGame.png");
@@ -344,6 +402,11 @@ public class LibraryController {
                     }
                     super.paintComponent(g);
                 }
+
+                public void actionPerformed(ActionEvent e) {
+                    leftPanel.revalidate();
+                    leftPanel.repaint();
+                }
             };
 
             JButton cancelButton = new JButton("Cancel") {
@@ -395,15 +458,15 @@ public class LibraryController {
             formPanel.add(buttonPanel, BorderLayout.SOUTH);
 
             // Add the form panel to the main panel
-            panel.add(formPanel, BorderLayout.CENTER);
-            panel.revalidate();
-            panel.repaint();
+            rightPanel.add(formPanel);
+            rightPanel.revalidate();
+            rightPanel.repaint();
 
             // Add action listener to the cancel button
             cancelButton.addActionListener(cancelEvent -> {
-                panel.remove(formPanel);
-                panel.revalidate();
-                panel.repaint();
+                rightPanel.remove(formPanel);
+                rightPanel.revalidate();
+                rightPanel.repaint();
             });
 
             cancelButton.addMouseListener(new MouseAdapter() {
@@ -430,13 +493,14 @@ public class LibraryController {
 
             // Add action listener to the add game button
             // Add action listener to the add game button
+            // Add action listener to the add game button
             addGameButton.addActionListener(addEvent -> {
                 Game newGame = new Game();
                 newGame.setGameName(gameNameField.getText());
                 newGame.setGameDescription(gameDescriptionField.getText());
                 newGame.setGameGenre(gameGenreField.getText());
                 try {
-                    newGame.setGameImage(getImagePath(gameCoverField.getText()));
+                    newGame.setGameImage(getImagePath(gameImageField.getText()));
                     newGame.setGameCoverImage(getImagePath(gameCoverField.getText()));
                 } catch (IOException i) {
                     i.printStackTrace();
@@ -469,6 +533,13 @@ public class LibraryController {
                 // Refresh the left panel
                 leftPanel.revalidate();
                 leftPanel.repaint();
+
+                // Remove the formPanel from the main panel
+                rightPanel.remove(formPanel);
+
+                // Refresh the main panel
+                panel.revalidate();
+                panel.repaint();
             });
         });
 
@@ -488,6 +559,7 @@ public class LibraryController {
             }
         });
     }
+
     public static String getImagePath(String imagePath) throws IOException {
         Path path = Paths.get(imagePath);
         if (Files.exists(path)) {
@@ -496,4 +568,14 @@ public class LibraryController {
             throw new IOException("File not found: " + imagePath);
         }
     }
+
+    /**
+     * public void mouseClicked(MouseEvent a) {
+     *                     try {
+     *                         Runtime.getRuntime().exec("C:\\Users\\anxor\\AppData\\Local\\Warframe\\Downloaded\\Public\\Tools\\Launcher.exe", null, new File("C:\\Users\\anxor\\AppData\\Local\\Warframe\\Downloaded\\Public\\Tools"));
+     *                     } catch (IOException e) {
+     *                         e.printStackTrace();
+     *                     }
+     *                 }
+     */
 }
