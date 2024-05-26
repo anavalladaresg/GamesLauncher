@@ -1,8 +1,5 @@
 package com.games;
 
-import javax.swing.*;
-import java.time.LocalDate;
-
 public class Game {
     private String gameName;
     private String gameDescription;
