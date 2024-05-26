@@ -25,9 +25,6 @@ public class DatabaseHandler {
         }
     }
 
-    /**
-     * Connect to the database
-     */
     public void connect() {
         try {
             conn = DriverManager.getConnection(DATABASE_URL, DATABASE_USER, DATABASE_PASSWORD);
@@ -36,15 +33,9 @@ public class DatabaseHandler {
         }
     }
 
-    /**
-     * Create a new user
-     *
-     * @param userName the username
-     * @param password the password
-     */
     public void addUser(String userName, String password) {
         String SQL = "INSERT INTO users(userName, password) VALUES(?,?)";
-        String regex = "^[a-zA-Z0-9]+$"; // Solo permite caracteres alfanuméricos
+        String regex = "^[a-zA-Z0-9]+$";
 
         if (!userName.matches(regex) || !password.matches(regex)) {
             System.out.println("Username and password can only contain alphanumeric characters.");
@@ -62,12 +53,6 @@ public class DatabaseHandler {
         }
     }
 
-    /**
-     * Check if a user exists
-     *
-     * @param userName the username
-     * @return true if the user exists, false otherwise
-     */
     public boolean userExists(String userName) {
         String SQL = "SELECT * FROM users WHERE userName = ?";
         connect();
@@ -82,12 +67,6 @@ public class DatabaseHandler {
         return false;
     }
 
-    /**
-     * Get the password of a user
-     *
-     * @param userName the username
-     * @return the password of the user
-     */
     public String getPassword(String userName) {
         String SQL = "SELECT password FROM users WHERE userName = ?";
         connect();
@@ -105,11 +84,6 @@ public class DatabaseHandler {
         return null;
     }
 
-    /**
-     * Add a game to the database
-     *
-     * @param game the game to add
-     */
     public void addGame(Game game) {
         connect();
         try {
@@ -136,11 +110,6 @@ public class DatabaseHandler {
         }
     }
 
-    /**
-     * Get all games from the database
-     *
-     * @return a list of games
-     */
     public List<Game> getGames() {
         List<Game> games = new ArrayList<>();
         String SQL = "SELECT * FROM games";
@@ -167,7 +136,6 @@ public class DatabaseHandler {
         return games;
     }
 
-    // Delete a game from the database
     public void deleteGame(String gameName) {
         String SQL = "DELETE FROM games WHERE name = ?";
         connect();
@@ -178,9 +146,4 @@ public class DatabaseHandler {
             System.out.println(e.getMessage());
         }
     }
-
-
-
-
-
 }
