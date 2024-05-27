@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="0c57a3d6-f589-42ed-af0f-91499e053460" name="Changes" comment="usuario y contraseña cambiados a mi base de datos">
+=======
+    <list default="true" id="0c57a3d6-f589-42ed-af0f-91499e053460" name="Changes" comment="edit img">
+>>>>>>> anxo
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/launcher/LibraryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/launcher/LibraryController.java" afterDir="false" />
     </list>
@@ -26,7 +30,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="anxo" />
+        <entry key="$PROJECT_DIR$" value="fusion" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -43,6 +47,9 @@
     &quot;accountId&quot;: &quot;57dde938-ead0-4015-82fe-df167379acff&quot;
   }
 }</component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 1
 }</component>
@@ -56,9 +63,10 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Application.Main.executor": "Run",
+    "Application.Main.executor": "Debug",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "fusion",
+    "git-widget-placeholder": "anxo",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/Users/anavalladares/Desktop/GamesLauncher",
     "node.js.detected.package.eslint": "true",
@@ -98,8 +106,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.15989.150" />
-        <option value="bundled-js-predefined-1d06a55b98c1-91d5c284f522-JavaScript-IU-241.15989.150" />
+        <option value="jdk-21.0.2-openjdk-21.0.2-4caba194b151-4f524021" />
       </set>
     </attachedChunks>
   </component>
@@ -112,6 +119,7 @@
       <option name="presentableId" value="Default" />
       <updated>1716281563269</updated>
       <workItem from="1716281564307" duration="4257000" />
+      <workItem from="1716801231051" duration="1627000" />
     </task>
     <task id="LOCAL-00001" summary="cambios por arreglos en la rama ana">
       <option name="closed" value="true" />
@@ -129,6 +137,7 @@
       <option name="project" value="LOCAL" />
       <updated>1716290204053</updated>
     </task>
+<<<<<<< HEAD
     <task id="LOCAL-00003" summary="usuario y contraseña cambiados a mi base de datos">
       <option name="closed" value="true" />
       <created>1716546781979</created>
@@ -138,6 +147,33 @@
       <updated>1716546781979</updated>
     </task>
     <option name="localTasksCounter" value="4" />
+=======
+    <task id="LOCAL-00003" summary="editar juego">
+      <option name="closed" value="true" />
+      <created>1716800367817</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1716800367817</updated>
+    </task>
+    <task id="LOCAL-00004" summary="xml">
+      <option name="closed" value="true" />
+      <created>1716800375141</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1716800375141</updated>
+    </task>
+    <task id="LOCAL-00005" summary="edit img">
+      <option name="closed" value="true" />
+      <created>1716800384597</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1716800384597</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
+>>>>>>> anxo
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -149,7 +185,14 @@
     <MESSAGE value="close#1" />
     <MESSAGE value="Readme v3.0" />
     <MESSAGE value="close #2" />
+<<<<<<< HEAD
     <MESSAGE value="usuario y contraseña cambiados a mi base de datos" />
     <option name="LAST_COMMIT_MESSAGE" value="usuario y contraseña cambiados a mi base de datos" />
+=======
+    <MESSAGE value="editar juego" />
+    <MESSAGE value="xml" />
+    <MESSAGE value="edit img" />
+    <option name="LAST_COMMIT_MESSAGE" value="edit img" />
+>>>>>>> anxo
   </component>
 </project>

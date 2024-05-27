@@ -37,9 +37,10 @@ public class LibraryController {
         rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.Y_AXIS));
         ArrayList<Game> games = (ArrayList<Game>) db.getGames();
 
-        // Load the image
-        ImageIcon imageIcon = new ImageIcon("src/com/images/Xynx.png");
-        Image image = imageIcon.getImage().getScaledInstance(300, 250, Image.SCALE_SMOOTH);
+
+        // Load the GIF
+        ImageIcon imageIcon = new ImageIcon("src/com/images/gif.gif");
+        Image image = imageIcon.getImage().getScaledInstance(300, 250 , Image.SCALE_DEFAULT);
         ImageIcon scaledImageIcon = new ImageIcon(image);
         JLabel imageLabel = new JLabel(scaledImageIcon);
         leftPanel.add(imageLabel);
@@ -120,14 +121,14 @@ public class LibraryController {
             deleteIcon = new ImageIcon(aux);
 
             // Crear botón de eliminar
-            JButton deleteButton = new JButton("Eliminar");
-            deleteButton.setPreferredSize(new Dimension(80, 30));
+            JButton deleteButton = new JButton();
+            deleteButton.setIcon(deleteIcon); // Establecer el icono en el botón
+            deleteButton.setPreferredSize(new Dimension(40, 30));
             deleteButton.setFont(new Font("Helvetica", Font.PLAIN, 14));
             deleteButton.setForeground(Color.WHITE);
-            deleteButton.setBackground(Color.RED);
+            deleteButton.setBackground(SignInController.getPurple());
             deleteButton.setFocusPainted(false);
             deleteButton.setBorderPainted(false);
-
             // Añadir listener para el botón de eliminar
             deleteButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
@@ -140,8 +141,35 @@ public class LibraryController {
                     db.deleteGame(game.getGameName());
                 }
             });
-
             gameItem.add(deleteButton);
+
+            // ImageIcon para el botón de edición
+            ImageIcon editIcon = new ImageIcon("src/com/images/Edit.jpg");
+
+            Image auxEdit = editIcon.getImage();
+            auxEdit = auxEdit.getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+            editIcon = new ImageIcon(auxEdit);
+
+            // Crear botón de edición
+            JButton editButton = new JButton();
+            editButton.setIcon(editIcon); // Establecer el icono en el botón
+            editButton.setPreferredSize(new Dimension(40, 30));
+            editButton.setFont(new Font("Helvetica", Font.PLAIN, 14));
+            editButton.setForeground(Color.WHITE);
+            editButton.setBackground(SignInController.getPurple());
+            editButton.setFocusPainted(false);
+            editButton.setBorderPainted(false);
+
+            // Añadir listener para el botón de edición
+            editButton.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                //editar el juego
+
+                }
+            });
+
+            // Añadir el botón de edición al panel del juego
+            gameItem.add(editButton);
 
             gameItem.addMouseListener(new MouseAdapter() {
                 public void mouseEntered(MouseEvent e) {
