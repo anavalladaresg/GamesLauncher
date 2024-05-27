@@ -40,7 +40,7 @@ public class LibraryController {
 
         // Load the GIF
         ImageIcon imageIcon = new ImageIcon("src/com/images/gif.gif");
-        Image image = imageIcon.getImage().getScaledInstance(300, 250 , Image.SCALE_DEFAULT);
+        Image image = imageIcon.getImage().getScaledInstance(300, 250, Image.SCALE_DEFAULT);
         ImageIcon scaledImageIcon = new ImageIcon(image);
         JLabel imageLabel = new JLabel(scaledImageIcon);
         leftPanel.add(imageLabel);
@@ -150,7 +150,7 @@ public class LibraryController {
             auxEdit = auxEdit.getScaledInstance(30, 30, Image.SCALE_SMOOTH);
             editIcon = new ImageIcon(auxEdit);
 
-            // Crear botón de edición
+// Crear botón de edición
             JButton editButton = new JButton();
             editButton.setIcon(editIcon); // Establecer el icono en el botón
             editButton.setPreferredSize(new Dimension(40, 30));
@@ -160,15 +160,47 @@ public class LibraryController {
             editButton.setFocusPainted(false);
             editButton.setBorderPainted(false);
 
-            // Añadir listener para el botón de edición
+// Añadir listener para el botón de edición
             editButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                //editar el juego
+                    // 1. Mostrar el formulario de edición (puedes usar un JOptionPane con varios campos de entrada)
+                    JTextField gameNameField = new JTextField(game.getGameName());
+                    JTextField gameDescriptionField = new JTextField(game.getGameDescription());
+                    JTextField gameGenreField = new JTextField(game.getGameGenre());
+                    JTextField gameImageField = new JTextField(game.getGameImage());
+                    JTextField gameCoverField = new JTextField(game.getGameCoverImage());
+                    JTextField gameExeField = new JTextField(game.getExeLocation());
+                    JTextField gameFolderField = new JTextField(game.getFolderLocation());
 
+                    Object[] message = {
+                            "Game Name:", gameNameField,
+                            "Game Description:", gameDescriptionField,
+                            "Game Genre:", gameGenreField,
+                            "Game Image Path:", gameImageField,
+                            "Game Cover Path:", gameCoverField,
+                            "Game .exe Link:", gameExeField,
+                            "Game Folder Link:", gameFolderField
+
+                    };
+
+                    int option = JOptionPane.showConfirmDialog(null, message, "Edit Game", JOptionPane.OK_CANCEL_OPTION);
+                    if (option == JOptionPane.OK_OPTION) {
+                        // 2. Recoger los datos ingresados por el usuario y actualizar el objeto Game
+                        game.setGameName(gameNameField.getText());
+                        game.setGameDescription(gameDescriptionField.getText());
+                        game.setGameGenre(gameGenreField.getText());
+                        game.setGameImage(gameImageField.getText());
+                        game.setGameCoverImage(gameCoverField.getText());
+                        game.setExeLocation(gameExeField.getText());
+                        game.setFolderLocation(gameFolderField.getText());
+
+                        // 3. Actualizar la base de datos con los nuevos datos del juego
+                        db.updateGame(game);
+                    }
                 }
             });
 
-            // Añadir el botón de edición al panel del juego
+// Añadir el botón de edición al panel del juego
             gameItem.add(editButton);
 
             gameItem.addMouseListener(new MouseAdapter() {
@@ -202,7 +234,7 @@ public class LibraryController {
                     playButton.setFont(new Font("Helvetica", Font.BOLD, 14));
                     playButton.setForeground(Color.WHITE);
                     playButton.setLayout(null);
-                    playButton.setBounds(50,50,100,50);
+                    playButton.setBounds(50, 50, 100, 50);
                     playButton.setBackground(new Color(80, 65, 165));
                     playButton.setBorder(new RoundedBorder(Color.WHITE, 10));
                     playButton.setPreferredSize(new Dimension(200, 100));
