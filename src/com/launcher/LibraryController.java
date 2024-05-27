@@ -38,9 +38,10 @@ public class LibraryController {
 
         ArrayList<Game> games = (ArrayList<Game>) db.getGames();
 
-        // Load the image
-        ImageIcon imageIcon = new ImageIcon("src/com/images/Xynx.png");
-        Image image = imageIcon.getImage().getScaledInstance(300, 250, Image.SCALE_SMOOTH);
+
+        // Load the GIF
+        ImageIcon imageIcon = new ImageIcon("src/com/images/gif.gif");
+        Image image = imageIcon.getImage().getScaledInstance(300, 250 , Image.SCALE_DEFAULT);
         ImageIcon scaledImageIcon = new ImageIcon(image);
         JLabel imageLabel = new JLabel(scaledImageIcon);
         leftPanel.add(imageLabel);
