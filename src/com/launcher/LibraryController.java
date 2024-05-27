@@ -580,10 +580,12 @@ public class LibraryController {
 
                                 // Create a new panel for game information
                                 JPanel gameInfoPanel = new JPanel(new BorderLayout());
+                                gameInfoPanel.setPreferredSize(new Dimension(panel.getWidth() - leftPanel.getWidth(), panel.getHeight()));
+                                gameInfoPanel.setBackground(new Color(224, 224, 224, 255));
 
                                 // Add game cover image at the top
                                 ImageIcon gameCoverImageIcon = new ImageIcon(newGame.getGameCoverImage());
-                                Image gameCoverImage = gameCoverImageIcon.getImage().getScaledInstance(panel.getWidth() - 300, 295, Image.SCALE_SMOOTH);
+                                Image gameCoverImage = gameCoverImageIcon.getImage().getScaledInstance(panel.getWidth() - leftPanel.getWidth(), 350, Image.SCALE_SMOOTH);
                                 ImageIcon scaledGameCoverImageIcon = new ImageIcon(gameCoverImage);
                                 JLabel gameCoverImageLabel = new JLabel(scaledGameCoverImageIcon, SwingConstants.CENTER);
                                 gameInfoPanel.add(gameCoverImageLabel, BorderLayout.NORTH);
@@ -598,28 +600,21 @@ public class LibraryController {
                                 playButton.setBorder(new RoundedBorder(Color.WHITE, 10));
                                 playButton.setOpaque(false);
 
-                                // Añadir listener para el botón de jugar
                                 playButton.addActionListener(new ActionListener() {
                                     public void actionPerformed(ActionEvent e) {
-                                        // Aquí va el código para iniciar el juego
                                         try {
-                                            Runtime.getRuntime().exec("C:\\Users\\anxor\\AppData\\Local\\Warframe\\Downloaded\\Public\\Tools\\Launcher.exe", null, new File("C:\\Users\\anxor\\AppData\\Local\\Warframe\\Downloaded\\Public\\Tools"));
+                                            Runtime.getRuntime().exec(newGame.getExeLocation(), null, new File(newGame.getFolderLocation()));
                                         } catch (IOException ex) {
                                             ex.printStackTrace();
                                         }
                                     }
                                 });
 
-                                // Añadir el botón de jugar al panel de información del juego
                                 gameInfoPanel.add(playButton, BorderLayout.CENTER);
 
-                                // Add game description and other details below the play button
                                 JLabel gameDetailsLabel = new JLabel("<html>Name: " + newGame.getGameName() + "<br>Description: " + newGame.getGameDescription() + "<br>Genre: " + newGame.getGameGenre() + "</html>");
                                 gameInfoPanel.add(gameDetailsLabel, BorderLayout.SOUTH);
-                        /*
-                        // Remove the formPanel from the main panel
-                        panel.remove(formPanel);
-                        */
+
                                 // Add the game information panel to the main panel
                                 rightPanel.add(gameInfoPanel);
 

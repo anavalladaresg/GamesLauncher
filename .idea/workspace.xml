@@ -4,13 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0c57a3d6-f589-42ed-af0f-91499e053460" name="Changes" comment="edit img">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/images/Edit.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/images/gif.gif" afterDir="false" />
+    <list default="true" id="0c57a3d6-f589-42ed-af0f-91499e053460" name="Changes" comment="solucionados problemas">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/launcher/LibraryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/launcher/LibraryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/database/DatabaseHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/DatabaseHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +62,7 @@
     "Application.Main.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "Merging ana",
+    "git-widget-placeholder": "ana",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/Users/anavalladares/Desktop/GamesLauncher",
     "node.js.detected.package.eslint": "true",
@@ -160,7 +156,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716800384597</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="solucionados problemas">
+      <option name="closed" value="true" />
+      <created>1716806528444</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1716806528444</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -175,6 +179,7 @@
     <MESSAGE value="editar juego" />
     <MESSAGE value="xml" />
     <MESSAGE value="edit img" />
-    <option name="LAST_COMMIT_MESSAGE" value="edit img" />
+    <MESSAGE value="solucionados problemas" />
+    <option name="LAST_COMMIT_MESSAGE" value="solucionados problemas" />
   </component>
 </project>
