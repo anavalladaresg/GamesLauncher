@@ -3,8 +3,6 @@ package database;
 import com.games.Game;
 import com.launcher.LibraryController;
 
-import javax.swing.*;
-import java.awt.*;
 import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
