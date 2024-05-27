@@ -108,6 +108,24 @@ public class DatabaseHandler {
         }
     }
 
+    public void updateGame(Game game) {
+        String SQL = "UPDATE games SET description = ?, genre = ?, image = ?, coverimage = ?, exe = ?, folder = ? WHERE name = ?";
+        connect();
+        try (PreparedStatement pstmt = conn.prepareStatement(SQL)) {
+            pstmt.setString(1, game.getGameDescription());
+            pstmt.setString(2, game.getGameGenre());
+            pstmt.setString(3, game.getGameImage());
+            pstmt.setString(4, game.getGameCoverImage());
+            pstmt.setString(5, game.getExeLocation());
+            pstmt.setString(6, game.getFolderLocation());
+            pstmt.setString(7, game.getGameName());
+
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
     public List<Game> getGames() {
         List<Game> games = new ArrayList<>();
         String SQL = "SELECT * FROM games";
