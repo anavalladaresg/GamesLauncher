@@ -201,13 +201,10 @@ public class LibraryController {
                     JButton playButton = new JButton("Play");
                     playButton.setFont(new Font("Helvetica", Font.BOLD, 14));
                     playButton.setForeground(Color.WHITE);
-<<<<<<< HEAD
                     playButton.setLayout(null);
                     playButton.setBounds(50, 50, 100, 50);
                     playButton.setBackground(new Color(80, 65, 165));
-=======
                     playButton.setBackground(SignInController.getPurple());
->>>>>>> ana
                     playButton.setBorder(new RoundedBorder(Color.WHITE, 10));
                     playButton.setPreferredSize(new Dimension(200, 100));
                     playButton.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -223,7 +220,6 @@ public class LibraryController {
                         }
                     });
 
-<<<<<<< HEAD
                     // Añadir el botón de jugar al panel de información del juego
                     gameInfoPanel.add(playButton, BorderLayout.CENTER);
 
@@ -495,22 +491,6 @@ public class LibraryController {
                 rightPanel.revalidate();
                 rightPanel.repaint();
 
-                // Add action listener to the cancel button
-                cancelButton.addActionListener(cancelEvent -> {
-                    rightPanel.remove(formPanel);
-=======
-                    JLabel gameDetailsLabel = new JLabel("<html>Name: " + game.getGameName() + "<br>Description: " + game.getGameDescription() + "<br>Genre: " + game.getGameGenre() + "</html>");
-                    gameDetailsLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-
-                    gameInfoPanel.add(Box.createVerticalStrut(10)); // Espacio entre botón y descripción
-                    gameInfoPanel.add(gameDetailsLabel);
-
-                    rightPanel.add(gameInfoPanel);
->>>>>>> ana
-                    rightPanel.revalidate();
-                    rightPanel.repaint();
-                });
-
                 cancelButton.addMouseListener(new MouseAdapter() {
                     public void mouseEntered(MouseEvent e) {
                         cancelButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
@@ -533,8 +513,6 @@ public class LibraryController {
                     }
                 });
 
-                // Add action listener to the add game button
-                // Add action listener to the add game button
                 // Add action listener to the add game button
                 addGameButton.addActionListener(addEvent -> {
                     Game newGame = new Game();
@@ -619,6 +597,19 @@ public class LibraryController {
                                     }
                                 }
                             });
+                            // Add action listener to the cancel button
+                            cancelButton.addActionListener(cancelEvent -> {
+                                rightPanel.remove(formPanel);
+                                JLabel gameDetailsLabel = new JLabel("<html>Name: " + game.getGameName() + "<br>Description: " + game.getGameDescription() + "<br>Genre: " + game.getGameGenre() + "</html>");
+                                gameDetailsLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+                                gameInfoPanel.add(Box.createVerticalStrut(10)); // Espacio entre botón y descripción
+                                gameInfoPanel.add(gameDetailsLabel);
+
+                                rightPanel.add(gameInfoPanel);
+                                rightPanel.revalidate();
+                                rightPanel.repaint();
+                            });
 
                             // Añadir el botón de jugar al panel de información del juego
                             gameInfoPanel.add(playButton, BorderLayout.CENTER);
@@ -637,6 +628,7 @@ public class LibraryController {
                             rightPanel.revalidate();
                             rightPanel.repaint();
                         }
+
                     });
 
                     // Refresh the left panel
@@ -667,8 +659,7 @@ public class LibraryController {
                     addButton.setFont(new Font("Helvetica", Font.PLAIN, 25));
                 }
             });
-<<<<<<< HEAD
-=======
+
             leftPanel.revalidate();
             leftPanel.repaint();
 
@@ -1097,7 +1088,6 @@ public class LibraryController {
                     addButton.setFont(new Font("Helvetica", Font.PLAIN, 25));
                 }
             });
->>>>>>> ana
         }
     }
 
