@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0c57a3d6-f589-42ed-af0f-91499e053460" name="Changes" comment="LibraryController Update">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/launcher/LibraryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/launcher/LibraryController.java" afterDir="false" />
-    </list>
+    <list default="true" id="0c57a3d6-f589-42ed-af0f-91499e053460" name="Changes" comment="LibraryController Update2" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -145,7 +142,7 @@
       <workItem from="1716992168896" duration="92000" />
       <workItem from="1716998834814" duration="918000" />
       <workItem from="1716999774495" duration="1884000" />
-      <workItem from="1717002481727" duration="2398000" />
+      <workItem from="1717002481727" duration="2428000" />
     </task>
     <task id="LOCAL-00001" summary="cambios por arreglos en la rama ana">
       <option name="closed" value="true" />
@@ -243,7 +240,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716992229359</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="LibraryController Update2">
+      <option name="closed" value="true" />
+      <created>1717011957070</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1717011957070</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -275,6 +280,7 @@
     <MESSAGE value="xml update" />
     <MESSAGE value="play rounded" />
     <MESSAGE value="LibraryController Update" />
-    <option name="LAST_COMMIT_MESSAGE" value="LibraryController Update" />
+    <MESSAGE value="LibraryController Update2" />
+    <option name="LAST_COMMIT_MESSAGE" value="LibraryController Update2" />
   </component>
 </project>
