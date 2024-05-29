@@ -30,7 +30,7 @@ public class LibraryController {
      */
     public LibraryController() {
         JFrame frame = new JFrame();
-        frame.setSize(2560, 1600);
+        frame.setSize(2360, 1400);
         frame.setResizable(false);
         JPanel panel = new JPanel(new BorderLayout());
         JPanel leftPanel = new JPanel();
@@ -688,9 +688,10 @@ public class LibraryController {
                                 // Add the game information panel to the main panel
                                 rightPanel.add(gameInfoPanel);
 
-                                // Refresh the main panel
-                                rightPanel.revalidate();
-                                rightPanel.repaint();
+                                // Refresh the right panela
+                                leftPanel.revalidate();
+                                leftPanel.repaint();
+
                             }
                         });
 
