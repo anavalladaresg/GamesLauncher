@@ -232,7 +232,7 @@ public class LibraryController {
 
 
                     // Crear el botón de jugar con tamaño personalizado
-                    JButton playButton = new JButton("Play"){
+                    JButton playButton = new JButton("Play") {
                         @Override
                         protected void paintComponent(Graphics g) {
                             if (!isOpaque() && getBorder() instanceof RoundedBorder) {
@@ -639,7 +639,7 @@ public class LibraryController {
                                 gameInfoPanel.add(gameCoverImageLabel, BorderLayout.NORTH);
 
                                 // Crear el botón de jugar
-                                JButton playButton = new JButton("Play"){
+                                JButton playButton = new JButton("Play") {
                                     @Override
                                     protected void paintComponent(Graphics g) {
                                         if (!isOpaque() && getBorder() instanceof RoundedBorder) {
