@@ -30,7 +30,7 @@ public class LibraryController {
      */
     public LibraryController() {
         JFrame frame = new JFrame();
-        frame.setSize(2560, 1600 );
+        frame.setSize(2560, 1600);
         frame.setResizable(false);
         JPanel panel = new JPanel(new BorderLayout());
         JPanel leftPanel = new JPanel();
@@ -51,7 +51,6 @@ public class LibraryController {
         panel.setBackground(new Color(224, 224, 224, 255));
         leftPanel.setBackground(SignInController.getPurple());
         leftPanel.setPreferredSize(new Dimension(350, 100));
-        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         panel.add(leftPanel, BorderLayout.WEST);
         panel.add(rightPanel, BorderLayout.CENTER);
@@ -131,6 +130,7 @@ public class LibraryController {
             deleteButton.setBackground(SignInController.getPurple());
             deleteButton.setFocusPainted(false);
             deleteButton.setBorderPainted(false);
+
             // Añadir listener para el botón de eliminar
             deleteButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
@@ -232,15 +232,26 @@ public class LibraryController {
 
 
                     // Crear el botón de jugar con tamaño personalizado
-                    JButton playButton = new JButton("Play");
+                    JButton playButton = new JButton("Play"){
+                        @Override
+                        protected void paintComponent(Graphics g) {
+                            if (!isOpaque() && getBorder() instanceof RoundedBorder) {
+                                Graphics2D g2 = (Graphics2D) g.create();
+                                g2.setPaint(getBackground());
+                                g2.fill(((RoundedBorder) getBorder()).getBorderShape(0, 0, getWidth() - 1, getHeight() - 1));
+                                g2.dispose();
+                            }
+                            super.paintComponent(g);
+                        }
+                    };
+                    playButton.setBounds(115, 330, 150, 35);
+                    playButton.setOpaque(false);
+                    playButton.setBackground(SignInController.getPurple());
                     playButton.setFont(new Font("Helvetica", Font.BOLD, 14));
                     playButton.setForeground(Color.WHITE);
-                    playButton.setLayout(null);
-                    playButton.setBounds(50, 50, 100, 50);
-                    playButton.setBackground(new Color(80, 65, 165));
                     playButton.setBorder(new RoundedBorder(Color.WHITE, 10));
-                    playButton.setPreferredSize(new Dimension(200, 100));
-                    playButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+                    playButton.setContentAreaFilled(true);
+                    rightPanel.add(playButton);
 
                     gameInfoPanel.add(Box.createVerticalStrut(10)); // Espacio entre imagen y botón
                     gameInfoPanel.add(playButton);
@@ -628,15 +639,27 @@ public class LibraryController {
                                 gameInfoPanel.add(gameCoverImageLabel, BorderLayout.NORTH);
 
                                 // Crear el botón de jugar
-                                JButton playButton = new JButton("Play");
-                                playButton.setFont(new Font("Helvetica", Font.BOLD, 20));
-                                playButton.setForeground(Color.WHITE);
-                                playButton.setLayout(null);
-                                playButton.setBounds(50, 50, 100, 50);
-                                playButton.setBackground(new Color(80, 65, 165));
-                                playButton.setBorder(new RoundedBorder(Color.WHITE, 10));
+                                JButton playButton = new JButton("Play"){
+                                    @Override
+                                    protected void paintComponent(Graphics g) {
+                                        if (!isOpaque() && getBorder() instanceof RoundedBorder) {
+                                            Graphics2D g2 = (Graphics2D) g.create();
+                                            g2.setPaint(getBackground());
+                                            g2.fill(((RoundedBorder) getBorder()).getBorderShape(0, 0, getWidth() - 1, getHeight() - 1));
+                                            g2.dispose();
+                                        }
+                                        super.paintComponent(g);
+                                    }
+                                };
+                                playButton.setBounds(115, 330, 150, 35);
                                 playButton.setOpaque(false);
-                                playButton.setPreferredSize(new Dimension(200, 100));
+                                playButton.setBackground(SignInController.getPurple());
+                                playButton.setFont(new Font("Helvetica", Font.BOLD, 14));
+                                playButton.setForeground(Color.WHITE);
+                                playButton.setBorder(new RoundedBorder(Color.WHITE, 10));
+                                playButton.setContentAreaFilled(true);
+                                rightPanel.add(playButton);
+
 
                                 playButton.addActionListener(new ActionListener() {
                                     public void actionPerformed(ActionEvent e) {
