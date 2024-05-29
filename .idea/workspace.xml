@@ -4,7 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0c57a3d6-f589-42ed-af0f-91499e053460" name="Changes" comment="update all" />
+    <list default="true" id="0c57a3d6-f589-42ed-af0f-91499e053460" name="Changes" comment="xml update">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/launcher/LibraryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/launcher/LibraryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/launcher/RoundedBorder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/launcher/RoundedBorder_SignInUp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/launcher/SignInController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/launcher/SignInController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/launcher/SignUpController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/launcher/SignUpController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/launcher/UIController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/launcher/UIController.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -131,6 +138,10 @@
       <workItem from="1716881524977" duration="2799000" />
       <workItem from="1716887355503" duration="937000" />
       <workItem from="1716888304442" duration="1350000" />
+      <workItem from="1716911164945" duration="457000" />
+      <workItem from="1716915219580" duration="193000" />
+      <workItem from="1716970499940" duration="2142000" />
+      <workItem from="1716972723956" duration="1619000" />
     </task>
     <task id="LOCAL-00001" summary="cambios por arreglos en la rama ana">
       <option name="closed" value="true" />
@@ -196,7 +207,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716889797582</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="xml update">
+      <option name="closed" value="true" />
+      <created>1716911208855</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1716911208855</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -214,6 +233,7 @@
     <MESSAGE value="solucionados problemas" />
     <MESSAGE value="cambios de no me acuerdo que" />
     <MESSAGE value="update all" />
-    <option name="LAST_COMMIT_MESSAGE" value="update all" />
+    <MESSAGE value="xml update" />
+    <option name="LAST_COMMIT_MESSAGE" value="xml update" />
   </component>
 </project>
