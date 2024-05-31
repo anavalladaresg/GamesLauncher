@@ -223,14 +223,23 @@ public class LibraryController {
 
                     // Panel principal de la información del juego
                     JPanel gameInfoPanel = new JPanel(new BorderLayout()) {
+                        private ImageIcon gifBackground;
+
+                        {
+                            try {
+                                // Cargar la imagen GIF como ImageIcon
+                                gifBackground = new ImageIcon("src/com/images/fondo.gif");
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+
                         @Override
                         protected void paintComponent(Graphics g) {
                             super.paintComponent(g);
-                            try {
-                                Image img = ImageIO.read(new File("src/com/images/fondo.gif"));
-                                g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), this);
-                            } catch (IOException ex) {
-                                ex.printStackTrace();
+                            if (gifBackground != null) {
+                                // Dibujar el GIF animado como fondo
+                                gifBackground.paintIcon(this, g, 0, 0);
                             }
                         }
                     };
