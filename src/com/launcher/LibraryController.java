@@ -74,7 +74,6 @@ public class LibraryController {
         addButton.setForeground(Color.WHITE);
         addButton.setOpaque(false);
         addButton.setBackground(SignInController.getPurple());
-
         Border whiteLineBorder = new RoundedBorder(SignInController.getPurple(), 10);
         addButton.setBorder(new CompoundBorder(whiteLineBorder, new EmptyBorder(0, 20, 0, 0))); // Remove border
 
@@ -224,7 +223,7 @@ public class LibraryController {
                     gameInfoPanel.setLayout(new BoxLayout(gameInfoPanel, BoxLayout.Y_AXIS));
 
                     ImageIcon gameCoverImageIcon = new ImageIcon(game.getGameCoverImage());
-                    Image gameCoverImage = gameCoverImageIcon.getImage().getScaledInstance(panel.getWidth() - 300, 295, Image.SCALE_SMOOTH);
+                    Image gameCoverImage = gameCoverImageIcon.getImage().getScaledInstance(panel.getWidth() - 300, 350, Image.SCALE_SMOOTH);
                     ImageIcon scaledGameCoverImageIcon = new ImageIcon(gameCoverImage);
                     JLabel gameCoverImageLabel = new JLabel(scaledGameCoverImageIcon, SwingConstants.CENTER);
                     gameCoverImageLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
