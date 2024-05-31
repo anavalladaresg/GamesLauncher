@@ -5,9 +5,7 @@ import database.DatabaseHandler;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.border.CompoundBorder;
-import javax.swing.border.EmptyBorder;
+import javax.swing.border.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
@@ -271,6 +269,7 @@ public class LibraryController {
                     playButton.setFont(new Font("Helvetica", Font.BOLD, 20));
                     playButton.setForeground(Color.WHITE);
                     playButton.setPreferredSize(new Dimension(150, 75));
+                    playButton.setBorder(new RoundedBorder(SignInController.getPurple(), 10));
                     playButton.setBorder(new RoundedBorder(Color.WHITE, 10));
                     playButton.setContentAreaFilled(true);
                     playButton.setOpaque(false);

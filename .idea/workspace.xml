@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0c57a3d6-f589-42ed-af0f-91499e053460" name="Changes" comment="imagen de fondo añadida pero no se mueve el gif">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="0c57a3d6-f589-42ed-af0f-91499e053460" name="Changes" comment="arreglado que se mueva el gif de fondo">
       <change beforePath="$PROJECT_DIR$/src/com/launcher/LibraryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/launcher/LibraryController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -228,7 +227,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717162076208</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="arreglado que se mueva el gif de fondo">
+      <option name="closed" value="true" />
+      <created>1717163104131</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1717163104131</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -260,6 +267,7 @@
     <MESSAGE value="aumentado tamaño cover image" />
     <MESSAGE value="modificado boton game" />
     <MESSAGE value="imagen de fondo añadida pero no se mueve el gif" />
-    <option name="LAST_COMMIT_MESSAGE" value="imagen de fondo añadida pero no se mueve el gif" />
+    <MESSAGE value="arreglado que se mueva el gif de fondo" />
+    <option name="LAST_COMMIT_MESSAGE" value="arreglado que se mueva el gif de fondo" />
   </component>
 </project>
