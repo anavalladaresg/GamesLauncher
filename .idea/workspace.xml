@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0c57a3d6-f589-42ed-af0f-91499e053460" name="Changes" comment="LibraryController Update2" />
+    <list default="true" id="0c57a3d6-f589-42ed-af0f-91499e053460" name="Changes" comment="arreglado que se mueva el gif de fondo">
+      <change beforePath="$PROJECT_DIR$/src/com/launcher/LibraryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/launcher/LibraryController.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -18,15 +20,16 @@
     </option>
   </component>
   <component name="Git.Merge.Settings">
-    <option name="BRANCH" value="ana" />
+    <option name="BRANCH" value="anxo" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="ana" />
+        <entry key="$PROJECT_DIR$" value="fusion" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -34,14 +37,12 @@
     &quot;assignee&quot;: &quot;anavalladaresg&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">
-    <option name="selectedUrlAndAccountId">
-      <UrlAndAccount>
-        <option name="accountId" value="0626986c-63f3-498e-9f9d-30624baa0019" />
-        <option name="url" value="https://github.com/anavalladaresg/GamesLauncher.git" />
-      </UrlAndAccount>
-    </option>
-  </component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/anavalladaresg/GamesLauncher.git&quot;,
+    &quot;accountId&quot;: &quot;57dde938-ead0-4015-82fe-df167379acff&quot;
+  }
+}</component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -58,11 +59,11 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Application.AspectRatioFrame.executor": "Run",
-    "Application.Main.executor": "Debug",
+    "Application.AnimatedGifPanel.executor": "Run",
+    "Application.Main.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "anxo",
+    "git-widget-placeholder": "ana",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/Users/anavalladares/Desktop/GamesLauncher",
     "node.js.detected.package.eslint": "true",
@@ -73,7 +74,6 @@
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.16992188",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -83,8 +83,8 @@
   }
 }]]></component>
   <component name="RunManager" selected="Application.Main">
-    <configuration name="AspectRatioFrame" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.launcher.AspectRatioFrame" />
+    <configuration name="AnimatedGifPanel" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.launcher.AnimatedGifPanel" />
       <module name="GamesLauncher" />
       <extension name="coverage">
         <pattern>
@@ -106,7 +106,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
-        <item itemvalue="Application.AspectRatioFrame" />
+        <item itemvalue="Application.AnimatedGifPanel" />
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -127,22 +130,6 @@
       <updated>1716281563269</updated>
       <workItem from="1716281564307" duration="4257000" />
       <workItem from="1716801231051" duration="1627000" />
-      <workItem from="1716878358013" duration="2353000" />
-      <workItem from="1716881524977" duration="2799000" />
-      <workItem from="1716887355503" duration="937000" />
-      <workItem from="1716888304442" duration="1350000" />
-      <workItem from="1716911164945" duration="457000" />
-      <workItem from="1716915219580" duration="193000" />
-      <workItem from="1716970499940" duration="2142000" />
-      <workItem from="1716972723956" duration="2389000" />
-      <workItem from="1716975132714" duration="113000" />
-      <workItem from="1716975256866" duration="1659000" />
-      <workItem from="1716977029623" duration="78000" />
-      <workItem from="1716978249272" duration="92000" />
-      <workItem from="1716992168896" duration="92000" />
-      <workItem from="1716998834814" duration="918000" />
-      <workItem from="1716999774495" duration="1884000" />
-      <workItem from="1717002481727" duration="2428000" />
     </task>
     <task id="LOCAL-00001" summary="cambios por arreglos en la rama ana">
       <option name="closed" value="true" />
@@ -200,53 +187,53 @@
       <option name="project" value="LOCAL" />
       <updated>1716829177611</updated>
     </task>
-    <task id="LOCAL-00008" summary="update all">
+    <task id="LOCAL-00008" summary="añadido campo username para que cada usuario tenga sus propios juegos">
       <option name="closed" value="true" />
-      <created>1716889797582</created>
+      <created>1717145670099</created>
       <option name="number" value="00008" />
       <option name="presentableId" value="LOCAL-00008" />
       <option name="project" value="LOCAL" />
-      <updated>1716889797582</updated>
+      <updated>1717145670099</updated>
     </task>
-    <task id="LOCAL-00009" summary="xml update">
+    <task id="LOCAL-00009" summary="aumentado tamaño cover image">
       <option name="closed" value="true" />
-      <created>1716911208855</created>
+      <created>1717146866766</created>
       <option name="number" value="00009" />
       <option name="presentableId" value="LOCAL-00009" />
       <option name="project" value="LOCAL" />
-      <updated>1716911208855</updated>
+      <updated>1717146866766</updated>
     </task>
-    <task id="LOCAL-00010" summary="xml update">
+    <task id="LOCAL-00010" summary="modificado boton game">
       <option name="closed" value="true" />
-      <created>1716974558630</created>
+      <created>1717151224543</created>
       <option name="number" value="00010" />
       <option name="presentableId" value="LOCAL-00010" />
       <option name="project" value="LOCAL" />
-      <updated>1716974558631</updated>
+      <updated>1717151224543</updated>
     </task>
-    <task id="LOCAL-00011" summary="play rounded">
+    <task id="LOCAL-00011" summary="imagen de fondo añadida pero no se mueve el gif">
       <option name="closed" value="true" />
-      <created>1716974570093</created>
+      <created>1717162022970</created>
       <option name="number" value="00011" />
       <option name="presentableId" value="LOCAL-00011" />
       <option name="project" value="LOCAL" />
-      <updated>1716974570093</updated>
+      <updated>1717162022970</updated>
     </task>
-    <task id="LOCAL-00012" summary="LibraryController Update">
+    <task id="LOCAL-00012" summary="imagen de fondo añadida pero no se mueve el gif">
       <option name="closed" value="true" />
-      <created>1716992229359</created>
+      <created>1717162076208</created>
       <option name="number" value="00012" />
       <option name="presentableId" value="LOCAL-00012" />
       <option name="project" value="LOCAL" />
-      <updated>1716992229359</updated>
+      <updated>1717162076208</updated>
     </task>
-    <task id="LOCAL-00013" summary="LibraryController Update2">
+    <task id="LOCAL-00013" summary="arreglado que se mueva el gif de fondo">
       <option name="closed" value="true" />
-      <created>1717011957070</created>
+      <created>1717163104131</created>
       <option name="number" value="00013" />
       <option name="presentableId" value="LOCAL-00013" />
       <option name="project" value="LOCAL" />
-      <updated>1717011957070</updated>
+      <updated>1717163104131</updated>
     </task>
     <option name="localTasksCounter" value="14" />
     <servers />
@@ -276,11 +263,11 @@
     <MESSAGE value="edit img" />
     <MESSAGE value="solucionados problemas" />
     <MESSAGE value="cambios de no me acuerdo que" />
-    <MESSAGE value="update all" />
-    <MESSAGE value="xml update" />
-    <MESSAGE value="play rounded" />
-    <MESSAGE value="LibraryController Update" />
-    <MESSAGE value="LibraryController Update2" />
-    <option name="LAST_COMMIT_MESSAGE" value="LibraryController Update2" />
+    <MESSAGE value="añadido campo username para que cada usuario tenga sus propios juegos" />
+    <MESSAGE value="aumentado tamaño cover image" />
+    <MESSAGE value="modificado boton game" />
+    <MESSAGE value="imagen de fondo añadida pero no se mueve el gif" />
+    <MESSAGE value="arreglado que se mueva el gif de fondo" />
+    <option name="LAST_COMMIT_MESSAGE" value="arreglado que se mueva el gif de fondo" />
   </component>
 </project>

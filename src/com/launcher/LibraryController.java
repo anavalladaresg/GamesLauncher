@@ -3,10 +3,9 @@ package com.launcher;
 import com.games.Game;
 import database.DatabaseHandler;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.border.CompoundBorder;
-import javax.swing.border.EmptyBorder;
+import javax.swing.border.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
@@ -23,21 +22,21 @@ import java.util.ArrayList;
 
 public class LibraryController {
     DatabaseHandler db = new DatabaseHandler();
+    String userName;
 
     /**
      * Constructor for the LibraryController class.
      * It initializes the UI components and sets up the library view.
      */
-    public LibraryController() {
+    public LibraryController(String userName) {
+        this.userName = userName;
         JFrame frame = new JFrame();
-        frame.setSize(2360, 1400);
-        frame.setResizable(false);
         JPanel panel = new JPanel(new BorderLayout());
         JPanel leftPanel = new JPanel();
         JPanel rightPanel = new JPanel();
         leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
         rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.Y_AXIS));
-        ArrayList<Game> games = (ArrayList<Game>) db.getGames();
+        ArrayList<Game> games = (ArrayList<Game>) db.getGames(this.userName);
 
 
         // Load the GIF
@@ -45,12 +44,14 @@ public class LibraryController {
         Image image = imageIcon.getImage().getScaledInstance(300, 250, Image.SCALE_DEFAULT);
         ImageIcon scaledImageIcon = new ImageIcon(image);
         JLabel imageLabel = new JLabel(scaledImageIcon);
+        imageLabel.setBorder(new EmptyBorder(0, 20, 0, 0));
         leftPanel.add(imageLabel);
 
         frame.setTitle("Game Library");
         panel.setBackground(new Color(224, 224, 224, 255));
         leftPanel.setBackground(SignInController.getPurple());
         leftPanel.setPreferredSize(new Dimension(350, 100));
+        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         panel.add(leftPanel, BorderLayout.WEST);
         panel.add(rightPanel, BorderLayout.CENTER);
@@ -73,7 +74,6 @@ public class LibraryController {
         addButton.setForeground(Color.WHITE);
         addButton.setOpaque(false);
         addButton.setBackground(SignInController.getPurple());
-
         Border whiteLineBorder = new RoundedBorder(SignInController.getPurple(), 10);
         addButton.setBorder(new CompoundBorder(whiteLineBorder, new EmptyBorder(0, 20, 0, 0))); // Remove border
 
@@ -130,7 +130,6 @@ public class LibraryController {
             deleteButton.setBackground(SignInController.getPurple());
             deleteButton.setFocusPainted(false);
             deleteButton.setBorderPainted(false);
-
             // Añadir listener para el botón de eliminar
             deleteButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
@@ -140,7 +139,7 @@ public class LibraryController {
                     leftPanel.repaint();
 
                     // Eliminar el juego de la base de datos
-                    db.deleteGame(game.getGameName());
+                    db.deleteGame(game.getGameName(), userName);
                 }
             });
             gameItem.add(deleteButton);
@@ -152,7 +151,7 @@ public class LibraryController {
             auxEdit = auxEdit.getScaledInstance(30, 30, Image.SCALE_SMOOTH);
             editIcon = new ImageIcon(auxEdit);
 
-            // Crear botón de edición
+// Crear botón de edición
             JButton editButton = new JButton();
             editButton.setIcon(editIcon); // Establecer el icono en el botón
             editButton.setPreferredSize(new Dimension(40, 30));
@@ -162,7 +161,7 @@ public class LibraryController {
             editButton.setFocusPainted(false);
             editButton.setBorderPainted(false);
 
-            // Añadir listener para el botón de edición
+// Añadir listener para el botón de edición
             editButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     // 1. Mostrar el formulario de edición (puedes usar un JOptionPane con varios campos de entrada)
@@ -202,7 +201,7 @@ public class LibraryController {
                 }
             });
 
-            // Añadir el botón de edición al panel del juego
+// Añadir el botón de edición al panel del juego
             gameItem.add(editButton);
 
             gameItem.addMouseListener(new MouseAdapter() {
@@ -220,18 +219,39 @@ public class LibraryController {
                     rightPanel.revalidate();
                     rightPanel.repaint();
 
-                    JPanel gameInfoPanel = new JPanel();
-                    gameInfoPanel.setLayout(new BoxLayout(gameInfoPanel, BoxLayout.Y_AXIS));
+                    // Panel principal de la información del juego
+                    JPanel gameInfoPanel = new JPanel(new BorderLayout()) {
+                        private ImageIcon gifBackground;
 
+                        {
+                            try {
+                                // Cargar la imagen GIF como ImageIcon
+                                gifBackground = new ImageIcon("src/com/images/fondo.gif");
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+
+                        @Override
+                        protected void paintComponent(Graphics g) {
+                            super.paintComponent(g);
+                            if (gifBackground != null) {
+                                // Dibujar el GIF animado como fondo
+                                gifBackground.paintIcon(this, g, 0, 0);
+                            }
+                        }
+                    };
+                    gameInfoPanel.setPreferredSize(new Dimension(panel.getWidth() - leftPanel.getWidth(), panel.getHeight()));
+                    gameInfoPanel.setBackground(new Color(224, 224, 224, 255));
+
+                    // Añadir la imagen de portada del juego en la parte superior
                     ImageIcon gameCoverImageIcon = new ImageIcon(game.getGameCoverImage());
-                    Image gameCoverImage = gameCoverImageIcon.getImage().getScaledInstance(panel.getWidth() - 300, 295, Image.SCALE_SMOOTH);
+                    Image gameCoverImage = gameCoverImageIcon.getImage().getScaledInstance(panel.getWidth() - leftPanel.getWidth(), 350, Image.SCALE_SMOOTH);
                     ImageIcon scaledGameCoverImageIcon = new ImageIcon(gameCoverImage);
                     JLabel gameCoverImageLabel = new JLabel(scaledGameCoverImageIcon, SwingConstants.CENTER);
-                    gameCoverImageLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-                    gameInfoPanel.add(gameCoverImageLabel);
+                    gameInfoPanel.add(gameCoverImageLabel, BorderLayout.NORTH);
 
-
-                    // Crear el botón de jugar con tamaño personalizado
+                    // Crear el botón de jugar
                     JButton playButton = new JButton("Play") {
                         @Override
                         protected void paintComponent(Graphics g) {
@@ -245,30 +265,41 @@ public class LibraryController {
                         }
                     };
                     playButton.setBounds(115, 330, 150, 35);
-                    playButton.setOpaque(false);
                     playButton.setBackground(SignInController.getPurple());
-                    playButton.setFont(new Font("Helvetica", Font.BOLD, 14));
+                    playButton.setFont(new Font("Helvetica", Font.BOLD, 20));
                     playButton.setForeground(Color.WHITE);
+                    playButton.setPreferredSize(new Dimension(150, 75));
+                    playButton.setBorder(new RoundedBorder(SignInController.getPurple(), 10));
                     playButton.setBorder(new RoundedBorder(Color.WHITE, 10));
                     playButton.setContentAreaFilled(true);
-                    rightPanel.add(playButton);
+                    playButton.setOpaque(false);
+                    gameInfoPanel.add(playButton, BorderLayout.CENTER);
 
-                    gameInfoPanel.add(Box.createVerticalStrut(10)); // Espacio entre imagen y botón
-                    gameInfoPanel.add(playButton);
-
-                    playButton.addActionListener(e1 -> {
-                        try {
-                            Runtime.getRuntime().exec(game.getExeLocation(), null, new File(game.getFolderLocation()));
-                        } catch (IOException ex) {
-                            ex.printStackTrace();
+                    playButton.addActionListener(new ActionListener() {
+                        public void actionPerformed(ActionEvent e) {
+                            try {
+                                Runtime.getRuntime().exec(game.getExeLocation(), null, new File(game.getFolderLocation()));
+                            } catch (IOException ex) {
+                                ex.printStackTrace();
+                            }
                         }
                     });
 
-                    JLabel gameDetailsLabel = new JLabel("<html>Name: " + game.getGameName() + "<br>Description: " + game.getGameDescription() + "<br>Genre: " + game.getGameGenre() + "</html>");
-                    gameDetailsLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+                    // Envolver el botón en un panel para centrarlo y mantener su tamaño
+                    JPanel playButtonPanel = new JPanel(new GridBagLayout());
+                    playButtonPanel.setOpaque(false); // Hacer que el panel sea transparente
+                    playButtonPanel.add(playButton);
 
-                    gameInfoPanel.add(Box.createVerticalStrut(10)); // Espacio entre botón y descripción
-                    gameInfoPanel.add(gameDetailsLabel);
+                    gameInfoPanel.add(playButtonPanel, BorderLayout.CENTER);
+
+                    JLabel gameDetailsLabel = new JLabel("<html>Name: " + game.getGameName() + "<br><br>Description: " + game.getGameDescription() + "<br><br>Genre: " + game.getGameGenre() + "</html>");
+                    gameDetailsLabel.setForeground(Color.WHITE);
+                    gameDetailsLabel.setFont(new Font("Helvetica", Font.PLAIN, 18));
+                    gameInfoPanel.add(gameDetailsLabel, BorderLayout.SOUTH);
+
+                    // Añadir el panel de información del juego al panel principal
+                    rightPanel.add(gameInfoPanel);
+
 
                     rightPanel.add(gameInfoPanel);
                     rightPanel.revalidate();
@@ -586,7 +617,7 @@ public class LibraryController {
                         newGame.setExeLocation(gameExeField.getText());
                         newGame.setFolderLocation(gameFolderField.getText());
 
-                        db.addGame(newGame);
+                        db.addGame(newGame, userName);
 
                         // Create a new game item panel
                         JPanel gameItem2 = new JPanel();
@@ -606,8 +637,6 @@ public class LibraryController {
 
                         // Add the new game item panel to the left panel
                         leftPanel.add(gameItem);
-                        leftPanel.revalidate();
-                        leftPanel.repaint();
 
                         gameItem.addMouseListener(new MouseAdapter() {
                             public void mouseEntered(MouseEvent e) {
@@ -626,19 +655,18 @@ public class LibraryController {
                                 rightPanel.repaint();
 
                                 // Create a new panel for game information
+                                // Panel principal de la información del juego
                                 JPanel gameInfoPanel = new JPanel(new BorderLayout());
                                 gameInfoPanel.setPreferredSize(new Dimension(panel.getWidth() - leftPanel.getWidth(), panel.getHeight()));
                                 gameInfoPanel.setBackground(new Color(224, 224, 224, 255));
 
-                                // Add game cover image at the top
+// Añadir la imagen de portada del juego en la parte superior
                                 ImageIcon gameCoverImageIcon = new ImageIcon(newGame.getGameCoverImage());
-                                gameCoverImageIcon.setImage(gameCoverImageIcon.getImage().getScaledInstance(panel.getWidth() - leftPanel.getWidth(), 1500, Image.SCALE_SMOOTH));
-                                Image gameCoverImage = gameCoverImageIcon.getImage();
+                                Image gameCoverImage = gameCoverImageIcon.getImage().getScaledInstance(panel.getWidth() - leftPanel.getWidth(), 350, Image.SCALE_SMOOTH);
                                 ImageIcon scaledGameCoverImageIcon = new ImageIcon(gameCoverImage);
                                 JLabel gameCoverImageLabel = new JLabel(scaledGameCoverImageIcon, SwingConstants.CENTER);
                                 gameInfoPanel.add(gameCoverImageLabel, BorderLayout.NORTH);
 
-                                // Crear el botón de jugar
                                 JButton playButton = new JButton("Play") {
                                     @Override
                                     protected void paintComponent(Graphics g) {
@@ -652,14 +680,15 @@ public class LibraryController {
                                     }
                                 };
                                 playButton.setBounds(115, 330, 150, 35);
-                                playButton.setOpaque(false);
                                 playButton.setBackground(SignInController.getPurple());
                                 playButton.setFont(new Font("Helvetica", Font.BOLD, 14));
                                 playButton.setForeground(Color.WHITE);
+                                playButton.setPreferredSize(new Dimension(150, 75)); // Cambia el tamaño a 150x75
+                                playButton.setBackground(new Color(80, 65, 165));
                                 playButton.setBorder(new RoundedBorder(Color.WHITE, 10));
                                 playButton.setContentAreaFilled(true);
-                                rightPanel.add(playButton);
-
+                                playButton.setOpaque(false);
+                                gameInfoPanel.add(playButton, BorderLayout.CENTER);
 
                                 playButton.addActionListener(new ActionListener() {
                                     public void actionPerformed(ActionEvent e) {
@@ -673,25 +702,16 @@ public class LibraryController {
 
                                 gameInfoPanel.add(playButton, BorderLayout.CENTER);
 
-                                JLabel gameDetailsLabel = new JLabel("<html><u>Name: </u> " + newGame.getGameName() + "<br><u>Description: </u> " + newGame.getGameDescription() + "<br><u>Genre: </u>" + newGame.getGameGenre() + "</html>");
+                                JLabel gameDetailsLabel = new JLabel("<html>Name: " + newGame.getGameName() + "<br>Description: " + newGame.getGameDescription() + "<br>Genre: " + newGame.getGameGenre() + "</html>");
                                 gameInfoPanel.add(gameDetailsLabel, BorderLayout.SOUTH);
-                                gameDetailsLabel.setFont(new Font("Helvetica", Font.PLAIN, 16));
-                                gameDetailsLabel.setForeground(Color.BLACK);
-                                gameDetailsLabel.setBorder(new EmptyBorder(0, 20, 20, 20));
-                                gameDetailsLabel.setBackground(new Color(224, 224, 224, 255));
-                                gameDetailsLabel.setOpaque(true);
-                                gameDetailsLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-                                gameDetailsLabel.setHorizontalAlignment(SwingConstants.CENTER);
-                                gameDetailsLabel.setVerticalAlignment(SwingConstants.CENTER);
-                                gameDetailsLabel.setPreferredSize(new Dimension(panel.getWidth() - leftPanel.getWidth(), 100));
 
-                                // Add the game information panel to the main panel
+// Añadir el panel de información del juego al panel principal
                                 rightPanel.add(gameInfoPanel);
 
-                                // Refresh the right panela
-                                leftPanel.revalidate();
-                                leftPanel.repaint();
 
+                                // Refresh the main panel
+                                rightPanel.revalidate();
+                                rightPanel.repaint();
                             }
                         });
 

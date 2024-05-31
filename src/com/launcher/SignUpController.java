@@ -299,7 +299,7 @@ public class SignUpController {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 frame.dispose(); // Close the current frame
-                new LibraryController(); // Create a new instance of MainMenuController
+                new LibraryController(currentUser.getUserName()); // Create a new instance of MainMenuController
             }
         });
     }
