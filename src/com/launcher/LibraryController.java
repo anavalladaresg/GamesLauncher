@@ -3,6 +3,7 @@ package com.launcher;
 import com.games.Game;
 import database.DatabaseHandler;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
@@ -221,7 +222,18 @@ public class LibraryController {
                     rightPanel.repaint();
 
                     // Panel principal de la información del juego
-                    JPanel gameInfoPanel = new JPanel(new BorderLayout());
+                    JPanel gameInfoPanel = new JPanel(new BorderLayout()) {
+                        @Override
+                        protected void paintComponent(Graphics g) {
+                            super.paintComponent(g);
+                            try {
+                                Image img = ImageIO.read(new File("src/com/images/fondo.gif"));
+                                g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), this);
+                            } catch (IOException ex) {
+                                ex.printStackTrace();
+                            }
+                        }
+                    };
                     gameInfoPanel.setPreferredSize(new Dimension(panel.getWidth() - leftPanel.getWidth(), panel.getHeight()));
                     gameInfoPanel.setBackground(new Color(224, 224, 224, 255));
 
@@ -233,7 +245,7 @@ public class LibraryController {
                     gameInfoPanel.add(gameCoverImageLabel, BorderLayout.NORTH);
 
                     // Crear el botón de jugar
-                    JButton playButton = new JButton("Play"){
+                    JButton playButton = new JButton("Play") {
                         @Override
                         protected void paintComponent(Graphics g) {
                             if (!isOpaque() && getBorder() instanceof RoundedBorder) {
@@ -247,10 +259,9 @@ public class LibraryController {
                     };
                     playButton.setBounds(115, 330, 150, 35);
                     playButton.setBackground(SignInController.getPurple());
-                    playButton.setFont(new Font("Helvetica", Font.BOLD, 14));
+                    playButton.setFont(new Font("Helvetica", Font.BOLD, 20));
                     playButton.setForeground(Color.WHITE);
-                    playButton.setPreferredSize(new Dimension(100, 50)); // Cambia el tamaño a 150x75
-                    playButton.setBackground(new Color(80, 65, 165));
+                    playButton.setPreferredSize(new Dimension(150, 75));
                     playButton.setBorder(new RoundedBorder(Color.WHITE, 10));
                     playButton.setContentAreaFilled(true);
                     playButton.setOpaque(false);
@@ -273,7 +284,9 @@ public class LibraryController {
 
                     gameInfoPanel.add(playButtonPanel, BorderLayout.CENTER);
 
-                    JLabel gameDetailsLabel = new JLabel("<html>Name: " + game.getGameName() + "<br>Description: " + game.getGameDescription() + "<br>Genre: " + game.getGameGenre() + "</html>");
+                    JLabel gameDetailsLabel = new JLabel("<html>Name: " + game.getGameName() + "<br><br>Description: " + game.getGameDescription() + "<br><br>Genre: " + game.getGameGenre() + "</html>");
+                    gameDetailsLabel.setForeground(Color.WHITE);
+                    gameDetailsLabel.setFont(new Font("Helvetica", Font.PLAIN, 18));
                     gameInfoPanel.add(gameDetailsLabel, BorderLayout.SOUTH);
 
                     // Añadir el panel de información del juego al panel principal
@@ -646,7 +659,7 @@ public class LibraryController {
                                 JLabel gameCoverImageLabel = new JLabel(scaledGameCoverImageIcon, SwingConstants.CENTER);
                                 gameInfoPanel.add(gameCoverImageLabel, BorderLayout.NORTH);
 
-                                JButton playButton = new JButton("Play"){
+                                JButton playButton = new JButton("Play") {
                                     @Override
                                     protected void paintComponent(Graphics g) {
                                         if (!isOpaque() && getBorder() instanceof RoundedBorder) {
@@ -686,7 +699,6 @@ public class LibraryController {
 
 // Añadir el panel de información del juego al panel principal
                                 rightPanel.add(gameInfoPanel);
-
 
 
                                 // Refresh the main panel
