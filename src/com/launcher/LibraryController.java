@@ -23,19 +23,21 @@ import java.util.ArrayList;
 
 public class LibraryController {
     DatabaseHandler db = new DatabaseHandler();
+    String userName;
 
     /**
      * Constructor for the LibraryController class.
      * It initializes the UI components and sets up the library view.
      */
-    public LibraryController() {
+    public LibraryController(String userName) {
+        this.userName = userName;
         JFrame frame = new JFrame();
         JPanel panel = new JPanel(new BorderLayout());
         JPanel leftPanel = new JPanel();
         JPanel rightPanel = new JPanel();
         leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
         rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.Y_AXIS));
-        ArrayList<Game> games = (ArrayList<Game>) db.getGames();
+        ArrayList<Game> games = (ArrayList<Game>) db.getGames(this.userName);
 
 
         // Load the GIF
@@ -138,7 +140,7 @@ public class LibraryController {
                     leftPanel.repaint();
 
                     // Eliminar el juego de la base de datos
-                    db.deleteGame(game.getGameName());
+                    db.deleteGame(game.getGameName(), userName);
                 }
             });
             gameItem.add(deleteButton);
@@ -573,7 +575,7 @@ public class LibraryController {
                         newGame.setExeLocation(gameExeField.getText());
                         newGame.setFolderLocation(gameFolderField.getText());
 
-                        db.addGame(newGame);
+                        db.addGame(newGame, userName);
 
                         // Create a new game item panel
                         JPanel gameItem2 = new JPanel();

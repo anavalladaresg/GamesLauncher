@@ -307,7 +307,7 @@ public class SignInController {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 frame.dispose();
-                new LibraryController();
+                new LibraryController(currentUser.getUserName());
             }
         });
     }
