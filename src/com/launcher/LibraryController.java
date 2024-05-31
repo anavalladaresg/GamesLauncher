@@ -45,6 +45,7 @@ public class LibraryController {
         Image image = imageIcon.getImage().getScaledInstance(300, 250, Image.SCALE_DEFAULT);
         ImageIcon scaledImageIcon = new ImageIcon(image);
         JLabel imageLabel = new JLabel(scaledImageIcon);
+        imageLabel.setBorder(new EmptyBorder(0, 20, 0, 0));
         leftPanel.add(imageLabel);
 
         frame.setTitle("Game Library");
@@ -219,44 +220,65 @@ public class LibraryController {
                     rightPanel.revalidate();
                     rightPanel.repaint();
 
-                    JPanel gameInfoPanel = new JPanel();
-                    gameInfoPanel.setLayout(new BoxLayout(gameInfoPanel, BoxLayout.Y_AXIS));
+                    // Panel principal de la información del juego
+                    JPanel gameInfoPanel = new JPanel(new BorderLayout());
+                    gameInfoPanel.setPreferredSize(new Dimension(panel.getWidth() - leftPanel.getWidth(), panel.getHeight()));
+                    gameInfoPanel.setBackground(new Color(224, 224, 224, 255));
 
+                    // Añadir la imagen de portada del juego en la parte superior
                     ImageIcon gameCoverImageIcon = new ImageIcon(game.getGameCoverImage());
-                    Image gameCoverImage = gameCoverImageIcon.getImage().getScaledInstance(panel.getWidth() - 300, 350, Image.SCALE_SMOOTH);
+                    Image gameCoverImage = gameCoverImageIcon.getImage().getScaledInstance(panel.getWidth() - leftPanel.getWidth(), 350, Image.SCALE_SMOOTH);
                     ImageIcon scaledGameCoverImageIcon = new ImageIcon(gameCoverImage);
                     JLabel gameCoverImageLabel = new JLabel(scaledGameCoverImageIcon, SwingConstants.CENTER);
-                    gameCoverImageLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-                    gameInfoPanel.add(gameCoverImageLabel);
+                    gameInfoPanel.add(gameCoverImageLabel, BorderLayout.NORTH);
 
-
-                    // Crear el botón de jugar con tamaño personalizado
-                    JButton playButton = new JButton("Play");
+                    // Crear el botón de jugar
+                    JButton playButton = new JButton("Play"){
+                        @Override
+                        protected void paintComponent(Graphics g) {
+                            if (!isOpaque() && getBorder() instanceof RoundedBorder) {
+                                Graphics2D g2 = (Graphics2D) g.create();
+                                g2.setPaint(getBackground());
+                                g2.fill(((RoundedBorder) getBorder()).getBorderShape(0, 0, getWidth() - 1, getHeight() - 1));
+                                g2.dispose();
+                            }
+                            super.paintComponent(g);
+                        }
+                    };
+                    playButton.setBounds(115, 330, 150, 35);
+                    playButton.setBackground(SignInController.getPurple());
                     playButton.setFont(new Font("Helvetica", Font.BOLD, 14));
                     playButton.setForeground(Color.WHITE);
-                    playButton.setLayout(null);
-                    playButton.setBounds(50, 50, 100, 50);
+                    playButton.setPreferredSize(new Dimension(100, 50)); // Cambia el tamaño a 150x75
                     playButton.setBackground(new Color(80, 65, 165));
                     playButton.setBorder(new RoundedBorder(Color.WHITE, 10));
-                    playButton.setPreferredSize(new Dimension(200, 100));
-                    playButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+                    playButton.setContentAreaFilled(true);
+                    playButton.setOpaque(false);
+                    gameInfoPanel.add(playButton, BorderLayout.CENTER);
 
-                    gameInfoPanel.add(Box.createVerticalStrut(10)); // Espacio entre imagen y botón
-                    gameInfoPanel.add(playButton);
-
-                    playButton.addActionListener(e1 -> {
-                        try {
-                            Runtime.getRuntime().exec(game.getExeLocation(), null, new File(game.getFolderLocation()));
-                        } catch (IOException ex) {
-                            ex.printStackTrace();
+                    playButton.addActionListener(new ActionListener() {
+                        public void actionPerformed(ActionEvent e) {
+                            try {
+                                Runtime.getRuntime().exec(game.getExeLocation(), null, new File(game.getFolderLocation()));
+                            } catch (IOException ex) {
+                                ex.printStackTrace();
+                            }
                         }
                     });
 
-                    JLabel gameDetailsLabel = new JLabel("<html>Name: " + game.getGameName() + "<br>Description: " + game.getGameDescription() + "<br>Genre: " + game.getGameGenre() + "</html>");
-                    gameDetailsLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+                    // Envolver el botón en un panel para centrarlo y mantener su tamaño
+                    JPanel playButtonPanel = new JPanel(new GridBagLayout());
+                    playButtonPanel.setOpaque(false); // Hacer que el panel sea transparente
+                    playButtonPanel.add(playButton);
 
-                    gameInfoPanel.add(Box.createVerticalStrut(10)); // Espacio entre botón y descripción
-                    gameInfoPanel.add(gameDetailsLabel);
+                    gameInfoPanel.add(playButtonPanel, BorderLayout.CENTER);
+
+                    JLabel gameDetailsLabel = new JLabel("<html>Name: " + game.getGameName() + "<br>Description: " + game.getGameDescription() + "<br>Genre: " + game.getGameGenre() + "</html>");
+                    gameInfoPanel.add(gameDetailsLabel, BorderLayout.SOUTH);
+
+                    // Añadir el panel de información del juego al panel principal
+                    rightPanel.add(gameInfoPanel);
+
 
                     rightPanel.add(gameInfoPanel);
                     rightPanel.revalidate();
@@ -612,26 +634,40 @@ public class LibraryController {
                                 rightPanel.repaint();
 
                                 // Create a new panel for game information
+                                // Panel principal de la información del juego
                                 JPanel gameInfoPanel = new JPanel(new BorderLayout());
                                 gameInfoPanel.setPreferredSize(new Dimension(panel.getWidth() - leftPanel.getWidth(), panel.getHeight()));
                                 gameInfoPanel.setBackground(new Color(224, 224, 224, 255));
 
-                                // Add game cover image at the top
+// Añadir la imagen de portada del juego en la parte superior
                                 ImageIcon gameCoverImageIcon = new ImageIcon(newGame.getGameCoverImage());
                                 Image gameCoverImage = gameCoverImageIcon.getImage().getScaledInstance(panel.getWidth() - leftPanel.getWidth(), 350, Image.SCALE_SMOOTH);
                                 ImageIcon scaledGameCoverImageIcon = new ImageIcon(gameCoverImage);
                                 JLabel gameCoverImageLabel = new JLabel(scaledGameCoverImageIcon, SwingConstants.CENTER);
                                 gameInfoPanel.add(gameCoverImageLabel, BorderLayout.NORTH);
 
-                                // Crear el botón de jugar
-                                JButton playButton = new JButton("Play");
+                                JButton playButton = new JButton("Play"){
+                                    @Override
+                                    protected void paintComponent(Graphics g) {
+                                        if (!isOpaque() && getBorder() instanceof RoundedBorder) {
+                                            Graphics2D g2 = (Graphics2D) g.create();
+                                            g2.setPaint(getBackground());
+                                            g2.fill(((RoundedBorder) getBorder()).getBorderShape(0, 0, getWidth() - 1, getHeight() - 1));
+                                            g2.dispose();
+                                        }
+                                        super.paintComponent(g);
+                                    }
+                                };
+                                playButton.setBounds(115, 330, 150, 35);
+                                playButton.setBackground(SignInController.getPurple());
                                 playButton.setFont(new Font("Helvetica", Font.BOLD, 14));
                                 playButton.setForeground(Color.WHITE);
-                                playButton.setLayout(null);
-                                playButton.setBounds(50, 50, 100, 50);
+                                playButton.setPreferredSize(new Dimension(150, 75)); // Cambia el tamaño a 150x75
                                 playButton.setBackground(new Color(80, 65, 165));
                                 playButton.setBorder(new RoundedBorder(Color.WHITE, 10));
+                                playButton.setContentAreaFilled(true);
                                 playButton.setOpaque(false);
+                                gameInfoPanel.add(playButton, BorderLayout.CENTER);
 
                                 playButton.addActionListener(new ActionListener() {
                                     public void actionPerformed(ActionEvent e) {
@@ -648,8 +684,10 @@ public class LibraryController {
                                 JLabel gameDetailsLabel = new JLabel("<html>Name: " + newGame.getGameName() + "<br>Description: " + newGame.getGameDescription() + "<br>Genre: " + newGame.getGameGenre() + "</html>");
                                 gameInfoPanel.add(gameDetailsLabel, BorderLayout.SOUTH);
 
-                                // Add the game information panel to the main panel
+// Añadir el panel de información del juego al panel principal
                                 rightPanel.add(gameInfoPanel);
+
+
 
                                 // Refresh the main panel
                                 rightPanel.revalidate();

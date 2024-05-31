@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0c57a3d6-f589-42ed-af0f-91499e053460" name="Changes" comment="añadido campo username para que cada usuario tenga sus propios juegos">
-      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
+    <list default="true" id="0c57a3d6-f589-42ed-af0f-91499e053460" name="Changes" comment="aumentado tamaño cover image">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/images/NewGame.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/images/NewGame.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/launcher/LibraryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/launcher/LibraryController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -182,7 +182,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717145670099</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="aumentado tamaño cover image">
+      <option name="closed" value="true" />
+      <created>1717146866766</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1717146866766</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -211,6 +219,7 @@
     <MESSAGE value="solucionados problemas" />
     <MESSAGE value="cambios de no me acuerdo que" />
     <MESSAGE value="añadido campo username para que cada usuario tenga sus propios juegos" />
-    <option name="LAST_COMMIT_MESSAGE" value="añadido campo username para que cada usuario tenga sus propios juegos" />
+    <MESSAGE value="aumentado tamaño cover image" />
+    <option name="LAST_COMMIT_MESSAGE" value="aumentado tamaño cover image" />
   </component>
 </project>
