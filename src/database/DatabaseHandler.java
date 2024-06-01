@@ -3,15 +3,14 @@ package database;
 import com.games.Game;
 import com.launcher.LibraryController;
 
-import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class DatabaseHandler {
     private static final String DATABASE_URL = "jdbc:postgresql://localhost:5432/xynx";
-    private static final String DATABASE_USER = "postgres";
-    private static final String DATABASE_PASSWORD = "debian";
+    private static final String DATABASE_USER = "anavalladares";
+    private static final String DATABASE_PASSWORD = "aaaa";
     private Connection conn = null;
 
     public DatabaseHandler() {
@@ -133,28 +132,45 @@ public class DatabaseHandler {
             String gameImage = LibraryController.getImagePath(game.getGameImage());
             String gameCoverImage = LibraryController.getImagePath(game.getGameCoverImage());
 
-            String query = "INSERT INTO games (name, description, genre, image, coverimage, exe, folder) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            // Check if game already exists
+            String checkQuery = "SELECT * FROM games WHERE name = ?";
+            PreparedStatement checkStmt = conn.prepareStatement(checkQuery);
+            checkStmt.setString(1, game.getGameName());
+            ResultSet rs = checkStmt.executeQuery();
 
-            PreparedStatement pstmt = conn.prepareStatement(query);
-            pstmt.setString(1, game.getGameName());
-            pstmt.setString(2, game.getGameDescription());
-            pstmt.setString(3, game.getGameGenre());
-            pstmt.setString(4, gameImage);
-            pstmt.setString(5, gameCoverImage);
-            pstmt.setString(6, game.getExeLocation());
-            pstmt.setString(7, game.getFolderLocation());
-            pstmt.executeUpdate();
+            if (rs.next()) {
+                // Game already exists, update it
+                String updateQuery = "UPDATE games SET description = ?, genre = ?, image = ?, coverimage = ?, exe = ?, folder = ? WHERE name = ?";
+                PreparedStatement updateStmt = conn.prepareStatement(updateQuery);
+                updateStmt.setString(1, game.getGameDescription());
+                updateStmt.setString(2, game.getGameGenre());
+                updateStmt.setString(3, gameImage);
+                updateStmt.setString(4, gameCoverImage);
+                updateStmt.setString(5, game.getExeLocation());
+                updateStmt.setString(6, game.getFolderLocation());
+                updateStmt.setString(7, game.getGameName());
+                updateStmt.executeUpdate();
+            } else {
+                // Game does not exist, insert it
+                String insertQuery = "INSERT INTO games (name, description, genre, image, coverimage, exe, folder) VALUES (?, ?, ?, ?, ?, ?, ?)";
+                PreparedStatement insertStmt = conn.prepareStatement(insertQuery);
+                insertStmt.setString(1, game.getGameName());
+                insertStmt.setString(2, game.getGameDescription());
+                insertStmt.setString(3, game.getGameGenre());
+                insertStmt.setString(4, gameImage);
+                insertStmt.setString(5, gameCoverImage);
+                insertStmt.setString(6, game.getExeLocation());
+                insertStmt.setString(7, game.getFolderLocation());
+                insertStmt.executeUpdate();
 
-            String query2 = "INSERT INTO user_games (user_id, game_id) SELECT users.id, games.id FROM users, games WHERE users.userName = ? AND games.name = ?";
-            PreparedStatement pstmt2 = conn.prepareStatement(query2);
-            pstmt2.setString(1, userName);
-            pstmt2.setString(2, game.getGameName());
-            pstmt2.executeUpdate();
-
+                String query2 = "INSERT INTO user_games (user_id, game_id) SELECT users.id, games.id FROM users, games WHERE users.userName = ? AND games.name = ?";
+                PreparedStatement pstmt2 = conn.prepareStatement(query2);
+                pstmt2.setString(1, userName);
+                pstmt2.setString(2, game.getGameName());
+                pstmt2.executeUpdate();
+            }
         } catch (SQLException e) {
             e.printStackTrace();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
         }
     }
 

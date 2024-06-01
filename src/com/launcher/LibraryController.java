@@ -3,9 +3,10 @@ package com.launcher;
 import com.games.Game;
 import database.DatabaseHandler;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.border.*;
+import javax.swing.border.Border;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
@@ -166,6 +167,22 @@ public class LibraryController {
 
             // Añadir listener para el botón de edición
             editButton.addActionListener(new ActionListener() {
+                private static JButton createCancelButton() {
+                    JButton cancelButton = new JButton("Cancel") {
+                        @Override
+                        protected void paintComponent(Graphics g) {
+                            if (!isOpaque() && getBorder() instanceof RoundedBorder) {
+                                Graphics2D g2 = (Graphics2D) g.create();
+                                g2.setPaint(getBackground());
+                                g2.fill(((RoundedBorder) getBorder()).getBorderShape(0, 0, getWidth() - 1, getHeight() - 1));
+                                g2.dispose();
+                            }
+                            super.paintComponent(g);
+                        }
+                    };
+                    return cancelButton;
+                }
+
                 public void actionPerformed(ActionEvent e) {
                     // 1. Mostrar el formulario de edición (puedes usar un JOptionPane con varios campos de entrada)
                     JTextField gameNameField = new JTextField(game.getGameName());
@@ -184,39 +201,30 @@ public class LibraryController {
                             "Game Cover Path:", gameCoverField,
                             "Game .exe Link:", gameExeField,
                             "Game Folder Link:", gameFolderField
-
                     };
 
                     int option = JOptionPane.showConfirmDialog(null, message, "Edit Game", JOptionPane.OK_CANCEL_OPTION);
                     if (option == JOptionPane.OK_OPTION) {
-                        // 2. Recoger los datos ingresados por el usuario y actualizar el objeto Game
-                        game.setGameName(gameNameField.getText());
-                        game.setGameDescription(gameDescriptionField.getText());
-                        game.setGameGenre(gameGenreField.getText());
-                        game.setGameImage(gameImageField.getText());
-                        game.setGameCoverImage(gameCoverField.getText());
-                        game.setExeLocation(gameExeField.getText());
-                        game.setFolderLocation(gameFolderField.getText());
+                        // Verificar si todos los campos están llenos
+                        if (gameNameField.getText().isEmpty() || gameDescriptionField.getText().isEmpty() || gameGenreField.getText().isEmpty() || gameImageField.getText().isEmpty() || gameCoverField.getText().isEmpty() || gameExeField.getText().isEmpty() || gameFolderField.getText().isEmpty()) {
+                            JOptionPane.showMessageDialog(null, "All fields must be filled", "Error", JOptionPane.ERROR_MESSAGE);
+                        } else {
+                            // 2. Recoger los datos ingresados por el usuario y actualizar el objeto Game
+                            game.setGameName(gameNameField.getText());
+                            game.setGameDescription(gameDescriptionField.getText());
+                            game.setGameGenre(gameGenreField.getText());
+                            game.setGameImage(gameImageField.getText());
+                            game.setGameCoverImage(gameCoverField.getText());
+                            game.setExeLocation(gameExeField.getText());
+                            game.setFolderLocation(gameFolderField.getText());
 
-                        // 3. Actualizar la base de datos con los nuevos datos del juego
-                        db.updateGame(game);
-                    }
-                }
-
-                private static JButton createCancelButton() {
-                    JButton cancelButton = new JButton("Cancel") {
-                        @Override
-                        protected void paintComponent(Graphics g) {
-                            if (!isOpaque() && getBorder() instanceof RoundedBorder) {
-                                Graphics2D g2 = (Graphics2D) g.create();
-                                g2.setPaint(getBackground());
-                                g2.fill(((RoundedBorder) getBorder()).getBorderShape(0, 0, getWidth() - 1, getHeight() - 1));
-                                g2.dispose();
-                            }
-                            super.paintComponent(g);
+                            // 3. Actualizar la base de datos con los nuevos datos del juego
+                            db.updateGame(game);
+                            leftPanel.removeAll();
+                            leftPanel.revalidate();
+                            leftPanel.repaint();
                         }
-                    };
-                    return cancelButton;
+                    }
                 }
             });
 
@@ -393,7 +401,9 @@ public class LibraryController {
                             try {
                                 Runtime.getRuntime().exec(game.getExeLocation(), null, new File(game.getFolderLocation()));
                             } catch (IOException ex) {
-                                ex.printStackTrace();
+                                // ex.printStackTrace(); // Comentado para evitar la impresión de la traza de la excepción en la consola
+                                // Mostrar un mensaje de error
+                                JOptionPane.showMessageDialog(null, "Error al ejecutar el juego. Por favor, verifica la ubicación del archivo .exe y la carpeta del juego.", "Error", JOptionPane.ERROR_MESSAGE);
                             }
                         }
                     });
@@ -405,7 +415,7 @@ public class LibraryController {
 
                     gameInfoPanel.add(playButtonPanel, BorderLayout.CENTER);
 
-                    JLabel gameDetailsLabel = new JLabel("<html><center> <b>Name:</b> <br> " + game.getGameName() + "<br><br> <b>Description: </b> <br> " + game.getGameDescription() + "<br><br> <b>Genre: </b> <br> " + game.getGameGenre() + "</center></html>");
+                    JLabel gameDetailsLabel = new JLabel("<html><div style='text-align: center;'> <b>Name: </b> <br>" + game.getGameName() + "<br> <br><b> Description: </b> <br>" + game.getGameDescription() + "<br> <br> <b> Genre: </b> <br> " + game.getGameGenre() + "</div></html>", SwingConstants.CENTER);
                     gameDetailsLabel.setForeground(Color.WHITE);
                     gameDetailsLabel.setBorder(new EmptyBorder(0, 35, 30, 35)); // Añade un borde inferior de 10 píxeles
                     gameDetailsLabel.setFont(new Font("Helvetica", Font.PLAIN, 18));
@@ -438,6 +448,33 @@ public class LibraryController {
         confirmButton.setOpaque(false);
         confirmButton.setContentAreaFilled(true);
         return confirmButton;
+    }
+
+    private static void configureMouseListenerToAddButton(JButton addButton) {
+        addButton.addMouseListener(new MouseAdapter() {
+            public void mouseEntered(MouseEvent e) {
+                addButton.setFont(new Font("Helvetica", Font.BOLD, 25));
+                addButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+            }
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                addButton.setBackground(SignInController.getPurple());
+            }
+
+            public void mouseExited(MouseEvent e) {
+                addButton.setFont(new Font("Helvetica", Font.PLAIN, 25));
+            }
+        });
+    }
+
+    public static String getImagePath(String imagePath) {
+        Path path = Paths.get(imagePath);
+        if (!Files.exists(path)) {
+            JOptionPane.showMessageDialog(null, "Image not found: " + imagePath, "Error", JOptionPane.ERROR_MESSAGE);
+            return null;
+        }
+        return path.toString();
     }
 
     private void configureActionListenerToAddButton(String userName, JButton addButton, JPanel rightPanel, JPanel panel, JPanel leftPanel, JPanel gameItem) {
@@ -734,17 +771,16 @@ public class LibraryController {
             addGameButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
+                    if (gameNameField.getText().isEmpty() || gameDescriptionField.getText().isEmpty() || gameGenreField.getText().isEmpty() || gameImageField.getText().isEmpty() || gameCoverField.getText().isEmpty() || gameExeField.getText().isEmpty() || gameFolderField.getText().isEmpty()) {
+                        JOptionPane.showMessageDialog(null, "All fields must be filled", "Error", JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
                     Game newGame = new Game();
                     newGame.setGameName(gameNameField.getText());
                     newGame.setGameDescription(gameDescriptionField.getText());
                     newGame.setGameGenre(gameGenreField.getText());
-                    try {
-                        newGame.setGameImage(getImagePath(gameImageField.getText()));
-                        newGame.setGameCoverImage(getImagePath(gameCoverField.getText()));
-                    } catch (IOException i) {
-                        i.printStackTrace();
-                        return; // If an exception occurs, stop executing the rest of the code in this block
-                    }
+                    newGame.setGameImage(getImagePath(gameImageField.getText()));
+                    newGame.setGameCoverImage(getImagePath(gameCoverField.getText()));
                     newGame.setExeLocation(gameExeField.getText());
                     newGame.setFolderLocation(gameFolderField.getText());
 
@@ -767,7 +803,7 @@ public class LibraryController {
                     gameItem2.setBackground(SignInController.getPurple());
 
                     // Add the new game item panel to the left panel
-                    leftPanel.add(gameItem);
+                    leftPanel.add(gameItem2);
 
                     gameItem.addMouseListener(new MouseAdapter() {
                         public void mouseEntered(MouseEvent e) {
@@ -843,58 +879,26 @@ public class LibraryController {
 
                             gameInfoPanel.add(playButton, BorderLayout.CENTER);
 
-                            JLabel gameDetailsLabel = new JLabel("<html>Name: " + newGame.getGameName() + "<br>Description: " + newGame.getGameDescription() + "<br>Genre: " + newGame.getGameGenre() + "</html>");
+                            JLabel gameDetailsLabel = new JLabel("<html><div style='text-align: center;'>Name: " + newGame.getGameName() + "<br>Description: " + newGame.getGameDescription() + "<br>Genre: " + newGame.getGameGenre() + "</div></html>", SwingConstants.CENTER);
                             gameInfoPanel.add(gameDetailsLabel, BorderLayout.SOUTH);
 
-                            // Añadir el panel de información del juego al panel principal
                             rightPanel.add(gameInfoPanel);
 
 
-                            // Refresh the main panel
                             rightPanel.revalidate();
                             rightPanel.repaint();
                         }
                     });
 
-                    // Refresh the left panel
                     leftPanel.revalidate();
                     leftPanel.repaint();
 
-                    // Remove the formPanel from the main panel
                     rightPanel.remove(formPanel);
 
-                    // Refresh the main panel
                     panel.revalidate();
                     panel.repaint();
                 }
             });
         });
-    }
-
-    private static void configureMouseListenerToAddButton(JButton addButton) {
-        addButton.addMouseListener(new MouseAdapter() {
-            public void mouseEntered(MouseEvent e) {
-                addButton.setFont(new Font("Helvetica", Font.BOLD, 25));
-                addButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
-            }
-
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                addButton.setBackground(SignInController.getPurple());
-            }
-
-            public void mouseExited(MouseEvent e) {
-                addButton.setFont(new Font("Helvetica", Font.PLAIN, 25));
-            }
-        });
-    }
-
-    public static String getImagePath(String imagePath) throws IOException {
-        Path path = Paths.get(imagePath);
-        if (Files.exists(path)) {
-            return path.toString();
-        } else {
-            throw new IOException("File not found: " + imagePath);
-        }
     }
 }
