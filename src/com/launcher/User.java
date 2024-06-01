@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 
 /**
- * This class represents a user in the system.
+ * Representa un usuario.
  */
 public class User {
     private static int userIdCounter = 0;
@@ -19,8 +19,8 @@ public class User {
     private String password;
 
     /**
-     * Constructor for the User class.
-     * It increments the userId each time a new user is created.
+     * Crea un nuevo usuario.
+     * Hace que el ID del usuario sea único.
      */
     public User() {
         userId = userIdCounter++;
@@ -77,10 +77,10 @@ public class User {
     }
 
     /**
-     * This method logs in a user.
-     * @param userName the username
-     * @param password the password
-     * @return true if the user is logged in successfully, false otherwise
+     * Inicia sesión en la aplicación.
+     *
+     * @param userName Nombre de usuario.
+     * @param password Contraseña.
      */
     public boolean login(String userName, String password) {
         UserDatabaseHandler db = new UserDatabaseHandler();

@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0c57a3d6-f589-42ed-af0f-91499e053460" name="Changes" comment="Implementado JavaDoc a clase PlaceholderPasswordField">
-      <change beforePath="$PROJECT_DIR$/src/com/launcher/PlaceholderPasswordField.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/launcher/PlaceholderPasswordField.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/launcher/PlaceholderTextField.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/launcher/PlaceholderTextField.java" afterDir="false" />
+    <list default="true" id="0c57a3d6-f589-42ed-af0f-91499e053460" name="Changes" comment="Implementado JavaDoc">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/launcher/SignUpController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/launcher/SignUpController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/launcher/UIController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/launcher/UIController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -136,7 +137,7 @@
       <workItem from="1717227534399" duration="4275000" />
       <workItem from="1717242276903" duration="3551000" />
       <workItem from="1717253169452" duration="1453000" />
-      <workItem from="1717259814057" duration="6088000" />
+      <workItem from="1717259814057" duration="8257000" />
     </task>
     <task id="LOCAL-00001" summary="cambios por arreglos en la rama ana">
       <option name="closed" value="true" />
@@ -298,7 +299,71 @@
       <option name="project" value="LOCAL" />
       <updated>1717265928653</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Cambiado Javadoc a español">
+      <option name="closed" value="true" />
+      <created>1717266483081</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1717266483081</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Implementado JavaDoc">
+      <option name="closed" value="true" />
+      <created>1717266512337</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1717266512337</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Implementado JavaDoc">
+      <option name="closed" value="true" />
+      <created>1717266544614</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1717266544614</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Implementado JavaDoc">
+      <option name="closed" value="true" />
+      <created>1717266581694</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1717266581694</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Implementado JavaDoc">
+      <option name="closed" value="true" />
+      <created>1717266868483</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1717266868483</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Implementado JavaDoc">
+      <option name="closed" value="true" />
+      <created>1717266894465</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1717266894465</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Implementado JavaDoc">
+      <option name="closed" value="true" />
+      <created>1717267000694</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1717267000694</updated>
+    </task>
+    <task id="LOCAL-00028" summary="Implementado JavaDoc">
+      <option name="closed" value="true" />
+      <created>1717267063288</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1717267063288</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -337,6 +402,8 @@
     <MESSAGE value="Javadoc implementado" />
     <MESSAGE value="Clase Library.java eliminada" />
     <MESSAGE value="Implementado JavaDoc a clase PlaceholderPasswordField" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implementado JavaDoc a clase PlaceholderPasswordField" />
+    <MESSAGE value="Cambiado Javadoc a español" />
+    <MESSAGE value="Implementado JavaDoc" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implementado JavaDoc" />
   </component>
 </project>
