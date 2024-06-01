@@ -4,12 +4,25 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * Clase que maneja la conexión con la base de datos de los usuarios.
+ */
 public class UserDatabaseHandler extends DatabaseHandler {
 
+    /**
+     * Crea un nuevo UserDatabaseHandler.
+     */
     public UserDatabaseHandler() {
         super();
     }
 
+    /**
+     * Añade un usuario a la base de datos.
+     *
+     * @param userName Nombre de usuario.
+     * @param password Contraseña.
+     * @return True si el usuario se ha añadido correctamente, false en caso contrario.
+     */
     public void addUser(String userName, String password) {
         String SQL = "INSERT INTO users(userName, password) VALUES(?,?)";
         String regex = "^[a-zA-Z0-9]+$";
@@ -30,6 +43,12 @@ public class UserDatabaseHandler extends DatabaseHandler {
         }
     }
 
+    /**
+     * Comprueba si un usuario existe.
+     *
+     * @param userName Nombre de usuario.
+     * @return True si el usuario existe, false en caso contrario.
+     */
     public boolean userExists(String userName) {
         String SQL = "SELECT * FROM users WHERE userName = ?";
         connect();
@@ -44,6 +63,12 @@ public class UserDatabaseHandler extends DatabaseHandler {
         return false;
     }
 
+    /**
+     * Obtiene la contraseña de un usuario.
+     *
+     * @param userName Nombre de usuario.
+     * @return Contraseña del usuario.
+     */
     public String getPassword(String userName) {
         String SQL = "SELECT password FROM users WHERE userName = ?";
         connect();
