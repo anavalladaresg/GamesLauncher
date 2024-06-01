@@ -4,8 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0c57a3d6-f589-42ed-af0f-91499e053460" name="Changes" comment="arreglado que se mueva el gif de fondo">
-      <change beforePath="$PROJECT_DIR$/src/com/launcher/LibraryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/launcher/LibraryController.java" afterDir="false" />
+    <list default="true" id="0c57a3d6-f589-42ed-af0f-91499e053460" name="Changes" comment="modificado borde de boton play">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -235,7 +235,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717163104131</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="modificado borde de boton play">
+      <option name="closed" value="true" />
+      <created>1717163474979</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1717163474979</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -268,6 +276,7 @@
     <MESSAGE value="modificado boton game" />
     <MESSAGE value="imagen de fondo añadida pero no se mueve el gif" />
     <MESSAGE value="arreglado que se mueva el gif de fondo" />
-    <option name="LAST_COMMIT_MESSAGE" value="arreglado que se mueva el gif de fondo" />
+    <MESSAGE value="modificado borde de boton play" />
+    <option name="LAST_COMMIT_MESSAGE" value="modificado borde de boton play" />
   </component>
 </project>
