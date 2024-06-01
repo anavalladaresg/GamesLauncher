@@ -10,15 +10,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * UIController class that controls the user interface.
+ * Clase que controla la interfaz de usuario.
  */
 public class UIController {
     private final JFrame frame; // Window frame
     private User currentUser; // Current user
 
     /**
-     * UIController constructor.
-     * Initializes the window frame and places the components on the panel.
+     * Crea un nuevo UIController.
      */
     public UIController() {
         frame = new JFrame("Xynx"); // Create a new frame with the title "Xynx"
@@ -34,9 +33,8 @@ public class UIController {
     }
 
     /**
-     * Method to place the components on the panel.
-     *
-     * @param panel The panel on which the components will be placed.
+     * Método para colocar los componentes en el panel.
+     * @param panel El panel en el que se colocarán los componentes.
      */
     private void placeComponents(JPanel panel) {
         panel.setLayout(new BorderLayout()); // Change to BorderLayout
@@ -65,6 +63,10 @@ public class UIController {
         panel.add(componentsPanel, BorderLayout.CENTER); // Add the components panel to the center
     }
 
+    /**
+     * Método para crear y configurar las etiquetas.
+     * @param colorLayer El panel de color.
+     */
     private void createAndConfigureLabels(RoundedPanel colorLayer) {
         // Cargar la imagen
         ImageIcon imageIcon = new ImageIcon(getClass().getResource("/com/images/Xynx.png"));// Reemplaza "/path/to/Xynx.png" con la ruta real de tu imagen
@@ -92,6 +94,10 @@ public class UIController {
         colorLayer.add(invitationLabel);
     }
 
+    /**
+     * Método para crear y configurar el botón de registro.
+     * @param colorLayer El panel de color.
+     */
     private void createAndConfigureSignUpButton(RoundedPanel colorLayer) {
         JButton signUpButton = new JButton("SIGN UP") {
             // Override paintComponent to provide our own paint methods while preserving the original functionality
@@ -121,6 +127,10 @@ public class UIController {
         colorLayer.add(signUpButton);
     }
 
+    /**
+     * Método para crear y configurar los componentes de inicio de sesión.
+     * @param componentsPanel El panel de componentes.
+     */
     private void createAndConfigureSignInComponents(JPanel componentsPanel) {
 
         // Centra la ventana en la pantalla
@@ -189,29 +199,6 @@ public class UIController {
         });
     }
 
-
-    /**
-     * Method to display the login screen.
-     */
-    public void displayLoginScreen() {
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                new UIController(); // Create a new instance of UIController
-            }
-        });
-    }
-
-    /**
-     * Method to display the main menu.
-     */
-    public void displayMainMenu() {
-    }
-
-    /**
-     * Method to view the game details.
-     *
-     * @param game The game whose details will be viewed.
-     */
-    public void viewGameDetails(Game game) {
+    private void displayMainMenu() {
     }
 }
