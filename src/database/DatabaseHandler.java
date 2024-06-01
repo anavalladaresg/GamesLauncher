@@ -1,19 +1,37 @@
 package database;
 
-import com.games.Game;
-import com.launcher.LibraryController;
-
-import java.io.IOException;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 
+/**
+ * Clase que maneja la conexión con la base de datos.
+
+ */
 public class DatabaseHandler {
+
+    /**
+     * URL de la base de datos.
+     */
     private static final String DATABASE_URL = "jdbc:postgresql://localhost:5432/xynx";
+
+    /**
+     * Usuario de la base de datos.
+     */
     private static final String DATABASE_USER = "postgres";
+
+    /**
+     * Contraseña de la base de datos.
+     */
     private static final String DATABASE_PASSWORD = "debian";
+
+    /**
+     * Conexión con la base de datos.
+     */
     protected Connection conn = null;
 
+    /**
+     * Crea un nuevo DatabaseHandler.
+     * Se encarga de cargar el driver de PostgreSQL y de conectarse a la base de datos.
+     */
     public DatabaseHandler() {
         try {
             Class.forName("org.postgresql.Driver");
@@ -23,6 +41,9 @@ public class DatabaseHandler {
         }
     }
 
+    /**
+     * Establece la conexión con la base de datos.
+     */
     public void connect() {
         try {
             conn = DriverManager.getConnection(DATABASE_URL, DATABASE_USER, DATABASE_PASSWORD);
@@ -30,6 +51,4 @@ public class DatabaseHandler {
             System.out.println(e.getMessage());
         }
     }
-
-
 }
