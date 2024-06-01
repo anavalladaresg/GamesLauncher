@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0c57a3d6-f589-42ed-af0f-91499e053460" name="Changes" comment="Arreglado que no deje añadir juego si no hay juegos. close #3">
+    <list default="true" id="0c57a3d6-f589-42ed-af0f-91499e053460" name="Changes" comment="cambios">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/games/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/games/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/launcher/LibraryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/launcher/LibraryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/launcher/SignUpController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/launcher/SignUpController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/database/DatabaseHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/DatabaseHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,7 +29,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="fusion" />
+        <entry key="$PROJECT_DIR$" value="ana" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -38,12 +41,14 @@
     &quot;assignee&quot;: &quot;anavalladaresg&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/anavalladaresg/GamesLauncher.git&quot;,
-    &quot;accountId&quot;: &quot;57dde938-ead0-4015-82fe-df167379acff&quot;
-  }
-}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="0626986c-63f3-498e-9f9d-30624baa0019" />
+        <option name="url" value="https://github.com/anavalladaresg/GamesLauncher.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -109,7 +114,7 @@
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.AnimatedGifPanel" />
         <item itemvalue="Application.Main" />
-        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.AnimatedGifPanel" />
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
@@ -134,7 +139,7 @@
       <workItem from="1717227534399" duration="4275000" />
       <workItem from="1717242276903" duration="3551000" />
       <workItem from="1717253169452" duration="1453000" />
-      <workItem from="1717259814057" duration="431000" />
+      <workItem from="1717259814057" duration="3530000" />
     </task>
     <task id="LOCAL-00001" summary="cambios por arreglos en la rama ana">
       <option name="closed" value="true" />
@@ -256,7 +261,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717243004607</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="cambios">
+      <option name="closed" value="true" />
+      <created>1717260552766</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1717260552766</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -274,7 +287,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="cambios" />
     <MESSAGE value="cambios por arreglos en la rama ana" />
     <MESSAGE value="close#1" />
     <MESSAGE value="Readme v3.0" />
@@ -291,6 +303,7 @@
     <MESSAGE value="arreglado que se mueva el gif de fondo" />
     <MESSAGE value="Arreglado que los botones edit y delete se pongan con fondo oscuro. close #4" />
     <MESSAGE value="Arreglado que no deje añadir juego si no hay juegos. close #3" />
-    <option name="LAST_COMMIT_MESSAGE" value="Arreglado que no deje añadir juego si no hay juegos. close #3" />
+    <MESSAGE value="cambios" />
+    <option name="LAST_COMMIT_MESSAGE" value="cambios" />
   </component>
 </project>

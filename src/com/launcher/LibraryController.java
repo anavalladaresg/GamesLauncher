@@ -1,9 +1,8 @@
 package com.launcher;
 
 import com.games.Game;
-import database.DatabaseHandler;
+import database.GameDatabaseHandler;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.*;
 import java.awt.*;
@@ -21,7 +20,7 @@ import java.util.ArrayList;
  */
 
 public class LibraryController {
-    DatabaseHandler db = new DatabaseHandler();
+    GameDatabaseHandler gdb = new GameDatabaseHandler();
     String userName;
 
     /**
@@ -37,7 +36,7 @@ public class LibraryController {
         JPanel gameItem = new JPanel();
         leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
         rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.Y_AXIS));
-        ArrayList<Game> games = (ArrayList<Game>) db.getGames(this.userName);
+        ArrayList<Game> games = (ArrayList<Game>) gdb.getGames(this.userName);
 
 
         // Load the GIF
@@ -142,7 +141,7 @@ public class LibraryController {
                     leftPanel.repaint();
 
                     // Eliminar el juego de la base de datos
-                    db.deleteGame(game.getGameName(), userName);
+                    gdb.deleteGame(game.getGameName(), userName);
                 }
             });
             gameItem.add(deleteButton);
@@ -199,7 +198,7 @@ public class LibraryController {
                         game.setFolderLocation(gameFolderField.getText());
 
                         // 3. Actualizar la base de datos con los nuevos datos del juego
-                        db.updateGame(game);
+                        gdb.updateGame(game);
                     }
                 }
 
@@ -748,7 +747,7 @@ public class LibraryController {
                     newGame.setExeLocation(gameExeField.getText());
                     newGame.setFolderLocation(gameFolderField.getText());
 
-                    db.addGame(newGame, userName);
+                    gdb.addGame(newGame, userName);
 
                     // Create a new game item panel
                     JPanel gameItem2 = new JPanel();

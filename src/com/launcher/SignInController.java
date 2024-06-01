@@ -1,6 +1,7 @@
 package com.launcher;
 
 import database.DatabaseHandler;
+import database.UserDatabaseHandler;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -257,7 +258,7 @@ public class SignInController {
                 currentUser.setUserName(userText.getText());
                 currentUser.setPassword(new String(passwordText.getPassword()));
 
-                DatabaseHandler db = new DatabaseHandler();
+                UserDatabaseHandler db = new UserDatabaseHandler();
                 if (db.userExists(currentUser.getUserName())) {
                     if (currentUser.login(userText.getText(), new String(passwordText.getPassword()))) {
                         displayMainMenu();

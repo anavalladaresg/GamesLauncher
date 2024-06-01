@@ -2,6 +2,7 @@ package com.launcher;
 
 import com.games.Game;
 import database.DatabaseHandler;
+import database.UserDatabaseHandler;
 
 import java.util.ArrayList;
 
@@ -82,7 +83,7 @@ public class User {
      * @return true if the user is logged in successfully, false otherwise
      */
     public boolean login(String userName, String password) {
-        DatabaseHandler db = new DatabaseHandler();
+        UserDatabaseHandler db = new UserDatabaseHandler();
         db.connect();
         if (db.userExists(userName)) {
             String storedPassword = db.getPassword(userName);

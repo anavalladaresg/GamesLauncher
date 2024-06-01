@@ -2,6 +2,7 @@ package com.launcher;
 
 import com.games.Game;
 import database.DatabaseHandler;
+import database.UserDatabaseHandler;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -250,8 +251,8 @@ public class SignUpController {
                 currentUser.setUserName(username);
                 currentUser.setPassword(password);
 
-                DatabaseHandler db = new DatabaseHandler();
-                if (db.userExists(currentUser.getUserName())) {
+                UserDatabaseHandler udb = new UserDatabaseHandler();
+                if (udb.userExists(currentUser.getUserName())) {
                     // User already exists, show an error message
                     JOptionPane.showMessageDialog(frame,
                             "<html><font color='red'>User already exists. Please choose a different username.</font></html>",
@@ -259,7 +260,7 @@ public class SignUpController {
                             JOptionPane.ERROR_MESSAGE);
                 } else {
                     // User does not exist, proceed with registration
-                    db.addUser(currentUser.getUserName(), currentUser.getPassword());
+                    udb.addUser(currentUser.getUserName(), currentUser.getPassword());
                     JOptionPane.showMessageDialog(frame, "Registration successful!");
                     displayMainMenu();
                 }
