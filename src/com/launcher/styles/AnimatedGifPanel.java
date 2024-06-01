@@ -1,4 +1,4 @@
-package com.launcher;
+package com.launcher.styles;
 
 import javax.swing.*;
 import java.awt.*;

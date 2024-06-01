@@ -1,7 +1,7 @@
 package database;
 
 import com.games.Game;
-import com.launcher.LibraryController;
+import com.launcher.functional.LibraryController;
 
 import java.io.IOException;
 import java.sql.PreparedStatement;

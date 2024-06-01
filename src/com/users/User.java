@@ -1,7 +1,6 @@
-package com.launcher;
+package com.users;
 
 import com.games.Game;
-import database.DatabaseHandler;
 import database.UserDatabaseHandler;
 
 import java.util.ArrayList;

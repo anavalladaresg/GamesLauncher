@@ -4,10 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0c57a3d6-f589-42ed-af0f-91499e053460" name="Changes" comment="Implementado JavaDoc">
+    <list default="true" id="0c57a3d6-f589-42ed-af0f-91499e053460" name="Changes" comment="Script de la base de datos">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/launcher/SignUpController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/launcher/SignUpController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/launcher/UIController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/launcher/UIController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/launcher/AnimatedGifPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/launcher/styles/AnimatedGifPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/launcher/LibraryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/launcher/functional/LibraryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/launcher/PlaceholderPasswordField.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/launcher/styles/PlaceholderPasswordField.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/launcher/PlaceholderTextField.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/launcher/styles/PlaceholderTextField.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/launcher/RoundedBorder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/launcher/styles/RoundedBorder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/launcher/RoundedPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/launcher/styles/RoundedPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/launcher/SignInController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/launcher/functional/SignInController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/launcher/SignInRoundedPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/launcher/styles/SignInRoundedPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/launcher/SignUpController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/launcher/functional/SignUpController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/launcher/SignUpRoundedPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/launcher/styles/SignUpRoundedPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/launcher/UIController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/launcher/functional/UIController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/launcher/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/users/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/database/GameDatabaseHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/GameDatabaseHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,38 +73,38 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.AnimatedGifPanel.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;anxo&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/anavalladares/Desktop/GamesLauncher&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.16992188&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.AnimatedGifPanel.executor": "Run",
+    "Application.Main.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "anxo",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/anxor/Desktop/GamesLauncher/export_file.sql",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.16992188",
+    "project.structure.side.proportion": "0.2",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;postgresql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
     ]
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Application.Main">
     <configuration name="AnimatedGifPanel" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.launcher.AnimatedGifPanel" />
+      <option name="MAIN_CLASS_NAME" value="com.launcher.styles.AnimatedGifPanel" />
       <module name="GamesLauncher" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.launcher.*" />
+          <option name="PATTERN" value="com.launcher.styles.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -117,6 +129,10 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="SQLScriptSettings">
+    <option name="outputLayout" value="File per object by schema and database.groovy" />
+    <option name="outputPath" value="C:\Users\anxor\Desktop\GamesLauncher\export_file.sql" />
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -137,7 +153,7 @@
       <workItem from="1717227534399" duration="4275000" />
       <workItem from="1717242276903" duration="3551000" />
       <workItem from="1717253169452" duration="1453000" />
-      <workItem from="1717259814057" duration="8257000" />
+      <workItem from="1717259814057" duration="10589000" />
     </task>
     <task id="LOCAL-00001" summary="cambios por arreglos en la rama ana">
       <option name="closed" value="true" />
@@ -363,7 +379,87 @@
       <option name="project" value="LOCAL" />
       <updated>1717267063288</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="Implementado JavaDoc">
+      <option name="closed" value="true" />
+      <created>1717268754285</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1717268754285</updated>
+    </task>
+    <task id="LOCAL-00030" summary="Implementado JavaDoc">
+      <option name="closed" value="true" />
+      <created>1717268757894</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1717268757894</updated>
+    </task>
+    <task id="LOCAL-00031" summary="Implementado JavaDoc">
+      <option name="closed" value="true" />
+      <created>1717268761184</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1717268761184</updated>
+    </task>
+    <task id="LOCAL-00032" summary="Implementado JavaDoc">
+      <option name="closed" value="true" />
+      <created>1717268764635</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1717268764635</updated>
+    </task>
+    <task id="LOCAL-00033" summary="Implementado JavaDoc">
+      <option name="closed" value="true" />
+      <created>1717268769362</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1717268769362</updated>
+    </task>
+    <task id="LOCAL-00034" summary="Implementado JavaDoc">
+      <option name="closed" value="true" />
+      <created>1717268873779</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1717268873779</updated>
+    </task>
+    <task id="LOCAL-00035" summary="Implementado JavaDoc">
+      <option name="closed" value="true" />
+      <created>1717268957632</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1717268957632</updated>
+    </task>
+    <task id="LOCAL-00036" summary="Implementado JavaDoc">
+      <option name="closed" value="true" />
+      <created>1717269449685</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1717269449685</updated>
+    </task>
+    <task id="LOCAL-00037" summary="Eliminados comentarios innecesarios">
+      <option name="closed" value="true" />
+      <created>1717269482258</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1717269482258</updated>
+    </task>
+    <task id="LOCAL-00038" summary="Script de la base de datos">
+      <option name="closed" value="true" />
+      <created>1717269703050</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1717269703050</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -404,6 +500,8 @@
     <MESSAGE value="Implementado JavaDoc a clase PlaceholderPasswordField" />
     <MESSAGE value="Cambiado Javadoc a español" />
     <MESSAGE value="Implementado JavaDoc" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implementado JavaDoc" />
+    <MESSAGE value="Eliminados comentarios innecesarios" />
+    <MESSAGE value="Script de la base de datos" />
+    <option name="LAST_COMMIT_MESSAGE" value="Script de la base de datos" />
   </component>
 </project>

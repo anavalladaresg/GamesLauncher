@@ -1,31 +1,34 @@
-package com.launcher;
+package com.launcher.styles;
 
 import javax.swing.*;
 import java.awt.*;
 
 /**
- * Esta clase representa un panel con esquinas redondeadas en el lado izquierdo.
+ * Clase que representa un panel redondeado.
  */
-class SignUpRoundedPanel extends JPanel {
-    private final Color backgroundColor;
-    private final int cornerRadius;
+public class SignInRoundedPanel extends JPanel {
 
     /**
-     * Crea un nuevo SignUpRoundedPanel.
-     *
-     * @param layout  El layout a utilizar.
-     * @param radius  El radio de las esquinas.
-     * @param bgColor El color de fondo.
+     * Color de fondo.
      */
-    public SignUpRoundedPanel(LayoutManager layout, int radius, Color bgColor) {
+    private Color backgroundColor;
+
+    /**
+     * Radio de las esquinas.
+     */
+    private int cornerRadius = 15;
+
+    /**
+     * Crea un nuevo RoundedPanel.
+     */
+    public SignInRoundedPanel(LayoutManager layout, int radius, Color bgColor) {
         super(layout);
         cornerRadius = radius;
         backgroundColor = bgColor;
     }
 
     /**
-     * Este método se encarga de pintar el panel.
-     * @param g El objeto Graphics.
+     * Crea un nuevo RoundedPanel.
      */
     @Override
     protected void paintComponent(Graphics g) {
@@ -35,13 +38,15 @@ class SignUpRoundedPanel extends JPanel {
         Graphics2D graphics = (Graphics2D) g;
         graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
+        // Draws the rounded panel with borders.
         graphics.setColor(backgroundColor);
         graphics.fillRoundRect(0, 0, width - 1, height - 1, cornerRadius, cornerRadius); //paint background
         graphics.setColor(getForeground());
         graphics.drawRoundRect(0, 0, width - 1, height - 1, cornerRadius, cornerRadius); //paint border
 
+        // Draws the right corners as square.
         graphics.setColor(backgroundColor); // Use the same background color
-        graphics.fillRect(0, 0, width / 2, cornerRadius);
-        graphics.fillRect(0, height - cornerRadius, width / 2, cornerRadius);
+        graphics.fillRect(width / 2, 0, width / 2, cornerRadius);
+        graphics.fillRect(width / 2, height - cornerRadius, width / 2, cornerRadius);
     }
 }

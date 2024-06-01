@@ -1,6 +1,7 @@
-package com.launcher;
+package com.launcher.functional;
 
 import com.games.Game;
+import com.launcher.styles.RoundedBorder;
 import database.GameDatabaseHandler;
 
 import javax.swing.*;

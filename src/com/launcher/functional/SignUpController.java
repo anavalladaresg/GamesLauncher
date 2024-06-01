@@ -1,7 +1,10 @@
-package com.launcher;
+package com.launcher.functional;
 
-import com.games.Game;
-import database.DatabaseHandler;
+import com.launcher.styles.SignUpRoundedPanel;
+import com.users.User;
+import com.launcher.styles.PlaceholderPasswordField;
+import com.launcher.styles.PlaceholderTextField;
+import com.launcher.styles.RoundedBorder;
 import database.UserDatabaseHandler;
 
 import javax.swing.*;

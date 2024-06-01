@@ -1,6 +1,10 @@
-package com.launcher;
+package com.launcher.functional;
 
-import com.games.Game;
+import com.users.User;
+import com.launcher.styles.PlaceholderPasswordField;
+import com.launcher.styles.PlaceholderTextField;
+import com.launcher.styles.RoundedBorder;
+import com.launcher.styles.RoundedPanel;
 
 import javax.swing.*;
 import javax.swing.border.Border;

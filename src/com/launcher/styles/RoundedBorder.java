@@ -1,4 +1,4 @@
-package com.launcher;
+package com.launcher.styles;
 
 import java.awt.*;
 import java.awt.geom.RoundRectangle2D;
@@ -24,7 +24,7 @@ public class RoundedBorder extends AbstractBorder {
      * @param c Color del borde.
      * @param r Radio del borde.
      */
-    RoundedBorder(Color c, int r) {
+    public RoundedBorder(Color c, int r) {
         this.color = c;
         this.radius = r;
     }
