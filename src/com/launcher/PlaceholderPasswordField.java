@@ -5,64 +5,64 @@ import javax.swing.text.Document;
 import java.awt.*;
 
 /**
- * A password field with a placeholder.
+ * Un campo de contraseña con un marcador de posición.
  */
 public class PlaceholderPasswordField extends JPasswordField {
 
     /**
-     * The placeholder text.
+     * El texto del marcador de posición.
      */
     private String prompt;
 
     /**
-     * Creates a new PlaceholderPasswordField.
+     * Crea un nuevo PlaceholderPasswordField.
      */
     public PlaceholderPasswordField() {
         super();
     }
 
     /**
-     * Creates a new PlaceholderPasswordField.
+     * Crea un nuevo PlaceholderPasswordField.
      *
-     * @param pDoc The document to use.
-     * @param pText The text to use.
-     * @param pColumns The number of columns to use.
+     * @param pDoc El documento a utilizar.
+     * @param pText El texto a utilizar.
+     * @param pColumns El número de columnas a utilizar.
      */
     public PlaceholderPasswordField(final Document pDoc, final String pText, final int pColumns) {
         super(pDoc, pText, pColumns);
     }
 
     /**
-     * Creates a new PlaceholderPasswordField.
+     * Crea un nuevo PlaceholderPasswordField.
      *
-     * @param pColumns The number of columns to use.
+     * @param pColumns El número de columnas a utilizar.
      */
     public PlaceholderPasswordField(final int pColumns) {
         super(pColumns);
     }
 
     /**
-     * Creates a new PlaceholderPasswordField.
-     * @param pText The text to use.
+     * Crea un nuevo PlaceholderPasswordField.
+     * @param pText El texto a utilizar.
      */
     public PlaceholderPasswordField(final String pText) {
         super(pText);
     }
 
     /**
-     * Creates a new PlaceholderPasswordField.
+     * Crea un nuevo PlaceholderPasswordField.
      *
-     * @param pText The text to use.
-     * @param pColumns The number of columns to use.
+     * @param pText El texto a utilizar.
+     * @param pColumns El número de columnas a utilizar.
      */
     public PlaceholderPasswordField(final String pText, final int pColumns) {
         super(pText, pColumns);
     }
 
     /**
-     * Paints the component.
+     * Pinta el componente.
      *
-     * @param pG The graphics object.
+     * @param pG El objeto gráfico.
      */
     @Override
     protected void paintComponent(final Graphics pG) {
@@ -80,18 +80,18 @@ public class PlaceholderPasswordField extends JPasswordField {
     }
 
     /**
-     * Gets the prompt.
+     * Obtiene el marcador de posición.
      *
-     * @return The prompt.
+     * @return El marcador de posición.
      */
     public String getPrompt() {
         return prompt;
     }
 
     /**
-     * Sets the prompt.
+     * Establece el marcador de posición.
      *
-     * @param prompt The prompt to set.
+     * @param prompt El marcador de posición a establecer.
      */
     public void setPrompt(String prompt) {
         this.prompt = prompt;

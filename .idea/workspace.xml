@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0c57a3d6-f589-42ed-af0f-91499e053460" name="Changes" comment="Clase Library.java eliminada">
+    <list default="true" id="0c57a3d6-f589-42ed-af0f-91499e053460" name="Changes" comment="Implementado JavaDoc a clase PlaceholderPasswordField">
       <change beforePath="$PROJECT_DIR$/src/com/launcher/PlaceholderPasswordField.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/launcher/PlaceholderPasswordField.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/launcher/PlaceholderTextField.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/launcher/PlaceholderTextField.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -135,7 +136,7 @@
       <workItem from="1717227534399" duration="4275000" />
       <workItem from="1717242276903" duration="3551000" />
       <workItem from="1717253169452" duration="1453000" />
-      <workItem from="1717259814057" duration="5735000" />
+      <workItem from="1717259814057" duration="6088000" />
     </task>
     <task id="LOCAL-00001" summary="cambios por arreglos en la rama ana">
       <option name="closed" value="true" />
@@ -289,7 +290,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717265628243</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Implementado JavaDoc a clase PlaceholderPasswordField">
+      <option name="closed" value="true" />
+      <created>1717265928653</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1717265928653</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -327,6 +336,7 @@
     <MESSAGE value="Herencia implementada" />
     <MESSAGE value="Javadoc implementado" />
     <MESSAGE value="Clase Library.java eliminada" />
-    <option name="LAST_COMMIT_MESSAGE" value="Clase Library.java eliminada" />
+    <MESSAGE value="Implementado JavaDoc a clase PlaceholderPasswordField" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implementado JavaDoc a clase PlaceholderPasswordField" />
   </component>
 </project>
