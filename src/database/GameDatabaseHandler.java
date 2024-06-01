@@ -10,12 +10,23 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Clase que maneja la conexión con la base de datos de los juegos.
+ */
 public class GameDatabaseHandler extends DatabaseHandler {
 
+    /**
+     * Crea un nuevo GameDatabaseHandler.
+     */
     public GameDatabaseHandler() {
         super();
     }
 
+    /**
+     * Actualiza un juego en la base de datos.
+     *
+     * @param game Juego a actualizar.
+     */
     public void updateGame(Game game) {
         String SQL = "UPDATE games SET description = ?, genre = ?, image = ?, coverimage = ?, exe = ?, folder = ? WHERE name = ?";
         connect();
@@ -34,6 +45,12 @@ public class GameDatabaseHandler extends DatabaseHandler {
         }
     }
 
+    /**
+     * Obtiene los juegos de un usuario.
+     *
+     * @param userName Nombre de usuario.
+     * @return Lista de juegos.
+     */
     public List<Game> getGames(String userName) {
         List<Game> games = new ArrayList<>();
         String SQL = "SELECT games.* FROM games JOIN user_games ON games.id = user_games.game_id JOIN users ON user_games.user_id = users.id WHERE users.userName = ?";
@@ -61,6 +78,11 @@ public class GameDatabaseHandler extends DatabaseHandler {
         return games;
     }
 
+    /**
+     * Añade un juego a la base de datos.
+     * @param game Juego a añadir.
+     * @param userName Nombre de usuario.
+     */
     public void addGame(Game game, String userName) {
         connect();
         try {
@@ -92,6 +114,12 @@ public class GameDatabaseHandler extends DatabaseHandler {
         }
     }
 
+    /**
+     * Elimina un juego de la base de datos.
+     *
+     * @param gameName Nombre del juego.
+     * @param userName Nombre de usuario.
+     */
     public void deleteGame(String gameName, String userName) {
         String SQL = "DELETE FROM user_games WHERE game_id = (SELECT id FROM games WHERE name = ?) AND user_id = (SELECT id FROM users WHERE userName = ?)";
         connect();
