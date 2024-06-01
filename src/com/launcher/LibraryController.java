@@ -102,7 +102,7 @@ public class LibraryController {
             gameNameLabel.setForeground(Color.WHITE);
             gameItem.add(gameNameLabel);
             gameItem.setBackground(SignInController.getPurple());
-            leftPanel.add(gameItem);
+
 
             // Cambiar el layout a BoxLayout
             gameItem.setLayout(new BoxLayout(gameItem, BoxLayout.X_AXIS));
@@ -115,7 +115,7 @@ public class LibraryController {
             gameItem.add(Box.createHorizontalGlue());
 
             // Crear un ImageIcon
-            ImageIcon deleteIcon = new ImageIcon("src/com/images/Trash.jpg");
+            ImageIcon deleteIcon = new ImageIcon("src/com/images/trash.png");
 
             Image aux = deleteIcon.getImage();
             aux = aux.getScaledInstance(30, 30, Image.SCALE_SMOOTH);
@@ -145,13 +145,13 @@ public class LibraryController {
             gameItem.add(deleteButton);
 
             // ImageIcon para el botón de edición
-            ImageIcon editIcon = new ImageIcon("src/com/images/Edit.jpg");
+            ImageIcon editIcon = new ImageIcon("src/com/images/edit.png");
 
             Image auxEdit = editIcon.getImage();
             auxEdit = auxEdit.getScaledInstance(30, 30, Image.SCALE_SMOOTH);
             editIcon = new ImageIcon(auxEdit);
 
-// Crear botón de edición
+            // Crear botón de edición
             JButton editButton = new JButton();
             editButton.setIcon(editIcon); // Establecer el icono en el botón
             editButton.setPreferredSize(new Dimension(40, 30));
@@ -161,7 +161,7 @@ public class LibraryController {
             editButton.setFocusPainted(false);
             editButton.setBorderPainted(false);
 
-// Añadir listener para el botón de edición
+            // Añadir listener para el botón de edición
             editButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     // 1. Mostrar el formulario de edición (puedes usar un JOptionPane con varios campos de entrada)
@@ -201,17 +201,111 @@ public class LibraryController {
                 }
             });
 
-// Añadir el botón de edición al panel del juego
+            // Añadir el botón de edición al panel del juego
             gameItem.add(editButton);
+            leftPanel.add(gameItem);
+
+            editButton.addMouseListener(new MouseAdapter() {
+                public void mouseEntered(MouseEvent e) {
+                    editButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+                    editButton.setBackground(new Color(60, 45, 145));
+                    deleteButton.setBackground(new Color(60, 45, 145));
+                    gameItem.setBackground(new Color(60, 45, 145));
+                    Timer timer = new Timer(15, new ActionListener() {
+                        int red = editButton.getBackground().getRed();
+                        int green = editButton.getBackground().getGreen();
+                        int blue = editButton.getBackground().getBlue();
+
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            if (red < 60) red++;
+                            if (green > 45) green--;
+                            if (blue > 145) blue--;
+                            editButton.setBackground(new Color(red, green, blue));
+                            deleteButton.setBackground(new Color(red, green, blue));
+                            gameItem.setBackground(new Color(red, green, blue));
+                            if (red == 60 && green == 45 && blue == 145) {
+                                ((Timer) e.getSource()).stop();
+                            }
+                        }
+                    });
+                    timer.start();
+                    ImageIcon editIcon2 = new ImageIcon("src/com/images/edit.png");
+                    Image auxEdit2 = editIcon2.getImage();
+                    auxEdit2 = auxEdit2.getScaledInstance(32, 32, Image.SCALE_SMOOTH);
+                    editIcon2 = new ImageIcon(auxEdit2);
+                    editButton.setIcon(editIcon2); // Set the icon on the button
+                }
+
+
+                public void mouseExited(MouseEvent e) {
+                    editButton.setBackground(SignInController.getPurple());
+                    deleteButton.setBackground(SignInController.getPurple());
+                    gameItem.setBackground(SignInController.getPurple());
+                    ImageIcon editIcon2 = new ImageIcon("src/com/images/edit.png");
+                    Image auxEdit2 = editIcon2.getImage();
+                    auxEdit2 = auxEdit2.getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+                    editIcon2 = new ImageIcon(auxEdit2);
+                    editButton.setIcon(editIcon2); // Establecer el icono en el botón
+                }
+            });
+            deleteButton.addMouseListener(new MouseAdapter() {
+                public void mouseEntered(MouseEvent e) {
+                    deleteButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+                    editButton.setBackground(new Color(60, 45, 145));
+                    deleteButton.setBackground(new Color(60, 45, 145));
+                    gameItem.setBackground(new Color(60, 45, 145));
+                    Timer timer = new Timer(15, new ActionListener() {
+                        int red = deleteButton.getBackground().getRed();
+                        int green = deleteButton.getBackground().getGreen();
+                        int blue = deleteButton.getBackground().getBlue();
+
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            if (red < 60) red++;
+                            if (green > 45) green--;
+                            if (blue > 145) blue--;
+                            deleteButton.setBackground(new Color(red, green, blue));
+                            deleteButton.setBackground(new Color(red, green, blue));
+                            gameItem.setBackground(new Color(red, green, blue));
+                            if (red == 60 && green == 45 && blue == 145) {
+                                ((Timer) e.getSource()).stop();
+                            }
+                        }
+                    });
+                    timer.start();
+                    ImageIcon deleteIcon2 = new ImageIcon("src/com/images/trash.png");
+                    Image aux2 = deleteIcon2.getImage();
+                    aux2 = aux2.getScaledInstance(32, 32, Image.SCALE_SMOOTH);
+                    deleteIcon2 = new ImageIcon(aux2);
+                    deleteButton.setIcon(deleteIcon2); // Establecer el icono en el botón
+                }
+
+
+                public void mouseExited(MouseEvent e) {
+                    editButton.setBackground(SignInController.getPurple());
+                    deleteButton.setBackground(SignInController.getPurple());
+                    gameItem.setBackground(SignInController.getPurple());
+                    ImageIcon deleteIcon2 = new ImageIcon("src/com/images/trash.png");
+                    Image aux2 = deleteIcon2.getImage();
+                    aux2 = aux2.getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+                    deleteIcon2 = new ImageIcon(aux2);
+                    deleteButton.setIcon(deleteIcon2); // Establecer el icono en el botón
+                }
+            });
 
             gameItem.addMouseListener(new MouseAdapter() {
                 public void mouseEntered(MouseEvent e) {
                     gameItem.setCursor(new Cursor(Cursor.HAND_CURSOR));
                     gameItem.setBackground(new Color(60, 45, 145));
+                    editButton.setBackground(new Color(60, 45, 145));
+                    deleteButton.setBackground(new Color(60, 45, 145));
                 }
 
                 public void mouseExited(MouseEvent e) {
                     gameItem.setBackground(SignInController.getPurple());
+                    editButton.setBackground(SignInController.getPurple());
+                    deleteButton.setBackground(SignInController.getPurple());
                 }
 
                 public void mouseClicked(MouseEvent e) {
