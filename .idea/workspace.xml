@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0c57a3d6-f589-42ed-af0f-91499e053460" name="Changes" comment="modificado borde de boton play">
+    <list default="true" id="0c57a3d6-f589-42ed-af0f-91499e053460" name="Changes" comment="Arreglado que no deje añadir juego si no hay juegos. close #3">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/launcher/LibraryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/launcher/LibraryController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,31 +58,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.AnimatedGifPanel.executor": "Run",
-    "Application.Main.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "ana",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/anavalladares/Desktop/GamesLauncher",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.16992188",
-    "project.structure.side.proportion": "0.2",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.AnimatedGifPanel.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;anxo&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/anavalladares/Desktop/GamesLauncher&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.16992188&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "postgresql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Application.Main">
     <configuration name="AnimatedGifPanel" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.launcher.AnimatedGifPanel" />
@@ -130,6 +131,10 @@
       <updated>1716281563269</updated>
       <workItem from="1716281564307" duration="4257000" />
       <workItem from="1716801231051" duration="1627000" />
+      <workItem from="1717227534399" duration="4275000" />
+      <workItem from="1717242276903" duration="3551000" />
+      <workItem from="1717253169452" duration="1453000" />
+      <workItem from="1717259814057" duration="431000" />
     </task>
     <task id="LOCAL-00001" summary="cambios por arreglos en la rama ana">
       <option name="closed" value="true" />
@@ -235,15 +240,23 @@
       <option name="project" value="LOCAL" />
       <updated>1717163104131</updated>
     </task>
-    <task id="LOCAL-00014" summary="modificado borde de boton play">
+    <task id="LOCAL-00014" summary="Arreglado que los botones edit y delete se pongan con fondo oscuro. close #4">
       <option name="closed" value="true" />
-      <created>1717163474979</created>
+      <created>1717229680946</created>
       <option name="number" value="00014" />
       <option name="presentableId" value="LOCAL-00014" />
       <option name="project" value="LOCAL" />
-      <updated>1717163474979</updated>
+      <updated>1717229680946</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Arreglado que no deje añadir juego si no hay juegos. close #3">
+      <option name="closed" value="true" />
+      <created>1717243004607</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1717243004607</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -276,7 +289,8 @@
     <MESSAGE value="modificado boton game" />
     <MESSAGE value="imagen de fondo añadida pero no se mueve el gif" />
     <MESSAGE value="arreglado que se mueva el gif de fondo" />
-    <MESSAGE value="modificado borde de boton play" />
-    <option name="LAST_COMMIT_MESSAGE" value="modificado borde de boton play" />
+    <MESSAGE value="Arreglado que los botones edit y delete se pongan con fondo oscuro. close #4" />
+    <MESSAGE value="Arreglado que no deje añadir juego si no hay juegos. close #3" />
+    <option name="LAST_COMMIT_MESSAGE" value="Arreglado que no deje añadir juego si no hay juegos. close #3" />
   </component>
 </project>
