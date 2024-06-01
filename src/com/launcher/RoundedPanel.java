@@ -3,16 +3,33 @@ package com.launcher;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Una clase que representa un panel redondeado.
+ */
 class RoundedPanel extends JPanel {
+
+    /**
+     * Color de fondo.
+     */
     private Color backgroundColor;
+
+    /**
+     * Radio de las esquinas.
+     */
     private int cornerRadius = 15;
 
+    /**
+     * Crea un nuevo RoundedPanel.
+     */
     public RoundedPanel(LayoutManager layout, int radius, Color bgColor) {
         super(layout);
         cornerRadius = radius;
         backgroundColor = bgColor;
     }
 
+    /**
+     * Crea un nuevo RoundedPanel.
+     */
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
