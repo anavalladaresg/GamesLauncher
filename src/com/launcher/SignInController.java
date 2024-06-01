@@ -226,21 +226,7 @@ public class SignInController {
         loginButton.setContentAreaFilled(true);
         componentsPanel.add(loginButton);
 
-        userText.addKeyListener(new KeyAdapter() {
-            public void keyPressed(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    loginButton.doClick();
-                }
-            }
-        });
-
-        passwordText.addKeyListener(new KeyAdapter() {
-            public void keyPressed(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    loginButton.doClick();
-                }
-            }
-        });
+        SignUpController.configureKeyListener(userText, passwordText, loginButton);
 
         loginButton.addActionListener(new ActionListener() {
             @Override
