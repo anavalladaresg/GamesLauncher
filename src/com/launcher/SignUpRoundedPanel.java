@@ -4,19 +4,18 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * This class represents a custom JPanel with rounded corners on the left side.
+ * Esta clase representa un panel con esquinas redondeadas en el lado izquierdo.
  */
 class SignUpRoundedPanel extends JPanel {
     private final Color backgroundColor;
     private final int cornerRadius;
 
     /**
-     * Constructor for the SignUpRoundedPanel class.
-     * It initializes the layout, corner radius, and background color.
+     * Crea un nuevo SignUpRoundedPanel.
      *
-     * @param layout The layout manager.
-     * @param radius The radius for the rounded corners.
-     * @param bgColor The background color.
+     * @param layout  El layout a utilizar.
+     * @param radius  El radio de las esquinas.
+     * @param bgColor El color de fondo.
      */
     public SignUpRoundedPanel(LayoutManager layout, int radius, Color bgColor) {
         super(layout);
@@ -25,9 +24,8 @@ class SignUpRoundedPanel extends JPanel {
     }
 
     /**
-     * This method paints the component with rounded corners on the left side.
-     *
-     * @param g The Graphics object.
+     * Este método se encarga de pintar el panel.
+     * @param g El objeto Graphics.
      */
     @Override
     protected void paintComponent(Graphics g) {
@@ -45,7 +43,7 @@ class SignUpRoundedPanel extends JPanel {
 
         // Draws the right corners as square.
         graphics.setColor(backgroundColor); // Use the same background color
-        graphics.fillRect(0,0,width / 2, cornerRadius);
+        graphics.fillRect(0, 0, width / 2, cornerRadius);
         graphics.fillRect(0, height - cornerRadius, width / 2, cornerRadius);
     }
 }
