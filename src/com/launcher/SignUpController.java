@@ -11,13 +11,15 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.*;
 
+/**
+ * Representa un controlador para la pantalla de registro.
+ */
 public class SignUpController {
     private final JFrame frame; // Window frame
     private final User currentUser = new User(); // Current user
 
     /**
-     * UIController constructor.
-     * Initializes the window frame and places the components on the panel.
+     * Inicializa un nuevo SignUpController.
      */
     public SignUpController() {
         frame = new JFrame("Xynx"); // Create a new frame with the title "Xynx"
@@ -33,9 +35,8 @@ public class SignUpController {
     }
 
     /**
-     * Method to place the components on the panel.
-     *
-     * @param panel The panel on which the components will be placed.
+     * Método para colocar los componentes en el panel.
+     * @param panel El panel en el que se colocarán los componentes.
      */
     private void placeComponents(JPanel panel) {
         panel.setLayout(new BorderLayout()); // Change to BorderLayout
@@ -64,6 +65,10 @@ public class SignUpController {
         panel.add(componentsPanel, BorderLayout.CENTER); // Add the components panel to the center
     }
 
+    /**
+     * Método para crear y configurar las etiquetas.
+     * @param colorLayer El panel en el que se colocarán las etiquetas.
+     */
     private void createAndConfigureLabels(SignUpRoundedPanel colorLayer) {
         // Cargar la imagen
         ImageIcon imageIcon = new ImageIcon(getClass().getResource("/com/images/Xynx.png"));
@@ -91,6 +96,10 @@ public class SignUpController {
         colorLayer.add(invitationLabel);
     }
 
+    /**
+     * Método para crear y configurar el botón de inicio de sesión.
+     * @param colorLayer El panel en el que se colocará el botón.
+     */
     private void createAndConfigureSignInButton(SignUpRoundedPanel colorLayer) {
         JButton signUpButton = new JButton("SIGN IN") {
             // Override paintComponent to provide our own paint methods while preserving the original functionality
@@ -126,7 +135,6 @@ public class SignUpController {
             }
         });
 
-
         signUpButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
@@ -143,9 +151,8 @@ public class SignUpController {
     }
 
     /**
-     * Method to create and configure the sign up button.
-     *
-     * @param componentsPanel The panel on which the button will be placed.
+     * Método para crear y configurar los componentes de inicio de sesión.
+     * @param componentsPanel El panel en el que se colocarán los componentes.
      */
     private void createAndConfigureSignInComponents(JPanel componentsPanel) {
 
@@ -282,7 +289,7 @@ public class SignUpController {
     }
 
     /**
-     * Method to display the login screen.
+     * Método para mostrar la pantalla de inicio de sesión.
      */
     public void displaySignInScreen() {
         SwingUtilities.invokeLater(new Runnable() {
@@ -294,7 +301,7 @@ public class SignUpController {
     }
 
     /**
-     * Method to display the main menu.
+     * Método para mostrar el menú principal.
      */
     public void displayMainMenu() {
         SwingUtilities.invokeLater(new Runnable() {
@@ -303,13 +310,5 @@ public class SignUpController {
                 new LibraryController(currentUser.getUserName()); // Create a new instance of MainMenuController
             }
         });
-    }
-
-    /**
-     * Method to view the game details.
-     *
-     * @param game The game whose details will be viewed.
-     */
-    public void viewGameDetails(Game game) {
     }
 }
