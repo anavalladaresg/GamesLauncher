@@ -11,7 +11,7 @@ import java.awt.*;
 import java.awt.event.*;
 
 /**
- * This class controls the user interface.
+ * Esta clase representa el controlador de inicio de sesión.
  */
 public class SignInController {
     private static final Color purple = new Color(80, 65, 165);
@@ -19,7 +19,7 @@ public class SignInController {
     private final User currentUser;
 
     /**
-     * Constructor for the SignInController class.
+     * Constructor de la clase SignInController.
      */
     public SignInController() {
         frame = createFrame();
@@ -27,18 +27,16 @@ public class SignInController {
     }
 
     /**
-     * This method returns the purple color.
-     *
-     * @return The purple color.
+     * Este método devuelve el color púrpura.
+     * @return El color púrpura.
      */
     public static Color getPurple() {
         return purple;
     }
 
     /**
-     * This method creates the frames and panels for the UI.
-     *
-     * @return The principal frame.
+     * Este método crea el marco.
+     * @return El marco.
      */
     private JFrame createFrame() {
         JFrame frame = new JFrame("Xynx");
@@ -66,9 +64,8 @@ public class SignInController {
     }
 
     /**
-     * This method creates the color panel.
-     *
-     * @return The color panel.
+     * Este método crea la capa de color.
+     * @return La capa de color.
      */
     private SignInRoundedPanel createColorLayer() {
         SignInRoundedPanel colorLayer = new SignInRoundedPanel(new BorderLayout(), 250, purple);
@@ -82,9 +79,8 @@ public class SignInController {
     }
 
     /**
-     * This method creates the components panel.
-     *
-     * @return The components panel.
+     * Este método crea el panel de componentes.
+     * @return El panel de componentes.
      */
     private JPanel createComponentsPanel() {
         JPanel componentsPanel = new JPanel();
@@ -97,9 +93,8 @@ public class SignInController {
     }
 
     /**
-     * This method creates and configures the labels.
-     *
-     * @param colorLayer The color layer.
+     * Este método crea y configura las etiquetas.
+     * @param colorLayer La capa de color.
      */
     private void createAndConfigureLabels(SignInRoundedPanel colorLayer) {
         ImageIcon imageIcon = new ImageIcon(getClass().getResource("/com/images/Xynx.png"));
@@ -125,9 +120,8 @@ public class SignInController {
     }
 
     /**
-     * This method creates and configures the sign up button.
-     *
-     * @param colorLayer The color layer.
+     * Este método crea y configura el botón de registro.
+     * @param colorLayer La capa de color.
      */
     private void createAndConfigureSignUpButton(SignInRoundedPanel colorLayer) {
         JButton signUpButton = new JButton("SIGN UP") {
@@ -177,9 +171,8 @@ public class SignInController {
     }
 
     /**
-     * This method creates and configures the sign in components.
-     *
-     * @param componentsPanel The components panel.
+     * Este método crea y configura los componentes de inicio de sesión.
+     * @param componentsPanel El panel de componentes.
      */
     private void createAndConfigureSignInComponents(JPanel componentsPanel) {
         JLabel signInLabel = new JLabel("SIGN IN");
@@ -233,9 +226,6 @@ public class SignInController {
         loginButton.setContentAreaFilled(true);
         componentsPanel.add(loginButton);
 
-        /**
-         * This method listens for the enter key to be pressed and triggers the login button.
-         */
         userText.addKeyListener(new KeyAdapter() {
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -290,7 +280,7 @@ public class SignInController {
     }
 
     /**
-     * This method displays the sign up screen.
+     * Este método muestra la pantalla de registro.
      */
     public void displaySignUpScreen() {
         SwingUtilities.invokeLater(new Runnable() {
@@ -302,7 +292,7 @@ public class SignInController {
     }
 
     /**
-     * This method displays the main menu.
+     * Este método muestra el menú principal.
      */
     public void displayMainMenu() {
         SwingUtilities.invokeLater(new Runnable() {
@@ -312,5 +302,4 @@ public class SignInController {
             }
         });
     }
-
 }
