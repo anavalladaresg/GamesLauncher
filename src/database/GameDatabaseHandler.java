@@ -1,9 +1,8 @@
 package database;
 
 import com.games.Game;
-import com.launcher.functional.LibraryController;
+import com.launcher.functional.mainpanel.LibraryController;
 
-import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -109,8 +108,6 @@ public class GameDatabaseHandler extends DatabaseHandler {
 
         } catch (SQLException e) {
             e.printStackTrace();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
         }
     }
 

@@ -1,5 +1,6 @@
-package com.launcher.functional;
+package com.launcher.functional.initpanel;
 
+import com.launcher.functional.mainpanel.LibraryController;
 import com.launcher.styles.SignInRoundedPanel;
 import com.users.User;
 import com.launcher.styles.PlaceholderPasswordField;

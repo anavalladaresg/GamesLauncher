@@ -1,4 +1,4 @@
-package com.launcher.functional;
+package com.launcher.functional.initpanel;
 
 import com.users.User;
 import com.launcher.styles.PlaceholderPasswordField;
