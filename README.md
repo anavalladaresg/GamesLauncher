@@ -23,7 +23,6 @@ _The Games Launcher project has reached its final stage, with significant stride
 The team has worked diligently on the Games Launcher project, with a focus on enhancing the user experience and expanding the functionality of the game management system.
 
 ## Class Diagram
-
 ```mermaid
 classDiagram
     class Game {
