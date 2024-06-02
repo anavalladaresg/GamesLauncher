@@ -800,6 +800,211 @@ public class LibraryController {
                     gameListPanel.add(gameItem);
                     leftPanel.add(gameListPanel);
 
+                    gameItem.add(Box.createHorizontalGlue());
+
+                    // Crear un ImageIcon
+                    ImageIcon deleteIcon = new ImageIcon("src/com/images/trash.png");
+
+                    Image aux = deleteIcon.getImage();
+                    aux = aux.getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+                    deleteIcon = new ImageIcon(aux);
+
+                    // Crear botón de eliminar
+                    JButton deleteButton = new JButton();
+                    deleteButton.setIcon(deleteIcon); // Establecer el icono en el botón
+                    deleteButton.setPreferredSize(new Dimension(40, 30));
+                    deleteButton.setFont(new Font("Helvetica", Font.PLAIN, 14));
+                    deleteButton.setForeground(Color.WHITE);
+                    deleteButton.setBackground(SignInController.getPurple());
+                    deleteButton.setFocusPainted(false);
+                    deleteButton.setBorderPainted(false);
+                    // Añadir listener para el botón de eliminar
+                    deleteButton.addActionListener(new ActionListener() {
+                        public void actionPerformed(ActionEvent e) {
+                            // Eliminar el panel del juego del panel izquierdo
+                            leftPanel.remove(gameItem);
+                            leftPanel.revalidate();
+                            leftPanel.repaint();
+
+                            // Eliminar el juego de la base de datos
+                            db.deleteGame(newGame.getGameName(), userName);
+                        }
+                    });
+                    gameItem.add(deleteButton);
+
+                    // ImageIcon para el botón de edición
+                    ImageIcon editIcon = new ImageIcon("src/com/images/edit.png");
+
+                    Image auxEdit = editIcon.getImage();
+                    auxEdit = auxEdit.getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+                    editIcon = new ImageIcon(auxEdit);
+
+                    // Crear botón de edición
+                    JButton editButton = new JButton();
+                    editButton.setIcon(editIcon); // Establecer el icono en el botón
+                    editButton.setPreferredSize(new Dimension(40, 30));
+                    editButton.setFont(new Font("Helvetica", Font.PLAIN, 14));
+                    editButton.setForeground(Color.WHITE);
+                    editButton.setBackground(SignInController.getPurple());
+                    editButton.setFocusPainted(false);
+                    editButton.setBorderPainted(false);
+
+                    // Añadir listener para el botón de edición
+                    editButton.addActionListener(new ActionListener() {
+                        private static JButton createCancelButton() {
+                            JButton cancelButton = new JButton("Cancel") {
+                                @Override
+                                protected void paintComponent(Graphics g) {
+                                    if (!isOpaque() && getBorder() instanceof RoundedBorder) {
+                                        Graphics2D g2 = (Graphics2D) g.create();
+                                        g2.setPaint(getBackground());
+                                        g2.fill(((RoundedBorder) getBorder()).getBorderShape(0, 0, getWidth() - 1, getHeight() - 1));
+                                        g2.dispose();
+                                    }
+                                    super.paintComponent(g);
+                                }
+                            };
+                            return cancelButton;
+                        }
+
+                        public void actionPerformed(ActionEvent e) {
+                            // 1. Mostrar el formulario de edición (puedes usar un JOptionPane con varios campos de entrada)
+                            JTextField gameNameField = new JTextField(newGame.getGameName());
+                            JTextField gameDescriptionField = new JTextField(newGame.getGameDescription());
+                            JTextField gameGenreField = new JTextField(newGame.getGameGenre());
+                            JTextField gameImageField = new JTextField(newGame.getGameImage());
+                            JTextField gameCoverField = new JTextField(newGame.getGameCoverImage());
+                            JTextField gameExeField = new JTextField(newGame.getExeLocation());
+                            JTextField gameFolderField = new JTextField(newGame.getFolderLocation());
+
+                            Object[] message = {
+                                    "Game Name:", gameNameField,
+                                    "Game Description:", gameDescriptionField,
+                                    "Game Genre:", gameGenreField,
+                                    "Game Image Path:", gameImageField,
+                                    "Game Cover Path:", gameCoverField,
+                                    "Game .exe Link:", gameExeField,
+                                    "Game Folder Link:", gameFolderField
+                            };
+
+                            int option = JOptionPane.showConfirmDialog(null, message, "Edit Game", JOptionPane.OK_CANCEL_OPTION);
+                            if (option == JOptionPane.OK_OPTION) {
+                                // Verificar si todos los campos están llenos
+                                if (gameNameField.getText().isEmpty() || gameDescriptionField.getText().isEmpty() || gameGenreField.getText().isEmpty() || gameImageField.getText().isEmpty() || gameCoverField.getText().isEmpty() || gameExeField.getText().isEmpty() || gameFolderField.getText().isEmpty()) {
+                                    JOptionPane.showMessageDialog(null, "All fields must be filled", "Error", JOptionPane.ERROR_MESSAGE);
+                                } else {
+                                    // 2. Recoger los datos ingresados por el usuario y actualizar el objeto Game
+                                    newGame.setGameName(gameNameField.getText());
+                                    newGame.setGameDescription(gameDescriptionField.getText());
+                                    newGame.setGameGenre(gameGenreField.getText());
+                                    newGame.setGameImage(gameImageField.getText());
+                                    newGame.setGameCoverImage(gameCoverField.getText());
+                                    newGame.setExeLocation(gameExeField.getText());
+                                    newGame.setFolderLocation(gameFolderField.getText());
+
+                                    // 3. Actualizar la base de datos con los nuevos datos del juego
+                                    db.updateGame(newGame);
+                                    leftPanel.removeAll();
+                                    leftPanel.revalidate();
+                                    leftPanel.repaint();
+                                }
+                            }
+                        }
+                    });
+
+                    // Añadir el botón de edición al panel del juego
+                    gameItem.add(editButton);
+                    leftPanel.add(gameItem);
+
+                    editButton.addMouseListener(new MouseAdapter() {
+                        public void mouseEntered(MouseEvent e) {
+                            editButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+                            editButton.setBackground(new Color(60, 45, 145));
+                            deleteButton.setBackground(new Color(60, 45, 145));
+                            gameItem.setBackground(new Color(60, 45, 145));
+                            Timer timer = new Timer(15, new ActionListener() {
+                                int red = editButton.getBackground().getRed();
+                                int green = editButton.getBackground().getGreen();
+                                int blue = editButton.getBackground().getBlue();
+
+                                @Override
+                                public void actionPerformed(ActionEvent e) {
+                                    if (red < 60) red++;
+                                    if (green > 45) green--;
+                                    if (blue > 145) blue--;
+                                    editButton.setBackground(new Color(red, green, blue));
+                                    deleteButton.setBackground(new Color(red, green, blue));
+                                    gameItem.setBackground(new Color(red, green, blue));
+                                    if (red == 60 && green == 45 && blue == 145) {
+                                        ((Timer) e.getSource()).stop();
+                                    }
+                                }
+                            });
+                            timer.start();
+                            ImageIcon editIcon2 = new ImageIcon("src/com/images/edit.png");
+                            Image auxEdit2 = editIcon2.getImage();
+                            auxEdit2 = auxEdit2.getScaledInstance(32, 32, Image.SCALE_SMOOTH);
+                            editIcon2 = new ImageIcon(auxEdit2);
+                            editButton.setIcon(editIcon2); // Set the icon on the button
+                        }
+
+
+                        public void mouseExited(MouseEvent e) {
+                            editButton.setBackground(SignInController.getPurple());
+                            deleteButton.setBackground(SignInController.getPurple());
+                            gameItem.setBackground(SignInController.getPurple());
+                            ImageIcon editIcon2 = new ImageIcon("src/com/images/edit.png");
+                            Image auxEdit2 = editIcon2.getImage();
+                            auxEdit2 = auxEdit2.getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+                            editIcon2 = new ImageIcon(auxEdit2);
+                            editButton.setIcon(editIcon2); // Establecer el icono en el botón
+                        }
+                    });
+                    deleteButton.addMouseListener(new MouseAdapter() {
+                        public void mouseEntered(MouseEvent e) {
+                            deleteButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+                            editButton.setBackground(new Color(60, 45, 145));
+                            deleteButton.setBackground(new Color(60, 45, 145));
+                            gameItem.setBackground(new Color(60, 45, 145));
+                            Timer timer = new Timer(15, new ActionListener() {
+                                int red = deleteButton.getBackground().getRed();
+                                int green = deleteButton.getBackground().getGreen();
+                                int blue = deleteButton.getBackground().getBlue();
+
+                                @Override
+                                public void actionPerformed(ActionEvent e) {
+                                    if (red < 60) red++;
+                                    if (green > 45) green--;
+                                    if (blue > 145) blue--;
+                                    deleteButton.setBackground(new Color(red, green, blue));
+                                    deleteButton.setBackground(new Color(red, green, blue));
+                                    gameItem.setBackground(new Color(red, green, blue));
+                                    if (red == 60 && green == 45 && blue == 145) {
+                                        ((Timer) e.getSource()).stop();
+                                    }
+                                }
+                            });
+                            timer.start();
+                            ImageIcon deleteIcon2 = new ImageIcon("src/com/images/trash.png");
+                            Image aux2 = deleteIcon2.getImage();
+                            aux2 = aux2.getScaledInstance(32, 32, Image.SCALE_SMOOTH);
+                            deleteIcon2 = new ImageIcon(aux2);
+                            deleteButton.setIcon(deleteIcon2); // Establecer el icono en el botón
+                        }
+
+
+                        public void mouseExited(MouseEvent e) {
+                            editButton.setBackground(SignInController.getPurple());
+                            deleteButton.setBackground(SignInController.getPurple());
+                            gameItem.setBackground(SignInController.getPurple());
+                            ImageIcon deleteIcon2 = new ImageIcon("src/com/images/trash.png");
+                            Image aux2 = deleteIcon2.getImage();
+                            aux2 = aux2.getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+                            deleteIcon2 = new ImageIcon(aux2);
+                            deleteButton.setIcon(deleteIcon2); // Establecer el icono en el botón
+                        }
+                    });
+
                     gameItem.addMouseListener(new MouseAdapter() {
                         public void mouseEntered(MouseEvent e) {
                             gameItem.setCursor(new Cursor(Cursor.HAND_CURSOR));
@@ -817,9 +1022,30 @@ public class LibraryController {
                             rightPanel.repaint();
 
                             // Panel principal de la información del juego
-                            JPanel gameInfoPanel = new JPanel(new BorderLayout());
+                            JPanel gameInfoPanel = new JPanel(new BorderLayout()) {
+                                private ImageIcon gifBackground;
+
+                                {
+                                    try {
+                                        // Cargar la imagen GIF como ImageIcon
+                                        gifBackground = new ImageIcon("src/com/images/fondo.gif");
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+
+                                @Override
+                                protected void paintComponent(Graphics g) {
+                                    super.paintComponent(g);
+                                    if (gifBackground != null) {
+                                        // Dibujar el GIF animado como fondo
+                                        gifBackground.paintIcon(this, g, 0, 0);
+                                    }
+                                }
+                            };
                             gameInfoPanel.setPreferredSize(new Dimension(panel.getWidth() - leftPanel.getWidth(), panel.getHeight()));
                             gameInfoPanel.setBackground(new Color(224, 224, 224, 255));
+
 
                             // Añadir la imagen de portada del juego en la parte superior
                             ImageIcon gameCoverImageIcon = new ImageIcon(newGame.getGameCoverImage());
