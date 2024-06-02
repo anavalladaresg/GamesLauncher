@@ -21,7 +21,7 @@ import java.awt.event.*;
 public class SignInController {
     private static final Color purple = new Color(80, 65, 165);
     private final JFrame frame;
-    private final User currentUser;
+    private static User currentUser = null;
 
     /**
      * Constructor de la clase SignInController.
@@ -37,6 +37,10 @@ public class SignInController {
      */
     public static Color getPurple() {
         return purple;
+    }
+
+    public static User getCurrentUser() {
+        return currentUser;
     }
 
     /**
@@ -104,7 +108,7 @@ public class SignInController {
     private void createAndConfigureLabels(SignInRoundedPanel colorLayer) {
         ImageIcon imageIcon = new ImageIcon(getClass().getResource("/com/images/Xynx.png"));
         Image image = imageIcon.getImage();
-        Image scaledImage = image.getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH);
+        Image scaledImage = image.getScaledInstance(200, 200, Image.SCALE_SMOOTH);
         imageIcon = new ImageIcon(scaledImage);
 
         JLabel imageLabel = new JLabel(imageIcon);

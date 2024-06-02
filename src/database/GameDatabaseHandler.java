@@ -3,6 +3,7 @@ package database;
 import com.games.Game;
 import com.launcher.functional.mainpanel.LibraryController;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -27,20 +28,27 @@ public class GameDatabaseHandler extends DatabaseHandler {
      * @param game Juego a actualizar.
      */
     public void updateGame(Game game) {
-        String SQL = "UPDATE games SET description = ?, genre = ?, image = ?, coverimage = ?, exe = ?, folder = ? WHERE name = ?";
         connect();
-        try (PreparedStatement pstmt = conn.prepareStatement(SQL)) {
-            pstmt.setString(1, game.getGameDescription());
-            pstmt.setString(2, game.getGameGenre());
-            pstmt.setString(3, game.getGameImage());
-            pstmt.setString(4, game.getGameCoverImage());
-            pstmt.setString(5, game.getExeLocation());
-            pstmt.setString(6, game.getFolderLocation());
-            pstmt.setString(7, game.getGameName());
+        String sql = "UPDATE games SET id = ?, name = ?, description = ?, genre = ?, image = ?, coverimage = ?, exe = ?, folder = ? WHERE id = ?";
 
-            pstmt.executeUpdate();
+        try (Connection conn = this.connect(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, game.getId());
+            pstmt.setString(2, game.getGameName());
+            pstmt.setString(3, game.getGameDescription());
+            pstmt.setString(4, game.getGameGenre());
+            pstmt.setString(5, game.getGameImage());
+            pstmt.setString(6, game.getGameCoverImage());
+            pstmt.setString(7, game.getExeLocation());
+            pstmt.setString(8, game.getFolderLocation());
+
+            int rowsAffected = pstmt.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("Game with ID " + game.getId() + " updated successfully.");
+            } else {
+                System.out.println("No game found with ID " + game.getId() + ". Nothing updated.");
+            }
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            System.out.println("Error updating game: " + e.getMessage());
         }
     }
 
@@ -79,7 +87,8 @@ public class GameDatabaseHandler extends DatabaseHandler {
 
     /**
      * Añade un juego a la base de datos.
-     * @param game Juego a añadir.
+     *
+     * @param game     Juego a añadir.
      * @param userName Nombre de usuario.
      */
     public void addGame(Game game, String userName) {

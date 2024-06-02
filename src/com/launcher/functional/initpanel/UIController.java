@@ -203,6 +203,6 @@ public class UIController {
         });
     }
 
-    private void displayMainMenu() {
+    void displayMainMenu() {
     }
 }

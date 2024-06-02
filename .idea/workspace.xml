@@ -4,20 +4,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0c57a3d6-f589-42ed-af0f-91499e053460" name="Changes" comment="cambios de paquetes y clases a publico">
+    <list default="true" id="0c57a3d6-f589-42ed-af0f-91499e053460" name="Changes" comment="Codigo completo antes de refactorizacion de LibraryController">
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/launcher/functional/LibraryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/launcher/functional/mainpanel/LibraryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/launcher/functional/SignInController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/launcher/functional/initpanel/SignInController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/launcher/functional/SignUpController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/launcher/functional/initpanel/SignUpController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/launcher/functional/UIController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/launcher/functional/initpanel/UIController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GamesLauncher.iml" beforeDir="false" afterPath="$PROJECT_DIR$/GamesLauncher.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/games/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/games/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/launcher/functional/initpanel/SignInController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/launcher/functional/initpanel/SignInController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/launcher/functional/initpanel/SignUpController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/launcher/functional/initpanel/SignUpController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/launcher/functional/initpanel/UIController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/launcher/functional/initpanel/UIController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/launcher/functional/mainpanel/GameButton.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/launcher/functional/mainpanel/GameForm.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/launcher/functional/mainpanel/GamePanel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/launcher/functional/mainpanel/LibraryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/launcher/functional/mainpanel/LibraryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/launcher/styles/AnimatedGifPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/launcher/styles/AnimatedGifPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/database/DatabaseHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/DatabaseHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/database/GameDatabaseHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/GameDatabaseHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CoverageOptionsProvider">
+    <option name="myAddOrReplace" value="1" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -69,34 +78,82 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.AnimatedGifPanel.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;anxo&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/anxor/Desktop/GamesLauncher/export_file.sql&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.16992188&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.AnimatedGifPanel.executor": "Run",
+    "Application.Main.executor": "Run",
+    "Downloaded.Files.Path.Enabled": "false",
+    "JUnit.AnimatedGifPanelTest.executor": "Coverage",
+    "JUnit.DatabaseHandlerTest.executor": "Coverage",
+    "JUnit.GameDatabaseHandlerTest.executor": "Coverage",
+    "JUnit.GameTest.executor": "Coverage",
+    "JUnit.LibraryControllerTest.executor": "Run",
+    "JUnit.PlaceholderPasswordFieldTest.executor": "Coverage",
+    "JUnit.PlaceholderTextFieldTest.executor": "Coverage",
+    "JUnit.RoundedBorderTest.executor": "Coverage",
+    "JUnit.RoundedPanelTest.executor": "Coverage",
+    "JUnit.SignInControllerTest.executor": "Run",
+    "JUnit.SignInRoundedPanelTest.executor": "Coverage",
+    "JUnit.SignUpControllerTest.executor": "Coverage",
+    "JUnit.SignUpRoundedPanelTest.executor": "Coverage",
+    "JUnit.UIControllerTest.executor": "Coverage",
+    "JUnit.UserTest.executor": "Coverage",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "anxo",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/anxor/Desktop/GamesLauncher/export_file.sql",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.16992188",
+    "project.structure.side.proportion": "0.2",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;postgresql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
     ]
   }
-}</component>
-  <component name="RunManager" selected="Application.Main">
-    <configuration name="AnimatedGifPanel" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.launcher.styles.AnimatedGifPanel" />
+}]]></component>
+  <component name="RunManager" selected="JUnit.UserDatabaseHandlerTest">
+    <configuration name="DatabaseHandlerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="GamesLauncher" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="database.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="database" />
+      <option name="MAIN_CLASS_NAME" value="database.DatabaseHandlerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GameDatabaseHandlerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="GamesLauncher" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="database.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="database" />
+      <option name="MAIN_CLASS_NAME" value="database.GameDatabaseHandlerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SignUpRoundedPanelTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="GamesLauncher" />
       <extension name="coverage">
         <pattern>
@@ -104,24 +161,50 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="PACKAGE_NAME" value="com.launcher.styles" />
+      <option name="MAIN_CLASS_NAME" value="com.launcher.styles.SignUpRoundedPanelTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Main" />
+    <configuration name="UserDatabaseHandlerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="GamesLauncher" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="database.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="database" />
+      <option name="MAIN_CLASS_NAME" value="database.UserDatabaseHandlerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="GamesLauncher" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.users.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.users" />
+      <option name="MAIN_CLASS_NAME" value="com.users.UserTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
-        <item itemvalue="Application.AnimatedGifPanel" />
-        <item itemvalue="Application.Main" />
-        <item itemvalue="Application.AnimatedGifPanel" />
-        <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.UserDatabaseHandlerTest" />
+        <item itemvalue="JUnit.GameDatabaseHandlerTest" />
+        <item itemvalue="JUnit.DatabaseHandlerTest" />
+        <item itemvalue="JUnit.UserTest" />
+        <item itemvalue="JUnit.SignUpRoundedPanelTest" />
       </list>
     </recent_temporary>
   </component>
@@ -150,7 +233,9 @@
       <workItem from="1717242276903" duration="3551000" />
       <workItem from="1717253169452" duration="1453000" />
       <workItem from="1717259814057" duration="10589000" />
-      <workItem from="1717323313818" duration="5538000" />
+      <workItem from="1717323313818" duration="26026000" />
+      <workItem from="1717350358689" duration="109000" />
+      <workItem from="1717350476512" duration="1950000" />
     </task>
     <task id="LOCAL-00001" summary="cambios por arreglos en la rama ana">
       <option name="closed" value="true" />
@@ -456,7 +541,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717269703050</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="Codigo completo antes de refactorizacion de LibraryController">
+      <option name="closed" value="true" />
+      <created>1717329159564</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1717329159564</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -474,7 +567,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="cambios por arreglos en la rama ana" />
     <MESSAGE value="close#1" />
     <MESSAGE value="Readme v3.0" />
     <MESSAGE value="close #2" />
@@ -499,6 +591,54 @@
     <MESSAGE value="Implementado JavaDoc" />
     <MESSAGE value="Eliminados comentarios innecesarios" />
     <MESSAGE value="Script de la base de datos" />
-    <option name="LAST_COMMIT_MESSAGE" value="Script de la base de datos" />
+    <MESSAGE value="Codigo completo antes de refactorizacion de LibraryController" />
+    <option name="LAST_COMMIT_MESSAGE" value="Codigo completo antes de refactorizacion de LibraryController" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/GamesLauncher$DatabaseHandlerTest.ic" NAME="DatabaseHandlerTest Coverage Results" MODIFIED="1717352288015" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>database.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/GamesLauncher$GameDatabaseHandlerTest.ic" NAME="GameDatabaseHandlerTest Coverage Results" MODIFIED="1717352419071" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>database.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/GamesLauncher$SignInRoundedPanelTest.ic" NAME="SignInRoundedPanelTest Coverage Results" MODIFIED="1717352075638" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.launcher.styles.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/GamesLauncher$SignInControllerTest.ic" NAME="SignInControllerTest Coverage Results" MODIFIED="1717351003292" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.launcher.functional.initpanel.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/GamesLauncher$SignUpControllerTest.ic" NAME="SignUpControllerTest Coverage Results" MODIFIED="1717351435436" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.launcher.functional.initpanel.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/GamesLauncher$RoundedPanelTest.ic" NAME="RoundedPanelTest Coverage Results" MODIFIED="1717352031135" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.launcher.styles.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/GamesLauncher$GameTest.ic" NAME="GameTest Coverage Results" MODIFIED="1717350678066" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.games.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/GamesLauncher$AnimatedGifPanelTest.ic" NAME="AnimatedGifPanelTest Coverage Results" MODIFIED="1717351811405" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.launcher.styles.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/GamesLauncher$UIControllerTest.ic" NAME="UIControllerTest Coverage Results" MODIFIED="1717351522830" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.launcher.functional.initpanel.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/GamesLauncher$RoundedBorderTest.ic" NAME="RoundedBorderTest Coverage Results" MODIFIED="1717352000956" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.launcher.styles.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/GamesLauncher$UserTest.ic" NAME="UserTest Coverage Results" MODIFIED="1717352221730" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.users.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/GamesLauncher$LibraryControllerTest.ic" NAME="LibraryControllerTest Coverage Results" MODIFIED="1717351579985" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.launcher.functional.mainpanel.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/GamesLauncher$PlaceholderPasswordFieldTest.ic" NAME="PlaceholderPasswordFieldTest Coverage Results" MODIFIED="1717351864581" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.launcher.styles.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/GamesLauncher$PlaceholderTextFieldTest.ic" NAME="PlaceholderTextFieldTest Coverage Results" MODIFIED="1717351914987" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.launcher.styles.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/GamesLauncher$SignUpRoundedPanelTest.ic" NAME="SignUpRoundedPanelTest Coverage Results" MODIFIED="1717352126681" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.launcher.styles.*</FILTER>
+    </SUITE>
   </component>
 </project>

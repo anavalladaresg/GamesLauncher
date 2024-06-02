@@ -4,6 +4,8 @@ package com.games;
  * La clase Game es un objeto que representa un juego.
  */
 public class Game {
+
+    private int id;
     /**
      * Nombre del juego.
      */
@@ -63,6 +65,10 @@ public class Game {
         this.gameCoverImage = gameCoverImage;
         this.exeLocation = exeLocation;
         this.folderLocation = folderLocation;
+    }
+
+    public int getId() {
+        return id;
     }
 
     /**

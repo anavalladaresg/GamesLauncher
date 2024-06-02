@@ -29,7 +29,11 @@ public class SignUpController {
     /**
      * El usuario actual.
      */
-    private final User currentUser = new User();
+    private static final User currentUser = new User();
+
+    public static User getCurrentUser() {
+        return currentUser;
+    }
 
     /**
      * Inicializa un nuevo SignUpController.

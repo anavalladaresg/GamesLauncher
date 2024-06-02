@@ -13,7 +13,7 @@ public class AnimatedGifPanel extends JPanel {
     /**
      * Imagen GIF animada
      */
-    private ImageIcon gifImage;
+    ImageIcon gifImage;
 
     /**
      * Constructor por defecto.

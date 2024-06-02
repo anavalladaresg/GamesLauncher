@@ -43,12 +43,16 @@ public class DatabaseHandler {
 
     /**
      * Establece la conexión con la base de datos.
+     *
+     * @return
      */
-    public void connect() {
+    public Connection connect() {
+        Connection conn = null;
         try {
             conn = DriverManager.getConnection(DATABASE_URL, DATABASE_USER, DATABASE_PASSWORD);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+        return conn;
     }
 }
