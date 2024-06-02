@@ -5,7 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c57a3d6-f589-42ed-af0f-91499e053460" name="Changes" comment="Problemas solucionados">
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,7 +29,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="ana" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -93,7 +94,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "anxo",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/anxor/Desktop/GamesLauncher/export_file.sql",
+    "last_opened_file_path": "C:/Users/anxor/Desktop/GamesLauncher",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -102,6 +103,7 @@
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.16992188",
     "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -180,11 +182,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.UserTest" />
         <item itemvalue="JUnit.UserDatabaseHandlerTest" />
         <item itemvalue="JUnit.GameDatabaseHandlerTest" />
         <item itemvalue="JUnit.DatabaseHandlerTest" />
-        <item itemvalue="JUnit.UserTest" />
+        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -216,6 +218,8 @@
       <workItem from="1717323313818" duration="26026000" />
       <workItem from="1717350358689" duration="109000" />
       <workItem from="1717350476512" duration="6011000" />
+      <workItem from="1717356827115" duration="133000" />
+      <workItem from="1717356970691" duration="1687000" />
     </task>
     <task id="LOCAL-00001" summary="cambios por arreglos en la rama ana">
       <option name="closed" value="true" />
