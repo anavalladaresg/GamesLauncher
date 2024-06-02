@@ -1,0 +1,643 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="0c57a3d6-f589-42ed-af0f-91499e053460" name="Changes" comment="Problemas solucionados">
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CoverageOptionsProvider">
+    <option name="myAddOrReplace" value="1" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Merge.Settings">
+    <option name="BRANCH" value="ana" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="ana" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;anavalladaresg&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="0626986c-63f3-498e-9f9d-30624baa0019" />
+        <option name="url" value="https://github.com/anavalladaresg/GamesLauncher.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="2gloXNBLxT75JiMWGKeJC0Xyhy2" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.AnimatedGifPanel.executor": "Run",
+    "Application.Main.executor": "Run",
+    "Downloaded.Files.Path.Enabled": "false",
+    "JUnit.AnimatedGifPanelTest.executor": "Coverage",
+    "JUnit.DatabaseHandlerTest.executor": "Coverage",
+    "JUnit.GameDatabaseHandlerTest.executor": "Coverage",
+    "JUnit.GameTest.executor": "Coverage",
+    "JUnit.LibraryControllerTest.executor": "Run",
+    "JUnit.PlaceholderPasswordFieldTest.executor": "Coverage",
+    "JUnit.PlaceholderTextFieldTest.executor": "Coverage",
+    "JUnit.RoundedBorderTest.executor": "Coverage",
+    "JUnit.RoundedPanelTest.executor": "Coverage",
+    "JUnit.SignInControllerTest.executor": "Run",
+    "JUnit.SignInRoundedPanelTest.executor": "Coverage",
+    "JUnit.SignUpControllerTest.executor": "Coverage",
+    "JUnit.SignUpRoundedPanelTest.executor": "Coverage",
+    "JUnit.UIControllerTest.executor": "Coverage",
+    "JUnit.UserDatabaseHandlerTest.executor": "Run",
+    "JUnit.UserTest.executor": "Coverage",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "anxo",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/anxor/Desktop/GamesLauncher/export_file.sql",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.16992188",
+    "project.structure.side.proportion": "0.2",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
+    ]
+  }
+}]]></component>
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="GamesLauncher" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DatabaseHandlerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="GamesLauncher" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="database.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="database" />
+      <option name="MAIN_CLASS_NAME" value="database.DatabaseHandlerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GameDatabaseHandlerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="GamesLauncher" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="database.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="database" />
+      <option name="MAIN_CLASS_NAME" value="database.GameDatabaseHandlerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserDatabaseHandlerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="GamesLauncher" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="database.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="database" />
+      <option name="MAIN_CLASS_NAME" value="database.UserDatabaseHandlerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="GamesLauncher" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.users.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.users" />
+      <option name="MAIN_CLASS_NAME" value="com.users.UserTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.UserDatabaseHandlerTest" />
+        <item itemvalue="JUnit.GameDatabaseHandlerTest" />
+        <item itemvalue="JUnit.DatabaseHandlerTest" />
+        <item itemvalue="JUnit.UserTest" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SQLScriptSettings">
+    <option name="outputLayout" value="File per object by schema and database.groovy" />
+    <option name="outputPath" value="C:\Users\anxor\Desktop\GamesLauncher\export_file.sql" />
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-21.0.2-openjdk-21.0.2-4caba194b151-4f524021" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0c57a3d6-f589-42ed-af0f-91499e053460" name="Changes" comment="" />
+      <created>1716281563269</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1716281563269</updated>
+      <workItem from="1716281564307" duration="4257000" />
+      <workItem from="1716801231051" duration="1627000" />
+      <workItem from="1717227534399" duration="4275000" />
+      <workItem from="1717242276903" duration="3551000" />
+      <workItem from="1717253169452" duration="1453000" />
+      <workItem from="1717259814057" duration="10589000" />
+      <workItem from="1717323313818" duration="26026000" />
+      <workItem from="1717350358689" duration="109000" />
+      <workItem from="1717350476512" duration="6011000" />
+    </task>
+    <task id="LOCAL-00001" summary="cambios por arreglos en la rama ana">
+      <option name="closed" value="true" />
+      <created>1716288679609</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1716288679609</updated>
+    </task>
+    <task id="LOCAL-00002" summary="close#1">
+      <option name="closed" value="true" />
+      <created>1716290204053</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1716290204053</updated>
+    </task>
+    <task id="LOCAL-00003" summary="editar juego">
+      <option name="closed" value="true" />
+      <created>1716800367817</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1716800367817</updated>
+    </task>
+    <task id="LOCAL-00004" summary="xml">
+      <option name="closed" value="true" />
+      <created>1716800375141</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1716800375141</updated>
+    </task>
+    <task id="LOCAL-00005" summary="edit img">
+      <option name="closed" value="true" />
+      <created>1716800384597</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1716800384597</updated>
+    </task>
+    <task id="LOCAL-00006" summary="solucionados problemas">
+      <option name="closed" value="true" />
+      <created>1716806528444</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1716806528444</updated>
+    </task>
+    <task id="LOCAL-00007" summary="cambios de no me acuerdo que">
+      <option name="closed" value="true" />
+      <created>1716829177611</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1716829177611</updated>
+    </task>
+    <task id="LOCAL-00008" summary="añadido campo username para que cada usuario tenga sus propios juegos">
+      <option name="closed" value="true" />
+      <created>1717145670099</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1717145670099</updated>
+    </task>
+    <task id="LOCAL-00009" summary="aumentado tamaño cover image">
+      <option name="closed" value="true" />
+      <created>1717146866766</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1717146866766</updated>
+    </task>
+    <task id="LOCAL-00010" summary="modificado boton game">
+      <option name="closed" value="true" />
+      <created>1717151224543</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1717151224543</updated>
+    </task>
+    <task id="LOCAL-00011" summary="imagen de fondo añadida pero no se mueve el gif">
+      <option name="closed" value="true" />
+      <created>1717162022970</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1717162022970</updated>
+    </task>
+    <task id="LOCAL-00012" summary="imagen de fondo añadida pero no se mueve el gif">
+      <option name="closed" value="true" />
+      <created>1717162076208</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1717162076208</updated>
+    </task>
+    <task id="LOCAL-00013" summary="arreglado que se mueva el gif de fondo">
+      <option name="closed" value="true" />
+      <created>1717163104131</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1717163104131</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Arreglado que los botones edit y delete se pongan con fondo oscuro. close #4">
+      <option name="closed" value="true" />
+      <created>1717229680946</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1717229680946</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Arreglado que no deje añadir juego si no hay juegos. close #3">
+      <option name="closed" value="true" />
+      <created>1717243004607</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1717243004607</updated>
+    </task>
+    <task id="LOCAL-00016" summary="cambios">
+      <option name="closed" value="true" />
+      <created>1717260552766</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1717260552766</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Herencia implementada">
+      <option name="closed" value="true" />
+      <created>1717264635231</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1717264635231</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Javadoc implementado">
+      <option name="closed" value="true" />
+      <created>1717264752037</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1717264752037</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Clase Library.java eliminada">
+      <option name="closed" value="true" />
+      <created>1717265628243</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1717265628243</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Implementado JavaDoc a clase PlaceholderPasswordField">
+      <option name="closed" value="true" />
+      <created>1717265928653</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1717265928653</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Cambiado Javadoc a español">
+      <option name="closed" value="true" />
+      <created>1717266483081</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1717266483081</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Implementado JavaDoc">
+      <option name="closed" value="true" />
+      <created>1717266512337</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1717266512337</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Implementado JavaDoc">
+      <option name="closed" value="true" />
+      <created>1717266544614</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1717266544614</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Implementado JavaDoc">
+      <option name="closed" value="true" />
+      <created>1717266581694</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1717266581694</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Implementado JavaDoc">
+      <option name="closed" value="true" />
+      <created>1717266868483</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1717266868483</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Implementado JavaDoc">
+      <option name="closed" value="true" />
+      <created>1717266894465</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1717266894465</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Implementado JavaDoc">
+      <option name="closed" value="true" />
+      <created>1717267000694</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1717267000694</updated>
+    </task>
+    <task id="LOCAL-00028" summary="Implementado JavaDoc">
+      <option name="closed" value="true" />
+      <created>1717267063288</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1717267063288</updated>
+    </task>
+    <task id="LOCAL-00029" summary="Implementado JavaDoc">
+      <option name="closed" value="true" />
+      <created>1717268754285</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1717268754285</updated>
+    </task>
+    <task id="LOCAL-00030" summary="Implementado JavaDoc">
+      <option name="closed" value="true" />
+      <created>1717268757894</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1717268757894</updated>
+    </task>
+    <task id="LOCAL-00031" summary="Implementado JavaDoc">
+      <option name="closed" value="true" />
+      <created>1717268761184</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1717268761184</updated>
+    </task>
+    <task id="LOCAL-00032" summary="Implementado JavaDoc">
+      <option name="closed" value="true" />
+      <created>1717268764635</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1717268764635</updated>
+    </task>
+    <task id="LOCAL-00033" summary="Implementado JavaDoc">
+      <option name="closed" value="true" />
+      <created>1717268769362</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1717268769362</updated>
+    </task>
+    <task id="LOCAL-00034" summary="Implementado JavaDoc">
+      <option name="closed" value="true" />
+      <created>1717268873779</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1717268873779</updated>
+    </task>
+    <task id="LOCAL-00035" summary="Implementado JavaDoc">
+      <option name="closed" value="true" />
+      <created>1717268957632</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1717268957632</updated>
+    </task>
+    <task id="LOCAL-00036" summary="Implementado JavaDoc">
+      <option name="closed" value="true" />
+      <created>1717269449685</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1717269449685</updated>
+    </task>
+    <task id="LOCAL-00037" summary="Eliminados comentarios innecesarios">
+      <option name="closed" value="true" />
+      <created>1717269482258</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1717269482258</updated>
+    </task>
+    <task id="LOCAL-00038" summary="Script de la base de datos">
+      <option name="closed" value="true" />
+      <created>1717269703050</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1717269703050</updated>
+    </task>
+    <task id="LOCAL-00039" summary="Codigo completo antes de refactorizacion de LibraryController">
+      <option name="closed" value="true" />
+      <created>1717329159564</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1717329159564</updated>
+    </task>
+    <task id="LOCAL-00040" summary="Test completados">
+      <option name="closed" value="true" />
+      <created>1717352516553</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1717352516554</updated>
+    </task>
+    <task id="LOCAL-00041" summary="Problemas solucionados">
+      <option name="closed" value="true" />
+      <created>1717355587799</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1717355587799</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="close #2" />
+    <MESSAGE value="editar juego" />
+    <MESSAGE value="xml" />
+    <MESSAGE value="edit img" />
+    <MESSAGE value="solucionados problemas" />
+    <MESSAGE value="cambios de no me acuerdo que" />
+    <MESSAGE value="añadido campo username para que cada usuario tenga sus propios juegos" />
+    <MESSAGE value="aumentado tamaño cover image" />
+    <MESSAGE value="modificado boton game" />
+    <MESSAGE value="imagen de fondo añadida pero no se mueve el gif" />
+    <MESSAGE value="arreglado que se mueva el gif de fondo" />
+    <MESSAGE value="Arreglado que los botones edit y delete se pongan con fondo oscuro. close #4" />
+    <MESSAGE value="Arreglado que no deje añadir juego si no hay juegos. close #3" />
+    <MESSAGE value="cambios" />
+    <MESSAGE value="Herencia implementada" />
+    <MESSAGE value="Javadoc implementado" />
+    <MESSAGE value="Clase Library.java eliminada" />
+    <MESSAGE value="Implementado JavaDoc a clase PlaceholderPasswordField" />
+    <MESSAGE value="Cambiado Javadoc a español" />
+    <MESSAGE value="Implementado JavaDoc" />
+    <MESSAGE value="Eliminados comentarios innecesarios" />
+    <MESSAGE value="Script de la base de datos" />
+    <MESSAGE value="Codigo completo antes de refactorizacion de LibraryController" />
+    <MESSAGE value="Test completados" />
+    <MESSAGE value="Problemas solucionados" />
+    <option name="LAST_COMMIT_MESSAGE" value="Problemas solucionados" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/GamesLauncher$DatabaseHandlerTest.ic" NAME="DatabaseHandlerTest Coverage Results" MODIFIED="1717352288015" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>database.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/GamesLauncher$GameDatabaseHandlerTest.ic" NAME="GameDatabaseHandlerTest Coverage Results" MODIFIED="1717352432044" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>database.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/GamesLauncher$SignInRoundedPanelTest.ic" NAME="SignInRoundedPanelTest Coverage Results" MODIFIED="1717352075638" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.launcher.styles.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/GamesLauncher$SignInControllerTest.ic" NAME="SignInControllerTest Coverage Results" MODIFIED="1717351003292" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.launcher.functional.initpanel.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/GamesLauncher$SignUpControllerTest.ic" NAME="SignUpControllerTest Coverage Results" MODIFIED="1717351435436" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.launcher.functional.initpanel.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/GamesLauncher$RoundedPanelTest.ic" NAME="RoundedPanelTest Coverage Results" MODIFIED="1717352031135" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.launcher.styles.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/GamesLauncher$GameTest.ic" NAME="GameTest Coverage Results" MODIFIED="1717350678066" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.games.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/GamesLauncher$AnimatedGifPanelTest.ic" NAME="AnimatedGifPanelTest Coverage Results" MODIFIED="1717351811405" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.launcher.styles.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/GamesLauncher$UIControllerTest.ic" NAME="UIControllerTest Coverage Results" MODIFIED="1717351522830" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.launcher.functional.initpanel.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/GamesLauncher$RoundedBorderTest.ic" NAME="RoundedBorderTest Coverage Results" MODIFIED="1717352000956" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.launcher.styles.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/GamesLauncher$UserTest.ic" NAME="UserTest Coverage Results" MODIFIED="1717352221730" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.users.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/GamesLauncher$LibraryControllerTest.ic" NAME="LibraryControllerTest Coverage Results" MODIFIED="1717351579985" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.launcher.functional.mainpanel.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/GamesLauncher$PlaceholderPasswordFieldTest.ic" NAME="PlaceholderPasswordFieldTest Coverage Results" MODIFIED="1717351864581" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.launcher.styles.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/GamesLauncher$PlaceholderTextFieldTest.ic" NAME="PlaceholderTextFieldTest Coverage Results" MODIFIED="1717351914987" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.launcher.styles.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/GamesLauncher$SignUpRoundedPanelTest.ic" NAME="SignUpRoundedPanelTest Coverage Results" MODIFIED="1717352126681" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.launcher.styles.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/GamesLauncher$UserDatabaseHandlerTest.ic" NAME="UserDatabaseHandlerTest Coverage Results" MODIFIED="1717352481520" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>database.*</FILTER>
+    </SUITE>
+  </component>
+</project>
